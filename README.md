@@ -45,3 +45,28 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 
 
 **Obs:** Para ver detalhes da tarefa, clique em seu nome.
+
+## Licença de uso
+
+Atualmente o sistema conta com a licença de uso **GPL v3**, com ela, o sistema exige algumas regras, veja-as resumidamente abaixo:
+
+
+**Exigido**:
+
+* Aviso de licença e direitos autorais
+* Mudanças de Estado
+* Divulgação de código-fonte
+
+**Permitido**:
+
+* Uso comercial
+* Modificação
+* Distribuição
+* Concessão de Patente
+
+**Proibido**:
+
+* Responsabilidade Assegurada
+* Sublicenciamento
+
+Leia a documentação inteira [clicando aqui](./LICENSE.txt), o texto acima foi retirado de [Escolha uma licença](http://escolhaumalicenca.com.br/licencas/gpl-v3/#)
