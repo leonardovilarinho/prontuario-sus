@@ -4,7 +4,7 @@ O projeto tem como intuito fornecer um sistema simples e personalizado para o Si
 
 ## Planejamento
 
-A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, onde as selecionadasjá foram implementadas.
+A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, onde as selecionadas já foram implementadas.
 
 ### Globais
 - [ ] [Script de instalação fácil do sistema](./planejamento/script-instalacao.md)
