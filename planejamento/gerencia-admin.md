@@ -3,7 +3,7 @@
 Gerenciar outros administradores do sistema, podendo:
 
 * Listar administradores registrados, com paginação de 10 em 10.
-* Criar um novo administrador com os dados: nome, email, cpf e senha.
+* Criar um novo administrador com os dados: nome, email, cpf, nascimento e senha.
 
 
 ## Exceções

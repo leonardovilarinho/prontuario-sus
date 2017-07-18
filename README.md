@@ -14,6 +14,9 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 - [ ] [Gerenciamento de secretários](./planejamento/gerencia-secretarios.md)
 - [ ] [Gerenciamento de médicos](./planejamento/gerencia-medicos.md)
 - [ ] [Gerenciamento de não médicos](./planejamento/gerencia-nao-medicos.md)
+- [ ] [Tornar CID obrigatório](./planejamento/cid-obrigatorio.md) **(novo)**
+- [ ] [Liberar acesso ao histórico](./planejamento/acesso-historico.md) **(novo)**
+- [ ] [Backup do sistema](./planejamento/backup.md) **(novo)**
 
 ### Médicos
 - [ ] [Gerenciamento de pacientes](./planejamento/gerencia-pacientes.md)
@@ -23,14 +26,22 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 - [ ] [Receituário de paciente](./planejamento/receituario-paciente.md)
 - [ ] [Calendário de consultas](./planejamento/calendario-consultas.md)
 - [ ] [Consultas do dia](./planejamento/consultas-dia.md)
+- [ ] [Impressão de evolução](./planejamento/impressao-evolucao.md) **(novo)**
+- [ ] [Impressão de prescrição](./planejamento/impressao-prescricao.md) **(novo)**
 
 ### Secretários
+- [ ] [Gerenciamento de secretários](./planejamento/gerencia-secretarios.md)
 - [ ] [Gerenciamento de pacientes](./planejamento/gerencia-pacientes.md)
+- [ ] [Pesquisa por médico](./planejamento/pesquisa-medico.md) **(novo)**
 - [ ] [Gerenciamento de consultas](./planejamento/gerencia-consultas.md)
+- [ ] [Agendamento de férias](./planejamento/gerencia-ferias.md) **(novo)**
 
 ### Não médicos
 - [ ] [Pesquisa de pacientes](./planejamento/pesquisa-pacientes.md)
 - [ ] [Registro de evolução](./planejamento/registro-evolucao.md)
 - [ ] [Receituário de paciente](./planejamento/receituario-paciente.md)
+- [ ] [Impressão de evolução](./planejamento/impressao-evolucao.md) **(novo)**
+- [ ] [Impressão de prescrição](./planejamento/impressao-prescricao.md) **(novo)**
+
 
 **Obs:** Para ver detalhes da tarefa, clique em seu nome.
