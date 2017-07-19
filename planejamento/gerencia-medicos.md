@@ -7,5 +7,7 @@ Realizar o gerenciamento dos médicos no sistema, podendo:
 * Editar qualquer médico do sistema.
 * Apagar ou bloquear qualquer médico.
 
+**Obs:** No cadastro de um novo médico deve ser obrigatório informar se o médico irá atender por consulta marcada ou no pronto-socorro (por emergência).
+
 
 [Voltar](../README.md) 
