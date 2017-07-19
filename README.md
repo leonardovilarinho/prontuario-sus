@@ -6,53 +6,79 @@ O projeto tem como intuito fornecer um sistema simples e personalizado para o Si
 
 A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, onde as selecionadas já foram implementadas.
 
-### Globais
-- [ ] [Script de instalação fácil do sistema](./planejamento/script-instalacao.md)
-
 ### Administrador
+
+- [ ] [Cadastrar informações do hospital](./planejamento/info-hospital.md)
 - [ ] [Gerenciamento de administradores](./planejamento/gerencia-admin.md)
 - [ ] [Gerenciamento de secretários](./planejamento/gerencia-secretarios.md)
-- [ ] [Gerenciamento de médicos](./planejamento/gerencia-medicos.md) **(editado)**
+- [ ] [Gerenciamento de médicos](./planejamento/gerencia-medicos.md)
 - [ ] [Gerenciamento de não médicos](./planejamento/gerencia-nao-medicos.md)
 - [ ] [Tornar CID obrigatório](./planejamento/cid-obrigatorio.md)
 - [ ] [Liberar acesso ao histórico](./planejamento/acesso-historico.md)
-- [ ] [Backup do sistema](./planejamento/backup.md)
-- [ ] [Tornar diagnóstico obrigatório](./planejamento/diagnostico-obrigatorio.md) **(novo)**
+- [ ] [Tornar diagnóstico obrigatório](./planejamento/diagnostico-obrigatorio.md)
 
 ### Médicos
-- [ ] [Cadastro de carga horária](./planejamento/gerencia-horario.md) **(novo)**
-- [ ] [Gerenciamento de pacientes](./planejamento/gerencia-pacientes.md)
+
+- [ ] [Cadastro de carga horária](./planejamento/gerencia-horario.md)
 - [ ] [Pesquisa de pacientes](./planejamento/pesquisa-pacientes.md)
 - [ ] [Registro de evolução](./planejamento/registro-evolucao.md)
 - [ ] [Prescrição de medicamentos](./planejamento/prescricao.md)
-- [ ] [Receituário de paciente](./planejamento/receituario-paciente.md) **(editado)**
-- [ ] [Calendário de consultas](./planejamento/calendario-consultas.md) **(editado)**
+- [ ] [Receituário de paciente](./planejamento/receituario-paciente.md)
 - [ ] [Consultas do dia](./planejamento/consultas-dia.md)
-- [ ] [Impressão de evolução](./planejamento/impressao-evolucao.md)
-- [ ] [Impressão de prescrição](./planejamento/impressao-prescricao.md)
+- [ ] [Agendamento de férias simples](./planejamento/gerencia-ferias-simples.md)
 
 ### Secretários
-- [ ] [Gerenciamento de secretários](./planejamento/gerencia-secretarios.md)
+
 - [ ] [Gerenciamento de pacientes](./planejamento/gerencia-pacientes.md)
 - [ ] [Pesquisa por médico](./planejamento/pesquisa-medico.md)
-- [ ] [Gerenciamento de consultas](./planejamento/gerencia-consultas.md) **(editado)**
-- [ ] [Agendamento de férias](./planejamento/gerencia-ferias.md)
-- [ ] [Gerenciamento de consultas](./planejamento/gerencia-consultas.md) **(novo)**
+- [ ] [Gerenciamento de consultas](./planejamento/gerencia-consultas.md)
 
 ### Não médicos
+
 - [ ] [Pesquisa de pacientes](./planejamento/pesquisa-pacientes.md)
 - [ ] [Registro de evolução](./planejamento/registro-evolucao.md)
-- [ ] [Receituário de paciente](./planejamento/receituario-paciente.md) **(editado)**
+- [ ] [Receituário de paciente](./planejamento/receituario-paciente.md)
+
+**Obs:** Para ver detalhes da tarefa, clique em seu nome.
+
+## Tarefas futuras
+
+Aqui estão tarefas planejadas para serem executadas posteriormente, são tarefas das quais o sistema não possui tanta dependência:
+
+### Globais
+
+- [ ] [Script de instalação fácil do sistema](./planejamento/script-instalacao.md)
+
+### Administrador
+
+- [ ] [Backup do sistema](./planejamento/backup.md)
+
+### Médicos
+
+- [ ] [Calendário de consultas](./planejamento/calendario-consultas.md)
 - [ ] [Impressão de evolução](./planejamento/impressao-evolucao.md)
 - [ ] [Impressão de prescrição](./planejamento/impressao-prescricao.md)
+- [ ] [Ver suas consultas do pronto socorro](./planejamento/consultas-pronto-socorro.md)
+- [ ] [Modelo simples de evolução](./planejamento/modelo-evolucao.md)
+- [ ] [Modelo simples de receituário](./planejamento/modelo-receituario.md)
+- [ ] [Modelo simples de prescrição](./planejamento/modelo-prescricao.md)
 
+### Secretários
+
+- [ ] [Gerenciamento de secretários](./planejamento/gerencia-secretarios.md)
+- [ ] [Agendamento de férias completo](./planejamento/gerencia-ferias.md)
+- [ ] [Gerenciar agenda do pronto socorro](./planejamento/gerencia-pronto-socorro.md)
+
+### Não médicos
+
+- [ ] [Impressão de evolução](./planejamento/impressao-evolucao.md)
+- [ ] [Impressão de prescrição](./planejamento/impressao-prescricao.md)
 
 **Obs:** Para ver detalhes da tarefa, clique em seu nome.
 
 ## Licença de uso
 
 Atualmente o sistema conta com a licença de uso **GPL v3**, com ela, o sistema exige algumas regras, veja-as resumidamente abaixo:
-
 
 **Exigido**:
 

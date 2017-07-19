@@ -1,0 +1,14 @@
+/src/node_modules
+/src/public/hot
+/src/public/storage
+/src/storage/*.key
+/src/vendor
+/src/.idea
+/src/.vagrant
+/src/Homestead.json
+/src/Homestead.yaml
+/src/npm-debug.log
+/src/.env
+/src/.phpintel
+/.phpintel
+/src

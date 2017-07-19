@@ -1,6 +1,6 @@
 # Gerenciamento de consultas
 
-Após selecionar um médico, é possível pesquisar por data, onde podemos manipular o resultado, tendo as opções:
+Após pesquisar um médico, é possível pesquisar por data, onde podemos manipular o resultado, tendo as opções:
 
 * Criar consulta nessa data
 * Desmarcar consulta resultada
@@ -11,6 +11,7 @@ Após selecionar um médico, é possível pesquisar por data, onde podemos manip
 Após a seleção de médico e busca por dia, ao clicar em criar uma nova consulta, teremos que preencher os dados:
 
 * Médico (automático)
+* Paciente
 * Data (automático)
 * Horário (seleção pega de acordo com o preenchido no gerenciamento de hórario do médico)
 * Observação (opcional)
