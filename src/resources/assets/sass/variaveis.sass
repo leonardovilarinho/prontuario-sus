@@ -1,0 +1,40 @@
+$primaria: rgba(41, 32, 61, .9)
+$secundaria: #3E2A46
+$letra-destaque: #ffffff
+$conteudo: #ffffff
+$letra-conteudo: #000000
+
+$claro: rgba(255, 255, 255, 0.05)
+$escuro: rgba(0, 0, 0, 0.1)
+
+$fundo-logo:  rgba(255, 255, 255, 0.3)
+
+$amarelo: #F7904B
+$verde: #408C7F
+$vermelho: #6E3143
+$azul: #3E528D
+
+=setarCorBg($cor)
+    background-color: $cor
+    color: $letra-destaque
+    &:hover
+          background-color: lighten($cor, 10%)
+
+.amarelo
+    +setarCorBg($amarelo)
+.verde
+    +setarCorBg($verde)
+.vermelho
+    +setarCorBg($vermelho)
+.azul
+    +setarCorBg($azul)
+
+
+.texto-amarelo
+    color: $amarelo
+.texto-verde
+    color: $verde
+.texto-vermelho
+    color: $vermelho
+.texto-azul
+    color: $azul

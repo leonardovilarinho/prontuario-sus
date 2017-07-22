@@ -1,0 +1,525 @@
+@import variaveis
+
+html, body
+	padding: 0
+	margin: 0
+
+
+h1, h2, h3, .superior, .lateral, .rodape
+	font-family: sans-serif
+
+h1, h2, h3,
+	margin: 10px 0px 10px 0px
+
+#menu, #topo
+	margin: 0px
+
+p
+	hyphens: auto
+	margin: 0
+
+
+.pagina
+	display: flex
+	flex-direction: column
+
+.superior
+	position: fixed
+	top: 0
+	left: 0
+	z-index: 9999
+	display: flex
+	flex-direction: row
+	background-color: $primaria
+	color: $letra-destaque
+	flex-basis: 7vh
+	height: 7vh
+	width: 100%
+
+	.logo
+		flex-grow: 1
+		display: flex
+		background-color: darken($escuro, 100%)
+		justify-content: center
+		align-items: center
+
+		span
+			margin: 0
+			letter-spacing: 1px
+			text-transform: uppercase
+			font-size: 13pt
+
+	.links
+		flex-grow: 9
+		display: flex
+		flex-direction: row
+		justify-content: flex-end
+		flex-basis: 7vh
+		align-items: stretch
+
+		ul
+			display: flex
+			height: 7vh
+			margin: 0
+			align-items: stretch
+			justify-content: space-around
+
+			li
+				display: flex
+				list-style: none
+				margin-right: 1vh
+				background: $claro
+				align-items: center
+
+				a
+					display: block
+					padding: 5px
+					text-decoration: none
+					text-transform: uppercase
+					color: $letra-destaque
+					font-size: 10pt
+
+				&:hover
+					background: $escuro
+main
+	display: flex
+	flex-direction: row
+	align-items: stretch
+	min-height: 95vh
+
+	.lateral
+		padding-top: 8vh
+		flex-grow: 1
+		flex-basis: 20vw
+		display: flex
+		flex-direction: column
+		background-color: $secundaria
+		color: $letra-destaque
+
+		.titulo
+			margin: 1vh
+			border-radius: 2px
+			background: $claro
+			display: flex
+			flex-direction: column
+			justify-content: center
+			align-content: stretch
+			text-align: center
+
+			p
+				margin: 0
+				font-size: 11pt
+				text-transform: uppercase
+				padding: 5px
+
+			small
+				border-top: 1px solid $escuro
+				font-size: 9pt
+				padding: 1px
+
+		.menu
+			margin: 1vh
+			border-radius: 2px
+			background: $claro
+			display: flex
+			flex-direction: column
+			justify-content: flex-end
+			align-content: stretch
+
+			ul
+				display: flex
+				flex-direction: column
+				align-content: flex-end
+				list-style: circle
+				margin: 0
+
+				li
+					margin: 0
+					border-bottom: 1px solid $escuro
+					background: darken($claro, 30%)
+
+					a, span
+						display: block
+						font-size: 10pt
+						text-transform: uppercase
+						text-decoration: none
+						color: $letra-destaque
+
+					a
+						padding: 10px 0px 10px 5px
+					span
+						padding: 8px 0px 8px 5px
+
+					&:hover
+						background: $escuro
+
+				li.fixo
+					border-bottom: 1px solid $escuro
+					background: $escuro
+					margin-left: -40px
+
+	.conteudo
+		padding: 6vh 5vh 5vh 5vh
+		flex-grow: 9
+		flex-basis: 80vw
+		display: flex
+		flex-direction: column
+		background-color: $conteudo
+		color: $letra-conteudo
+
+		h1, h2, h3
+			letter-spacing: 1px
+			border-bottom: 1px solid $secundaria
+			text-transform: uppercase
+			font-weight: 300
+
+		h1
+			font-size: 24pt
+		h2
+			font-size: 18pt
+		h3
+			font-size: 14pt
+.rodape
+	display: flex
+	flex-direction: row
+	justify-content: space-between
+	align-items: center
+	background-color: $primaria
+	color: $letra-destaque
+	flex-basis: 4vh
+
+	span
+		text-align: center
+		letter-spacing: 1px
+		font-size: 9pt
+		flex-grow: 9
+
+	a
+		magin: 0px
+		text-decoration: none
+		text-transform: uppercase
+		color: $letra-destaque
+		padding: 3px
+		font-size: 9pt
+		background: $escuro
+		margin-left: 10px
+
+
+.btn
+	margin: 0
+	border-radius: 4px
+	border: none
+	font-size: 12pt
+	text-decoration: none
+	text-align: center
+	padding: 6px 10px 6px 10px
+	color: #eeeeee
+	width: auto
+
+	&:hover
+		cursor: pointer
+
+
+.cartao
+	margin: 0
+	border-radius: 4px
+	border: 1px solid $escuro
+
+	header
+		margin: 0
+		border-top-left-radius: 4px;
+		border-top-right-radius: 4px;
+		background: $secundaria
+		color: $letra-destaque
+		padding: 8px
+		letter-spacing: 1px
+		text-transform: uppercase
+
+	article
+		margin: 0
+		padding: 10px
+
+	footer
+		margin: 0
+		border-bottom-left-radius: 4px;
+		border-bottom-right-radius: 4px;
+		background: lighten($secundaria, 70%)
+		color: $letra-destaque
+		padding: 8px
+		letter-spacing: 1px
+		text-transform: uppercase
+
+=fazerLista($cor, $fonte)
+	margin: 10px 0px 10px 0px
+	list-style: circle
+	background: darken($cor, 10%)
+	border-radius: 4px
+
+	li
+		padding: 10px 5px 10px 5px
+		background: $cor
+		color: $fonte
+
+		&:not(:last-child)
+			border-bottom: 1px solid lighten($cor, 10%)
+
+		* .btn
+			padding: 2px 10px 2px 10px
+
+		&:hover
+			cursor: pointer
+			background: darken($cor, 8%)
+
+.lista-comum
+	+fazerLista(#eeeeee, #000000)
+
+.lista-amarela
+	+fazerLista($amarelo, #eee)
+
+.lista-vermelha
+	+fazerLista($vermelho, #eee)
+
+.lista-verde
+	+fazerLista($verde, #eee)
+
+.lista-azul
+	+fazerLista($azul, #eee)
+
+.direita
+	float: right
+
+
+form
+	margin: 0
+	margin-top: 10px
+	border-radius: 4px
+	display: flex
+	flex-direction: column
+	border: 1px solid $secundaria
+
+	header
+		padding: 6px
+		background-color: lighten($secundaria, 5%)
+		letter-spacing: 1px
+		text-transform: uppercase
+		color: $letra-destaque
+
+	section
+		padding: 10px 20px 10px 10px
+		display: flex
+		flex-direction: column
+		justify-content: center
+		align-content: stretch
+
+
+		div
+			display: flex
+			padding: 5px 0px 5px 0px
+			margin: 0px 10px 0px 10px
+			align-items: center
+
+
+			label
+				flex-grow: 0
+				margin: 0
+				display: block
+				height: 24px
+				padding: 5px 5px 0px 15px
+
+			input, select
+				background: $conteudo
+				flex-grow: 9
+				margin: 0
+				border-top: none
+				border-radius: 4px
+				border: 1px solid #aaaaaa
+				height: 28px
+				font-size: 12pt
+				padding: 0px 5px 0px 5px
+
+				&:invalid
+					border: 1px solid $vermelho
+				&:valid
+					border: 1px solid $verde
+
+	footer
+		padding: 0px 10px 0px 10px
+		border-top: 1px solid $secundaria
+		display: flex
+		justify-content: space-between
+		align-items: center
+
+		span
+			flex-grow: 9
+			letter-spacing: 1px
+			text-align: right
+
+		section
+			text-align: right
+
+table
+	margin: 10px 0px 10px 0px
+	display: flex
+	flex-direction: column
+	border-collapse: collapse
+	overflow-x: auto
+	overflow-y: none
+	border-radius: 4px
+	border: 1px solid $secundaria
+	background: $secundaria
+	table-layout : fixed
+
+	.btn
+		padding: 2px 10px 2px 10px
+		margin-right: 3px
+
+	tr:first-child
+		color: $letra-destaque
+
+		td
+			padding: 8px 10px 8px 15px
+			letter-spacing: 1px
+			font-weight: 500
+
+		&:hover
+			background: $secundaria
+
+	tr:not(:first-child)
+		diplay: flex
+		justify-content: center
+		align-items: center
+		background: $conteudo
+		margin: 0
+
+		&:not(:last-child)
+			border-bottom: 1px solid #eeeeee
+
+		td
+			margin: 0
+			flex-grow: 3
+			padding: 5px 10px 5px 10px
+			flex-grow: 3
+			white-space: nowrap
+
+
+			&:last-child
+				width: 10%
+
+
+		&:hover
+			background: #eeeeee
+
+table.opcoes
+	tr:not(:first-child)
+		td:first-child
+			position: absolute
+			padding-rigth: 100px
+			text-align: center
+			background: rgba($secundaria, 0.7)
+
+.selecao
+	margin: 0
+	overflow: hidden
+	display: flex
+	user-select: none
+
+	input
+	    position: absolute
+	    height: 1px
+	    width: 1px
+	    border: 0
+	    margin: 0
+
+	input:checked + label
+		background-color: $secundaria
+		color: $letra-destaque
+
+	label
+		margin: 0
+		display: inline-block
+		float: left
+		background-color: $conteudo
+		color: #000000
+		padding: 5px 10px 0px 10px
+		text-align: center
+		border: 1px solid $verde
+		transition: all 0.1s ease-in-out;
+
+
+		&:hover
+			cursor: pointer
+
+		&:first-of-type
+			border-radius: 4px 0 0 4px
+			border-right: none
+
+		&:last-of-type
+ 			border-radius: 0 4px 4px 0
+ 			border-left: none
+
+.marcador
+	margin: 0
+	overflow: hidden
+	display: flex
+	user-select: none
+	justify-content: flex-start
+
+	input[type=checkbox]
+		height: 0
+		width: 0
+		visibility: hidden
+
+		&:checked + label
+			background: lighten($secundaria, 5%)
+
+		&:checked + label:after
+			background: #eeeeee
+			left: 103%
+			transform: translateX(-103%)
+
+	label
+		cursor: pointer
+		text-indent: -9999px
+		width: 40px
+		height: 15px
+		background: $conteudo
+		display: block
+		border-radius: 4px
+		position: relative
+		border: 1px solid $verde
+		margin: 0px 5px 0px 5px
+
+
+		&:after
+			content: ''
+			position: absolute
+			top: -5px
+			left: -3px
+			width: 30px
+			height: 30px
+			background: $secundaria
+			border-radius: 4px
+			transition: 0.3s
+
+.caminho
+	margin: 10px 0px 0px 0px
+	padding: 5px 10px 5px 10px
+	display: flex
+	background: $secundaria
+	border-radius: 4px
+
+	a
+		display: block
+		text-decoration: none
+		color: $letra-destaque
+		padding: 0px 5px 0px 0px
+		text-transform: capitalize
+	
+		&:not(:last-child)
+			color: #dddddd
+
+			&:after
+				content: " > "
+
+.container
+	margin: 0px 20% 0px 20%
