@@ -6,9 +6,13 @@ O projeto tem como intuito fornecer um sistema simples e personalizado para o Si
 
 A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, onde as selecionadas já foram implementadas.
 
+### Geral
+
+- [x] [Login no sistema](./planejamento/login.md)
+
 ### Administrador
 
-- [ ] [Cadastrar primeiro administrador](./planejamento/primeiro-adm.md)
+- [x] [Cadastrar primeiro administrador](./planejamento/primeiro-adm.md)
 - [ ] [Cadastrar informações do hospital](./planejamento/info-hospital.md)
 - [ ] [Gerenciamento de administradores](./planejamento/gerencia-admin.md)
 - [ ] [Gerenciamento de secretários](./planejamento/gerencia-secretarios.md)
