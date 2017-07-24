@@ -16,6 +16,6 @@ Em um item do menu lateral existe o atalho apra o gerenciamento de não-médicos
 
 Note também a existência das opções de edição, remoção e bloqueio/desbloqueio de um não-médico, além disso é possível clicar em criar um novo, onde teremos acesso a seguinte página com o formulário validando cada dado:
 
-![Painel inicial](./img/cadastro-nao-medicos.jpeg?raw=true)
+![Painel inicial](./img/cadastro-nao-medico.jpeg?raw=true)
 
 [Voltar](../README.md) 

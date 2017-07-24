@@ -17,7 +17,7 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 - [x] [Gerenciamento de administradores](./planejamento/gerencia-admin.md)
 - [ ] [Gerenciamento de secretários](./planejamento/gerencia-secretarios.md)
 - [x] [Gerenciamento de médicos](./planejamento/gerencia-medicos.md)
-- [ ] [Gerenciamento de não médicos](./planejamento/gerencia-nao-medicos.md)
+- [x] [Gerenciamento de não médicos](./planejamento/gerencia-nao-medicos.md)
 - [ ] [Tornar CID obrigatório](./planejamento/cid-obrigatorio.md)
 - [ ] [Liberar acesso ao histórico](./planejamento/acesso-historico.md)
 - [ ] [Tornar diagnóstico obrigatório](./planejamento/diagnostico-obrigatorio.md)
