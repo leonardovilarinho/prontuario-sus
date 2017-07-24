@@ -23,4 +23,12 @@ class UsuarioController extends Controller
 
     	return redirect($_SERVER['HTTP_REFERER'])->withMsg($usuario->nome . ' foi desbloqueada(o)!');
     }
+
+    public function apagar($id)
+    {
+        $usuario = Usuario::find($id);
+        $usuario->delete();
+
+        return redirect($_SERVER['HTTP_REFERER'])->withMsg($usuario->nome . ' foi apagada(o)!');
+    }
 }

@@ -48,6 +48,7 @@
                         <li class="fixo"><span>Ações a fazer:</span></li>
                         @if(!auth()->guest())
                             @if(auth()->user()->administrador)
+                                <li><a href="{{ url('administradores') }}">Administradores</a></li>
                                 <li><a href="{{ url('medicos') }}">Médicos</a></li>
                             @endif
                         @endif

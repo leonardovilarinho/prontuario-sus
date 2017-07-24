@@ -41,13 +41,13 @@
         @foreach($medicos as $medico)
             <tr>
                 <td>
-                    <a href="{{ url('medicos/apagar/' . $medico->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
+                    <a href="{{ url('usuarios/apagar/' . $medico->usuario->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
                     <a href="{{ url('medicos/editar/' . $medico->id) }}" class="btn amarelo">Editar</a>
 
                     @if($medico->usuario->valido)
-                        <a href="{{ url('medicos/bloquear/' . $medico->usuario->id) }}" class="btn azul">Bloquear</a>
+                        <a href="{{ url('usuarios/bloquear/' . $medico->usuario->id) }}" class="btn azul">Bloquear</a>
                     @else
-                        <a href="{{ url('medicos/desbloquear/' . $medico->usuario->id) }}" class="btn verde">Desloquear</a>
+                        <a href="{{ url('usuarios/desbloquear/' . $medico->usuario->id) }}" class="btn verde">Desbloquear</a>
                     @endif
                 </td>
                 <td>{{ $medico->usuario->nome }}</td>

@@ -52,14 +52,4 @@ class MedicoController extends Controller
 
         return redirect('medicos')->withMsg($medico->usuario->nome . ' foi editada(o)!');
     }
-
-    public function apagar($id)
-    {
-        $medico = Medico::find($id);
-        $medico->usuario->delete();
-    
-        $medico->delete();
-
-        return redirect('medicos')->withMsg($medico->usuario->nome . ' foi apagada(o)!');
-    }
 }

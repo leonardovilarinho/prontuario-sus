@@ -14,11 +14,8 @@ Em um item do menu lateral existe o atalho apra o gerenciamento de médicos, ao 
 ![Tela de login](./img/lista-medicos.jpeg?raw=true)
 
 
-Note também a existência das opções de ediçção, remoção e bloqueio/desbloqueio de um médico, além disso é possível clicar em criar um novo, onde teremos acesso a seguinte página com o formulário validando cada dado:
+Note também a existência das opções de edição, remoção e bloqueio/desbloqueio de um médico, além disso é possível clicar em criar um novo, onde teremos acesso a seguinte página com o formulário validando cada dado:
 
 ![Painel inicial](./img/cadastro-medico.jpeg?raw=true)
 
 [Voltar](../README.md)
-
-
-[Voltar](../README.md) 
