@@ -34,6 +34,11 @@ Route::group(['prefix' => 'medicos'], function() {
     Route::group(['middleware' => 'autenticacao:adm|sec'], function() {
         Route::get('', 'MedicoController@lista');
     });
+
+    Route::group(['middleware' => 'autenticacao:med'], function() {
+        Route::get('ferias', 'MedicoController@ferias');
+        Route::post('ferias', 'MedicoController@salvarFerias');
+    });
 });
 
 Route::group(['prefix' => 'administradores', 'middleware' => 'autenticacao:adm'], function() {

@@ -61,4 +61,17 @@ class MedicoController extends Controller
 
         return redirect('medicos')->withMsg($medico->usuario->nome . ' foi editada(o)!');
     }
+
+    public function ferias()
+    {
+        return view('medicos.ferias');
+    }
+
+    public function Salvarferias(Request $requisicao)
+    {
+        auth()->user()->medico->ferias = $requisicao->ferias;
+        auth()->user()->medico->save();
+
+        return redirect('medicos/ferias')->withMsg('Férias foram salvas!');
+    }
 }

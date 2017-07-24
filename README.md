@@ -30,7 +30,7 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 - [ ] [Prescrição de medicamentos](./planejamento/prescricao.md)
 - [ ] [Receituário de paciente](./planejamento/receituario-paciente.md)
 - [ ] [Consultas do dia](./planejamento/consultas-dia.md)
-- [ ] [Agendamento de férias simples](./planejamento/gerencia-ferias-simples.md)
+- [x] [Agendamento de férias simples](./planejamento/gerencia-ferias-simples.md)
 
 ### Secretários
 
