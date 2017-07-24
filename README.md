@@ -16,7 +16,7 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 - [ ] [Cadastrar informações do hospital](./planejamento/info-hospital.md)
 - [ ] [Gerenciamento de administradores](./planejamento/gerencia-admin.md)
 - [ ] [Gerenciamento de secretários](./planejamento/gerencia-secretarios.md)
-- [ ] [Gerenciamento de médicos](./planejamento/gerencia-medicos.md)
+- [x] [Gerenciamento de médicos](./planejamento/gerencia-medicos.md)
 - [ ] [Gerenciamento de não médicos](./planejamento/gerencia-nao-medicos.md)
 - [ ] [Tornar CID obrigatório](./planejamento/cid-obrigatorio.md)
 - [ ] [Liberar acesso ao histórico](./planejamento/acesso-historico.md)

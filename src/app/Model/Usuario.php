@@ -25,10 +25,17 @@ class Usuario extends Authenticatable
     	return $this->hasOne(Administrador::class, 'usuario_id', 'id');
     }
 
+    public function medico()
+    {
+        return $this->hasOne(Medico::class, 'usuario_id', 'id');
+    }
+
     public function tipo()
     {
         if($this->administrador)
             return'ADMINISTRADOR';
+        else if($this->medico)
+            return'MÉDICO';
 
         return 'NÃO ENCONTRADO';
     }

@@ -13,5 +13,18 @@ Route::group(['prefix' => 'administradores'], function() {
 
 Route::group(['prefix' => 'painel'], function() {
     Route::get('', 'PainelController@inicial');
+});
 
+Route::group(['prefix' => 'medicos', 'middleware' => 'autenticacao:adm'], function() {
+    Route::get('', 'MedicoController@lista');
+
+    Route::get('novo', 'MedicoController@criar');
+    Route::post('novo', 'MedicoController@salvar');
+
+    Route::get('editar/{id}', 'MedicoController@edicao');
+    Route::put('editar/{id}', 'MedicoController@editar');
+
+    Route::get('apagar/{id}', 'MedicoController@apagar');
+    Route::get('bloquear/{id}', 'UsuarioController@bloquear');
+    Route::get('desbloquear/{id}', 'UsuarioController@desbloquear');
 });

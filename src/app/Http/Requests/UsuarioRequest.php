@@ -23,12 +23,26 @@ class UsuarioRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'nome' => 'max:200|min:3|required',
-            'email' => 'max:200|email|required',
-            'cpf' => 'max:11|min:11|required',
-            'nascimento' => 'max:200|min:3|required|older:18',
-            'senha' => 'max:20|min:6|required|confirmed',
-        ];
+        switch($this->method()) {
+            case 'POST':
+                return [
+                    'nome' => 'max:200|min:3|required',
+                    'email' => 'max:200|email|required|unique:usuarios',
+                    'cpf' => 'max:11|min:11|required|unique:usuarios',
+                    'nascimento' => 'max:200|min:3|required|older:18',
+                    'senha' => 'max:20|min:6|nullable|confirmed',
+                ];
+
+            case 'PUT':
+                return [
+                    'nome' => 'max:200|min:3|required',
+                    'email' => 'max:200|email|required',
+                    'cpf' => 'max:11|min:11|required',
+                    'nascimento' => 'max:200|min:3|required|older:18',
+                    'senha' => 'max:20|min:6|nullable|confirmed',
+                ];
+        }
+
+        return [];
     }
 }

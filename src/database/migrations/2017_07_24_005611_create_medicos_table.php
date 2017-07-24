@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdministradorsTable extends Migration
+class CreateMedicosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,8 @@ class CreateAdministradorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('administradores', function (Blueprint $table) {
+        Schema::create('medicos', function (Blueprint $table) {
+            $table->increments('id');
 
             $table->integer('usuario_id')->unsigned()->unique();
 
@@ -21,6 +22,13 @@ class CreateAdministradorsTable extends Migration
               ->references('id')
               ->on('usuarios')
             ->onDelete('cascade');
+
+            $table->string('conselho')->nullable();
+            $table->string('especialidade')->nullable();
+            $table->string('cargo')->nullable();
+            $table->string('telefone')->nullable();
+
+            $table->timestamps();
         });
     }
 
@@ -31,6 +39,6 @@ class CreateAdministradorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('administradors');
+        Schema::dropIfExists('medicos');
     }
 }
