@@ -11,7 +11,7 @@ class SecretarioController extends Controller
 {
     public function lista()
     {
-        $secretarios = Secretario::paginate(10);
+        $secretarios = Secretario::paginate( config('prontuario.paginacao') );
         return view('secretarios.lista', compact('secretarios'));
     }
 

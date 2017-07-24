@@ -13,7 +13,7 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 ### Administrador
 
 - [x] [Cadastrar primeiro administrador](./planejamento/primeiro-adm.md)
-- [ ] [Cadastrar informações do hospital](./planejamento/info-hospital.md)
+- [x] [Cadastrar informações do hospital](./planejamento/info-hospital.md)
 - [x] [Gerenciamento de administradores](./planejamento/gerencia-admin.md)
 - [x] [Gerenciamento de secretários](./planejamento/gerencia-secretarios.md)
 - [x] [Gerenciamento de médicos](./planejamento/gerencia-medicos.md)

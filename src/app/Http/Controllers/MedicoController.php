@@ -10,7 +10,7 @@ class MedicoController extends Controller
 {
     public function lista()
     {
-        $medicos = Medico::paginate(10);
+        $medicos = Medico::paginate( config('prontuario.paginacao') );
         return view('medicos.lista', compact('medicos'));
     }
 

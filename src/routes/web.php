@@ -61,3 +61,8 @@ Route::group(['prefix' => 'secretarios', 'middleware' => 'autenticacao:adm'], fu
     Route::get('editar/{id}', 'SecretarioController@edicao');
     Route::put('editar/{id}', 'SecretarioController@editar');
 });
+
+Route::group(['prefix' => 'hospital', 'middleware' => 'autenticacao:adm'], function() {
+    Route::get('', 'HospitalController@informacoes');
+    Route::post('', 'HospitalController@salvar');
+});

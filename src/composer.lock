@@ -4,9 +4,46 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "645b90d88319b7770834e6ea4839b3c0",
-    "content-hash": "75ba431fb4ccf48ce8a358d938bb8d86",
+    "hash": "a054da9c7609c6b5718059152b1d42d2",
+    "content-hash": "b9f13d478bef8507c64acab53fee1020",
     "packages": [
+        {
+            "name": "axdlee/laravel-config-writer",
+            "version": "1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/axdlee/laravel-config-writer.git",
+                "reference": "6dfc17cd3fe7cd052032fed057817e0acefe1ffd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/axdlee/laravel-config-writer/zipball/6dfc17cd3fe7cd052032fed057817e0acefe1ffd",
+                "reference": "6dfc17cd3fe7cd052032fed057817e0acefe1ffd",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/config": "^5.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Axdlee\\Config\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "axdlee",
+                    "email": "xdlee110@gmail.com"
+                }
+            ],
+            "description": "Write to Laravel Config files and maintain file integrity. Support Laravel 5.3+",
+            "homepage": "http://xdlee.com",
+            "time": "2017-04-20 06:45:32"
+        },
         {
             "name": "dnoegel/php-xdg-base-dir",
             "version": "0.1",

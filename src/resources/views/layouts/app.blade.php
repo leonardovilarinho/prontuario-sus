@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width">
 
         <meta name="csrf-token" content="{{ csrf_token() }}">
-        <title>@yield('titulo') - {{ config('app.name', 'Laravel') }}</title>
+        <title>@yield('titulo') - {{ config('prontuario.nome') }}</title>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.mob.css') }}" rel="stylesheet" media="(max-width: 992px)">
     </head>
@@ -16,7 +16,7 @@
         <header class="superior">
             <section class="logo">
                 <span>
-                    Prontuário
+                    {{  config('prontuario.nome')  }}
                 </span>
             </section>
 
@@ -48,6 +48,7 @@
                         <li class="fixo"><span>Ações a fazer:</span></li>
                         @if(!auth()->guest())
                             @if(auth()->user()->administrador)
+                                <li><a href="{{ url('hospital') }}">Hospital</a></li>
                                 <li><a href="{{ url('administradores') }}">Administradores</a></li>
                                 <li><a href="{{ url('medicos') }}">Médicos</a></li>
                                 <li><a href="{{ url('nao-medicos') }}">Não-Médicos</a></li>

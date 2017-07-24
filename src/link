@@ -1,0 +1,8 @@
+
+                                                                  
+  [Symfony\Component\Console\Exception\CommandNotFoundException]  
+  Command "storage" is not defined.                               
+  Did you mean this?                                              
+      storage:link                                                
+                                                                  
+

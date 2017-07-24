@@ -36,7 +36,7 @@ class AdministradorController extends Controller
 
     public function lista()
     {
-        $administradores = Administrador::paginate(10);
+        $administradores = Administrador::paginate( config('prontuario.paginacao') );
         return view('administradores.lista', compact('administradores'));
     }
 

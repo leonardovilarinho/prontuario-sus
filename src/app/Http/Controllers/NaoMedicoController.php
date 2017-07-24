@@ -10,7 +10,7 @@ class NaoMedicoController extends Controller
 {
     public function lista()
     {
-        $nmedicos = NaoMedico::paginate(10);
+        $nmedicos = NaoMedico::paginate( config('prontuario.paginacao') );
         return view('nao-medicos.lista', compact('nmedicos'));
     }
 
