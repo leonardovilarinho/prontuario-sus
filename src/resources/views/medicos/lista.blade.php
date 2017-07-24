@@ -58,5 +58,7 @@
         @endforeach
     </table>
 
-    {{ $medicos->links() }}
+    <section style="text-align:center">
+        {{ $medicos->links() }}
+    </section>
 @endsection

@@ -227,8 +227,8 @@ main
 
 	header
 		margin: 0
-		border-top-left-radius: 4px;
-		border-top-right-radius: 4px;
+		border-top-left-radius: 4px
+		border-top-right-radius: 4px
 		background: $secundaria
 		color: $letra-destaque
 		padding: 8px
@@ -241,8 +241,8 @@ main
 
 	footer
 		margin: 0
-		border-bottom-left-radius: 4px;
-		border-bottom-right-radius: 4px;
+		border-bottom-left-radius: 4px
+		border-bottom-right-radius: 4px
 		background: lighten($secundaria, 70%)
 		color: $letra-destaque
 		padding: 8px
@@ -443,7 +443,7 @@ table.opcoes
 		padding: 5px 10px 0px 10px
 		text-align: center
 		border: 1px solid $verde
-		transition: all 0.1s ease-in-out;
+		transition: all 0.1s ease-in-out
 
 
 		&:hover
@@ -523,3 +523,56 @@ table.opcoes
 
 .container
 	margin: 0px 20% 0px 20%
+
+
+.pagination
+	display: inline-block
+	padding-left: 0
+	margin: 20px 0
+	border-radius: 4px
+
+	> li
+		display: inline
+
+		> a, > span
+			position: relative
+			float: left
+			padding: 6px 12px
+			line-height: 1.42857143
+			text-decoration: none
+			color: $secundaria
+			background-color: #ffffff
+			border: 1px solid #dddddd
+			margin-left: -1px
+
+			&:hover,&:focus
+				z-index: 2
+				color: #23527c
+				background-color: #eeeeee
+				border-color: #dddddd
+
+		&:first-child > a, &:first-child > span
+			margin-left: 0
+			border-bottom-left-radius: 4px
+			border-top-left-radius: 4px
+
+		&:last-child > a, &:last-child > span
+			border-bottom-right-radius: 4px
+			border-top-right-radius: 4px
+
+	> .active > a, > .active > span, > .active > a:hover,
+	> .active > span:hover, > .active > a:focus,
+	> .active > span:focus
+		z-index: 3
+		color: #ffffff
+		background-color: $secundaria
+		border-color: $secundaria
+		cursor: default
+
+	> .disabled > span, > .disabled > span:hover,
+	> .disabled > span:focus, > .disabled > a,
+	> .disabled > a:hover, > .disabled > a:focus
+		color: #777777
+		background-color: #ffffff
+		border-color: #dddddd
+		cursor: not-allowed
