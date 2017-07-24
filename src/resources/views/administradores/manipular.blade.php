@@ -46,10 +46,11 @@
         </section>
 
         <footer>
-            <span class="texto-vermelho">{{ $errors->first() }}</span>
             <section>
                 <input type="submit" value="Salvar esse administrador" class="btn verde">
             </section>
+
+            <span class="texto-vermelho">{{ $errors->first() }}</span>
         </footer>
     {!! Form::close() !!}
 

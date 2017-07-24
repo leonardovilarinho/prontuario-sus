@@ -53,6 +53,8 @@
                                 <li><a href="{{ url('medicos') }}">Médicos</a></li>
                                 <li><a href="{{ url('nao-medicos') }}">Não-Médicos</a></li>
                                 <li><a href="{{ url('secretarios') }}">Secretários</a></li>
+                            @elseif(auth()->user()->medico)
+                                <li><a href="{{ url('carga') }}">Carga horária</a></li>
                             @endif
                         @endif
                         @section('lateral')

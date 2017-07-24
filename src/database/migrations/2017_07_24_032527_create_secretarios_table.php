@@ -25,8 +25,6 @@ class CreateSecretariosTable extends Migration
 
             $table->string('cargo')->nullable();
             $table->string('telefone')->nullable();
-
-            $table->timestamps();
         });
     }
 

@@ -24,7 +24,7 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 
 ### Médicos
 
-- [ ] [Cadastro de carga horária](./planejamento/gerencia-horario.md)
+- [x] [Cadastro de carga horária](./planejamento/gerencia-horario.md)
 - [ ] [Pesquisa de pacientes](./planejamento/pesquisa-pacientes.md)
 - [ ] [Registro de evolução](./planejamento/registro-evolucao.md)
 - [ ] [Prescrição de medicamentos](./planejamento/prescricao.md)

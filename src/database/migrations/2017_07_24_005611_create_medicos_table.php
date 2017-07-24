@@ -28,7 +28,7 @@ class CreateMedicosTable extends Migration
             $table->string('cargo')->nullable();
             $table->string('telefone')->nullable();
 
-            $table->timestamps();
+            $table->tinyInteger('ferias')->default('0');
         });
     }
 

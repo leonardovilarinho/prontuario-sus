@@ -20,4 +20,10 @@ class Medico extends Model
     {
     	return $this->belongsTo(Usuario::class, 'usuario_id', 'id');
     }
+
+    public function carga_horaria()
+    {
+        return $this->hasOne(CargaHoraria::class, 'medico_id', 'usuario_id');
+    }
+
 }

@@ -66,3 +66,8 @@ Route::group(['prefix' => 'hospital', 'middleware' => 'autenticacao:adm'], funct
     Route::get('', 'HospitalController@informacoes');
     Route::post('', 'HospitalController@salvar');
 });
+
+Route::group(['prefix' => 'carga', 'middleware' => 'autenticacao:med'], function() {
+    Route::get('', 'CargaHorariaController@manipular');
+    Route::post('', 'CargaHorariaController@salvar');
+});

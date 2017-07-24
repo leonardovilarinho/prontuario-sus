@@ -46,15 +46,18 @@
         </section>
 
         <footer>
-            <span class="texto-vermelho">{{ $errors->first() }}</span>
+            <section>
+                <input type="submit" value="Salvar essas informações" class="btn verde">
+            </section>
+
+            @if($errors->first())
+                <span class="texto-vermelho">{{ $errors->first() }}</span>
+            @endif
+            
 
             @if(session('msg'))
                 <span class="texto-verde">{{ session('msg') }}</span>
             @endif
-
-            <section>
-                <input type="submit" value="Salvar essas informações" class="btn verde">
-            </section>
         </footer>
     {!! Form::close() !!}
 

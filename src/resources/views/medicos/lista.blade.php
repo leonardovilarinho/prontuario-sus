@@ -35,7 +35,8 @@
             <td>Nome</td>
             <td>Email</td>
             <td>Especialidade</td>
-            <td>CPF</td>
+            <td>Cargo</td>
+            <td>Conselho</td>
         </tr>
 
         @foreach($medicos as $medico)
@@ -53,7 +54,8 @@
                 <td>{{ $medico->usuario->nome }}</td>
                 <td>{{ $medico->usuario->email }}</td>
                 <td>{{ $medico->especialidade }}</td>
-                <td>{{ $medico->usuario->cpf }}</td>
+                <td>{{ $medico->cargo }}</td>
+                <td>{{ $medico->conselho }}</td>
             </tr>
         @endforeach
     </table>
