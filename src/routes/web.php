@@ -51,3 +51,13 @@ Route::group(['prefix' => 'nao-medicos', 'middleware' => 'autenticacao:adm'], fu
     Route::get('editar/{id}', 'NaoMedicoController@edicao');
     Route::put('editar/{id}', 'NaoMedicoController@editar');
 });
+
+Route::group(['prefix' => 'secretarios', 'middleware' => 'autenticacao:adm'], function() {
+    Route::get('', 'SecretarioController@lista');
+
+    Route::get('novo', 'SecretarioController@criar');
+    Route::post('novo', 'SecretarioController@salvar');
+
+    Route::get('editar/{id}', 'SecretarioController@edicao');
+    Route::put('editar/{id}', 'SecretarioController@editar');
+});

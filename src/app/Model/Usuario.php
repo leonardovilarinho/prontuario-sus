@@ -35,6 +35,11 @@ class Usuario extends Authenticatable
         return $this->hasOne(NaoMedico::class, 'usuario_id', 'id');
     }
 
+    public function secretario()
+    {
+        return $this->hasOne(Secretario::class, 'usuario_id', 'id');
+    }
+
     public function tipo()
     {
         if($this->administrador)
@@ -43,6 +48,8 @@ class Usuario extends Authenticatable
             return'MÉDICO';
         else if($this->nao_medico)
             return'NÃO MÉDICO';
+        else if($this->secretario)
+            return'SECRETÁRIO';
 
         return 'NÃO ENCONTRADO';
     }
