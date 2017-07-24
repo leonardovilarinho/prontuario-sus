@@ -14,6 +14,7 @@ class Medico extends Model
         'cargo',
         'telefone',
         'usuario_id',
+        'ferias'
     ];
 
     public function usuario()
