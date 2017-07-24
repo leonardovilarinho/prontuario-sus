@@ -30,12 +30,19 @@ class Usuario extends Authenticatable
         return $this->hasOne(Medico::class, 'usuario_id', 'id');
     }
 
+    public function nao_medico()
+    {
+        return $this->hasOne(NaoMedico::class, 'usuario_id', 'id');
+    }
+
     public function tipo()
     {
         if($this->administrador)
             return'ADMINISTRADOR';
         else if($this->medico)
             return'MÉDICO';
+        else if($this->nao_medico)
+            return'NÃO MÉDICO';
 
         return 'NÃO ENCONTRADO';
     }
