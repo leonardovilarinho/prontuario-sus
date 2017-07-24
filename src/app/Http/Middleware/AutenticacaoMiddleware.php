@@ -30,6 +30,14 @@ class AutenticacaoMiddleware
                     if(auth()->user()->medico)
                         return $next($request);
                 break;
+                case 'nme':
+                    if(auth()->user()->nao_medico)
+                        return $next($request);
+                break;
+                case 'sec':
+                    if(auth()->user()->secretario)
+                        return $next($request);
+                break;
             }
         }
 

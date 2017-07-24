@@ -71,3 +71,13 @@ Route::group(['prefix' => 'carga', 'middleware' => 'autenticacao:med'], function
     Route::get('', 'CargaHorariaController@manipular');
     Route::post('', 'CargaHorariaController@salvar');
 });
+
+Route::group(['prefix' => 'pacientes', 'middleware' => 'autenticacao:sec'], function() {
+    Route::get('', 'PacienteController@lista');
+
+    Route::get('novo', 'PacienteController@criar');
+    Route::post('novo', 'PacienteController@salvar');
+
+    Route::get('editar/{id}', 'PacienteController@edicao');
+    Route::put('editar/{id}', 'PacienteController@editar');
+});

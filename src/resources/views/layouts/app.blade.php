@@ -55,6 +55,8 @@
                                 <li><a href="{{ url('secretarios') }}">Secretários</a></li>
                             @elseif(auth()->user()->medico)
                                 <li><a href="{{ url('carga') }}">Carga horária</a></li>
+                            @elseif(auth()->user()->secretario)
+                                <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
                             @endif
                         @endif
                         @section('lateral')

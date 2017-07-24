@@ -34,7 +34,7 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 
 ### Secretários
 
-- [ ] [Gerenciamento de pacientes](./planejamento/gerencia-pacientes.md)
+- [x] [Gerenciamento de pacientes](./planejamento/gerencia-pacientes.md)
 - [ ] [Pesquisa por médico](./planejamento/pesquisa-medico.md)
 - [ ] [Gerenciamento de consultas](./planejamento/gerencia-consultas.md)
 

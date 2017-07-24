@@ -41,7 +41,7 @@
 
             <div>	
                 {!! Form::label('logo', 'Logomarca') !!}
-                {!! Form::file('logo', ['aceept' => 'image/*']) !!}
+                {!! Form::file('logo', ['accept' => 'image/*']) !!}
             </div>
         </section>
 
