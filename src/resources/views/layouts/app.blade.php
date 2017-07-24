@@ -55,7 +55,11 @@
                                 <li><a href="{{ url('secretarios') }}">Secretários</a></li>
                             @elseif(auth()->user()->medico)
                                 <li><a href="{{ url('carga') }}">Carga horária</a></li>
+                                <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
                             @elseif(auth()->user()->secretario)
+                                <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
+                                <li><a href="{{ url('medicos') }}">Médicos</a></li>
+                            @elseif(auth()->user()->nao_medico)
                                 <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
                             @endif
                         @endif
@@ -70,7 +74,7 @@
                     @if(count(Request::segments()) > 0)
                         @for($i = 0; $i <= count(Request::segments()); $i++)
                             @if(Request::segment($i) != '')
-                                <a href="{{ url( implode('/', array_slice(Request::segments(), 0, $i) ) ) }}">{{ Request::segment($i) }}</a>
+                                <a href="#">{{ Request::segment($i) }}</a>
                             @endif
                         @endfor
                     @else

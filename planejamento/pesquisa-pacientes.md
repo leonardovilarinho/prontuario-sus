@@ -12,7 +12,12 @@ Tela com filtros de busca para pacientes, poderá ser buscado pacientes por:
 
 ## Retorno de busca
 
-Após realizar uma busca, será mostrada uma tabela com os principais dados do paciente, além dos botões de ações, como editar, evolução e prescrição.
+Após realizar uma busca, será mostrada uma tabela com os principais dados dos pacientes, além dos botões de ações, como editar, evolução e prescrição.
 
+## Implementação
+
+Na listagem de pacientes foi inserido um formulário simples de busca, onde ao buscar por um campo, a mesma tela é apresentada com o resultado, como no exemplo:
+
+![Tela de busca](./img/busca-paciente.jpeg?raw=true)
 
 [Voltar](../README.md) 

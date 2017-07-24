@@ -22,6 +22,14 @@
         @endif
     </p>
 
+    {{ Form::open(['url' => 'nao-medicos', 'method' => 'get']) }}
+        <section>
+            <div>
+                {{ Form::search('q', '',['placeholder' => 'Buscar por nome, email ou CPF']) }}
+                {{ Form::submit('Buscar', ['class' => 'btn verde', 'style' => 'flex-grow: 1; margin-left: 3px']) }}
+            </div>
+        </section>
+    {{ Form::close() }}
 
     <p>
         Aqui você pode gerenciar qualquer não-médico registrado no sistema, veja a seguir alguns dos quais estão na sua base de dados:

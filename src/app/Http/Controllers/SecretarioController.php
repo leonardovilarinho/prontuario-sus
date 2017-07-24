@@ -11,7 +11,16 @@ class SecretarioController extends Controller
 {
     public function lista()
     {
-        $secretarios = Secretario::paginate( config('prontuario.paginacao') );
+        if(!isset($_GET['q']))
+            $secretarios = Secretario::paginate( config('prontuario.paginacao') );
+        else {
+            $secretarios = Secretario::whereHas('usuario', function($query) {
+                $query->where('nome', 'like', '%'.$_GET['q'].'%')
+                    ->orWhere('email', 'like', '%'.$_GET['q'].'%')
+                    ->orWhere('cpf', 'like', '%'.$_GET['q'].'%');
+            })->paginate( config('prontuario.paginacao') );
+        }
+
         return view('secretarios.lista', compact('secretarios'));
     }
 

@@ -4,7 +4,6 @@
 
 @section('lateral')
     {{-- @parent --}}
-    <li><a href="#">Item person</a></li>
 @endsection
 
 @section('conteudo')

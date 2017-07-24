@@ -2,7 +2,7 @@
 
 return [
 	'nome' => 'SUS',
-    'paginacao' => '10',
+    'paginacao' => '5',
     'hospital' => [
     	'nome' => 'PS',
     	'local' => 'GitHub'

@@ -10,7 +10,16 @@ class NaoMedicoController extends Controller
 {
     public function lista()
     {
-        $nmedicos = NaoMedico::paginate( config('prontuario.paginacao') );
+        if(!isset($_GET['q']))
+            $nmedicos = NaoMedico::paginate( config('prontuario.paginacao') );
+        else {
+            $nmedicos = NaoMedico::whereHas('usuario', function($query) {
+                $query->where('nome', 'like', '%'.$_GET['q'].'%')
+                    ->orWhere('email', 'like', '%'.$_GET['q'].'%')
+                    ->orWhere('cpf', 'like', '%'.$_GET['q'].'%');
+            })->paginate( config('prontuario.paginacao') );
+        }
+        
         return view('nao-medicos.lista', compact('nmedicos'));
     }
 

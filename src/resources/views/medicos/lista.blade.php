@@ -22,12 +22,24 @@
         @endif
     </p>
 
+    {{ Form::open(['url' => 'medicos', 'method' => 'get']) }}
+        <section>
+            <div>
+                {{ Form::search('q', '',['placeholder' => 'Buscar por nome, email ou CPF']) }}
+                {{ Form::submit('Buscar', ['class' => 'btn verde', 'style' => 'flex-grow: 1; margin-left: 3px']) }}
+            </div>
+        </section>
+    {{ Form::close() }}
+
 
     <p>
         Aqui você pode gerenciar qualquer médico registrado no sistema, veja a seguir alguns dos quais estão na sua base de dados:
     </p>
     <br>
-    <a class="btn verde" href="{{ url('medicos/novo') }}">Cadastrar novo médico</a>
+
+    @if(auth()->user()->administrador)
+        <a class="btn verde" href="{{ url('medicos/novo') }}">Cadastrar novo médico</a>
+    @endif
 
     <table>
         <tr>
@@ -42,13 +54,17 @@
         @foreach($medicos as $medico)
             <tr>
                 <td>
-                    <a href="{{ url('usuarios/apagar/' . $medico->usuario->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
-                    <a href="{{ url('medicos/editar/' . $medico->id) }}" class="btn amarelo">Editar</a>
+                    @if(auth()->user()->administrador)
+                        <a href="{{ url('usuarios/apagar/' . $medico->usuario->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
+                        <a href="{{ url('medicos/editar/' . $medico->id) }}" class="btn amarelo">Editar</a>
 
-                    @if($medico->usuario->valido)
-                        <a href="{{ url('usuarios/bloquear/' . $medico->usuario->id) }}" class="btn azul">Bloquear</a>
+                        @if($medico->usuario->valido)
+                            <a href="{{ url('usuarios/bloquear/' . $medico->usuario->id) }}" class="btn azul">Bloquear</a>
+                        @else
+                            <a href="{{ url('usuarios/desbloquear/' . $medico->usuario->id) }}" class="btn verde">Desbloquear</a>
+                        @endif
                     @else
-                        <a href="{{ url('usuarios/desbloquear/' . $medico->usuario->id) }}" class="btn verde">Desbloquear</a>
+                        <a href="{{ url('medicos/editar/' . $medico->id) }}" class="btn amarelo">Editar</a>
                     @endif
                 </td>
                 <td>{{ $medico->usuario->nome }}</td>

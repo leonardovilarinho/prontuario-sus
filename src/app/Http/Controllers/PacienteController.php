@@ -10,7 +10,17 @@ class PacienteController extends Controller
 {
     public function lista()
     {
-        $pacientes = Paciente::paginate( config('prontuario.paginacao') );
+        if(!isset($_GET['q']))
+            $pacientes = Paciente::paginate( config('prontuario.paginacao') );
+        else {
+            $pacientes = Paciente::where('nome', 'like', '%'.$_GET['q'].'%')
+                ->orWhere('email', 'like', '%'.$_GET['q'].'%')
+                ->orWhere('cpf', 'like', '%'.$_GET['q'].'%')
+                ->orWhere('prontuario', 'like', '%'.$_GET['q'].'%')
+                ->orWhere('nascimento', 'like', '%'.$_GET['q'].'%')
+            ->paginate( config('prontuario.paginacao') );
+        }
+
         return view('pacientes.lista', compact('pacientes'));
     }
 

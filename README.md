@@ -25,7 +25,7 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 ### Médicos
 
 - [x] [Cadastro de carga horária](./planejamento/gerencia-horario.md)
-- [ ] [Pesquisa de pacientes](./planejamento/pesquisa-pacientes.md)
+- [x] [Pesquisa de pacientes](./planejamento/pesquisa-pacientes.md)
 - [ ] [Registro de evolução](./planejamento/registro-evolucao.md)
 - [ ] [Prescrição de medicamentos](./planejamento/prescricao.md)
 - [ ] [Receituário de paciente](./planejamento/receituario-paciente.md)
@@ -35,12 +35,12 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 ### Secretários
 
 - [x] [Gerenciamento de pacientes](./planejamento/gerencia-pacientes.md)
-- [ ] [Pesquisa por médico](./planejamento/pesquisa-medico.md)
+- [x] [Pesquisa por médico](./planejamento/pesquisa-medico.md)
 - [ ] [Gerenciamento de consultas](./planejamento/gerencia-consultas.md)
 
 ### Não médicos
 
-- [ ] [Pesquisa de pacientes](./planejamento/pesquisa-pacientes.md)
+- [x] [Pesquisa de pacientes](./planejamento/pesquisa-pacientes.md)
 - [ ] [Registro de evolução](./planejamento/registro-evolucao.md)
 - [ ] [Receituário de paciente](./planejamento/receituario-paciente.md)
 
