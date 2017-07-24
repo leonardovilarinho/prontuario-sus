@@ -80,4 +80,6 @@ Route::group(['prefix' => 'pacientes', 'middleware' => 'autenticacao:sec'], func
 
     Route::get('editar/{id}', 'PacienteController@edicao');
     Route::put('editar/{id}', 'PacienteController@editar');
+
+    Route::get('apagar/{id}', 'PacienteController@apagar');
 });

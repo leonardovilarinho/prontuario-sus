@@ -30,4 +30,27 @@ class PacienteController extends Controller
 
         return redirect('pacientes')->withMsg($requisicao->nome . ' foi cadastrada(o)!');
     }
+
+    public function apagar($id)
+    {
+        $paciente = Paciente::find($id);
+        $paciente->delete();
+
+        return redirect($_SERVER['HTTP_REFERER'])->withMsg($paciente->nome . ' foi apagada(o)!');
+    }
+
+    public function edicao($id)
+    {
+        $paciente = Paciente::find($id);
+        return view('pacientes.manipular', compact('paciente'));
+    }
+
+    public function editar(PacienteRequest $requisicao, $id)
+    {
+        $paciente = Paciente::find($id);
+        $paciente->fill($requisicao->all());
+        $paciente->save();
+
+        return redirect('pacientes')->withMsg($paciente->nome . ' foi editada(o)!');
+    }
 }
