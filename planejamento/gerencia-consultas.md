@@ -47,4 +47,13 @@ Por fim, é possível terminar preenchendo os campos de status e observação, c
 
 ![Tela](./img/finaliza-consulta.jpeg?raw=true)
 
+
+É possível ver as consultas marcadas para um médico, como na tela:
+
+![Tela](./img/lista-consulta-med.jpeg?raw=true)
+
+Ou então listar as consultas de cada paciente, na tela:
+
+![Tela](./img/lista-consulta-pac.jpeg?raw=true)
+
 [Voltar](../README.md)

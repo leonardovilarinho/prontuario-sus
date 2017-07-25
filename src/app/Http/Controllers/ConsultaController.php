@@ -128,4 +128,89 @@ class ConsultaController extends Controller
 
         return redirect('medicos')->withMsg('Consulta marcada em '.$horario->format('d/m/Y á\s H:i') . ' para '.$medico->usuario->nome);
     }
+
+    public function lista($id)
+    {
+        $medico = Medico::where('usuario_id', $id)->first();
+
+        if(!isset($_GET['q'])) {
+            $consultas = Consulta::where('medico_id', $id)
+                ->orderBy('horario', 'desc')
+            ->paginate( config('prontuario.paginacao') );
+        } 
+        else {
+            $consultas = Consulta::where('medico_id', $id)
+                ->where('horario', 'like', '%'.$_GET['q'].'%')
+                ->orWhere('status', 'like', '%'.$_GET['q'].'%')
+                ->orWhereHas('paciente', function($query) {
+                    $query->where('nome', 'like', '%'.$_GET['q'].'%')
+                        ->orWhere('email', 'like', '%'.$_GET['q'].'%')
+                        ->orWhere('cpf', 'like', '%'.$_GET['q'].'%');
+                })
+                ->orderBy('horario', 'desc')
+            ->paginate( config('prontuario.paginacao') );
+        }
+
+        
+
+        $agora = strtotime('now');
+        $depois =  strtotime('+'.$medico->carga_horaria->intervalo.' minutes');
+
+        $inicio = new \DateTime(date('Y-m-d') . ' ' . $medico->carga_horaria->inicio);
+        $fim = new \DateTime(date('Y-m-d') . ' ' . $medico->carga_horaria->fim);
+
+        if($inicio > $fim)
+            $fim->add( new \DateInterval('P1D') );
+
+        $intervalo = new \DateInterval('PT'.$medico->carga_horaria->intervalo.'M');
+        $periodo = new \DatePeriod($inicio, $intervalo ,$fim);
+
+        foreach($periodo as $data) {
+            if($agora <= $data->format('U')) {
+                $depois = $data->format('U');
+                break;
+            }
+        }
+
+        $tipo = 'med';
+
+        return view('consulta.lista', compact('agora', 'depois', 'medico', 'consultas', 'tipo'));
+    }
+
+    public function apagar($id, $consulta)
+    {
+        $consulta = Consulta::where('id', $consulta)->where('medico_id', $id)->first();
+
+        if($consulta)
+            $consulta->delete();
+
+        return redirect($_SERVER['HTTP_REFERER'])->withMsg('Consulta foi apagada!');
+    }
+
+    public function listaPaciente($id)
+    {
+        $paciente = Paciente::find($id);
+
+        if(!isset($_GET['q'])) {
+            $consultas = Consulta::where('paciente_id', $id)
+                ->orderBy('horario', 'desc')
+            ->paginate( config('prontuario.paginacao') );
+        } 
+        else {
+            $consultas = Consulta::where('paciente_id', $id)
+                ->where('horario', 'like', '%'.$_GET['q'].'%')
+                ->orWhere('status', 'like', '%'.$_GET['q'].'%')
+                ->orWhereHas('paciente', function($query) {
+                    $query->where('nome', 'like', '%'.$_GET['q'].'%')
+                        ->orWhere('email', 'like', '%'.$_GET['q'].'%')
+                        ->orWhere('cpf', 'like', '%'.$_GET['q'].'%');
+                })
+                ->orderBy('horario', 'desc')
+            ->paginate( config('prontuario.paginacao') );
+        }
+
+        $tipo = 'pac';
+
+        return view('consulta.lista', compact('tipo', 'consultas', 'paciente'));
+    }
 }

@@ -41,11 +41,15 @@ Route::group(['prefix' => 'medicos'], function() {
     });
 
      Route::group(['middleware' => 'autenticacao:sec'], function() {
-        Route::get('{id}/consulta/data', 'ConsultaController@data');
-        Route::get('{id}/consulta/horarios', 'ConsultaController@horarios');
-        Route::get('{id}/consulta/marcar', 'ConsultaController@marcar');
-        Route::get('{id}/consulta/finalizar', 'ConsultaController@finalizar');
-        Route::post('{id}/consulta/finalizar', 'ConsultaController@salvar');
+        Route::get('{id}/consultas', 'ConsultaController@lista')->where('id', '[0-9]+');
+
+        Route::get('{id}/consulta/data', 'ConsultaController@data')->where('id', '[0-9]+');
+        Route::get('{id}/consulta/horarios', 'ConsultaController@horarios')->where('id', '[0-9]+');
+        Route::get('{id}/consulta/marcar', 'ConsultaController@marcar')->where('id', '[0-9]+');
+        Route::get('{id}/consulta/finalizar', 'ConsultaController@finalizar')->where('id', '[0-9]+');
+        Route::post('{id}/consulta/finalizar', 'ConsultaController@salvar')->where('id', '[0-9]+');
+
+        Route::get('{id}/consulta/{consulta}/cancelar', 'ConsultaController@apagar')->where('id', '[0-9]+');
     });
 });
 
@@ -103,5 +107,7 @@ Route::group(['prefix' => 'pacientes'], function() {
         Route::put('editar/{id}', 'PacienteController@editar')->where('id', '[0-9]+');
 
         Route::get('apagar/{id}', 'PacienteController@apagar')->where('id', '[0-9]+');
+
+        Route::get('{id}/consultas', 'ConsultaController@listaPaciente')->where('id', '[0-9]+');
     });
 });
