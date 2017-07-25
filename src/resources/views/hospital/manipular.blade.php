@@ -3,6 +3,20 @@
 @section('titulo', 'Informações do hospital')
 
 @section('conteudo')
+    <p style="text-align:center">
+        @if(session('msg'))
+            <span class="texto-verde">
+                {{ session('msg') }}
+            </span>
+        @endif
+
+         @if(session('erro'))
+            <span class="texto-vermelho">
+                {{ session('erro') }}
+            </span>
+        @endif
+    </p>
+    
     <p>
        Aqui você pode editar as informações do hospital, onde os campos em vermelhos são obrigatórios.
     </p>

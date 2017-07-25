@@ -15,4 +15,10 @@ Será exibida também uma tabela com o histórico de evolução de pacientes que
 
 Será exibida uma tabela indentica a anteior, porém mostrando as evoluções cadastradas somente por ele mesmo.
 
+## Implementação
+
+Ao selecionar um paciente na lista, é possível ver uma lista de evoluções com possivel busca por horario, autor, evolucao ou cid, como na tela abaixo:
+
+![Tela](./img/lista-evolucao.jpeg?raw=true)
+
 [Voltar](../README.md) 

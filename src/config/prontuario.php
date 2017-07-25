@@ -6,5 +6,9 @@ return [
     'hospital' => [
     	'nome' => 'PS',
     	'local' => 'GitHub'
+    ],
+    'config' => [
+    	'cid' => '1',
+    	'diagnostico' => '1'
     ]
 ];

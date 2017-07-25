@@ -18,15 +18,15 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 - [x] [Gerenciamento de secretários](./planejamento/gerencia-secretarios.md)
 - [x] [Gerenciamento de médicos](./planejamento/gerencia-medicos.md)
 - [x] [Gerenciamento de não médicos](./planejamento/gerencia-nao-medicos.md)
-- [ ] [Tornar CID obrigatório](./planejamento/cid-obrigatorio.md)
+- [x] [Tornar CID obrigatório](./planejamento/cid-obrigatorio.md)
 - [ ] [Liberar acesso ao histórico](./planejamento/acesso-historico.md)
-- [ ] [Tornar diagnóstico obrigatório](./planejamento/diagnostico-obrigatorio.md)
+- [x] [Tornar diagnóstico obrigatório](./planejamento/diagnostico-obrigatorio.md)
 
 ### Médicos
 
 - [x] [Cadastro de carga horária](./planejamento/gerencia-horario.md)
 - [x] [Pesquisa de pacientes](./planejamento/pesquisa-pacientes.md)
-- [ ] [Registro de evolução](./planejamento/registro-evolucao.md)
+- [x] [Registro de evolução](./planejamento/registro-evolucao.md)
 - [ ] [Prescrição de medicamentos](./planejamento/prescricao.md)
 - [ ] [Receituário de paciente](./planejamento/receituario-paciente.md)
 - [x] [Consultas do dia](./planejamento/consultas-dia.md)
@@ -41,7 +41,7 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 ### Não médicos
 
 - [x] [Pesquisa de pacientes](./planejamento/pesquisa-pacientes.md)
-- [ ] [Registro de evolução](./planejamento/registro-evolucao.md)
+- [x] [Registro de evolução](./planejamento/registro-evolucao.md)
 - [ ] [Receituário de paciente](./planejamento/receituario-paciente.md)
 
 **Obs:** Para ver detalhes da tarefa, clique em seu nome.

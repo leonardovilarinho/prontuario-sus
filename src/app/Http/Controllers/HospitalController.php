@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\HospitalRequest;
+use App\Http\Requests\{HospitalRequest, ConfiguracoesRequest};
 use Axdlee\Config\Rewrite;
 
 class HospitalController extends Controller
@@ -39,5 +39,33 @@ class HospitalController extends Controller
 
 
     	return redirect($_SERVER['HTTP_REFERER'])->withMsg('Dados foram salvos!');
+    }
+
+    public function configuracoes()
+    {
+        return view('hospital.configuracoes');
+    }
+
+    public function salvarConfiguracoes(ConfiguracoesRequest $requisicao)
+    {
+        $writer = new Rewrite;
+
+        $filePath = __DIR__ . '/../../../config/prontuario.php';
+        $tmpFile = __DIR__ . '/../../../config/prontuario.temp.php';
+
+        copy($filePath, $tmpFile);
+
+        $contents = $writer->toFile($filePath, [
+            'config.cid' => $requisicao->cid,
+            'config.diagnostico' => $requisicao->diagnostico,
+        ]);
+
+
+        unlink($tmpFile);
+
+        $exit = \Artisan::call('config:cache');
+
+
+        return redirect($_SERVER['HTTP_REFERER'])->withMsg('Dados foram salvos!');
     }
 }

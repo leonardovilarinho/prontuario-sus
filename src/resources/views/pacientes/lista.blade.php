@@ -62,7 +62,9 @@
                             Consultas
                         </a>
                     @else
-                        <a href="{{ url('pacientes/editar/' . $paciente->id) }}" class="btn amarelo">Editar</a>
+                        <a href="{{ url('pacientes/' . $paciente->id .'/evolucoes') }}" class="btn amarelo">
+                            Evoluções
+                        </a>
                     @endif
                 </td>
                 <td>{{ $paciente->nome }}</td>

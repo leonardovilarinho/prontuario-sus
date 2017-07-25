@@ -88,6 +88,9 @@ Route::group(['prefix' => 'secretarios', 'middleware' => 'autenticacao:adm'], fu
 Route::group(['prefix' => 'hospital', 'middleware' => 'autenticacao:adm'], function() {
     Route::get('', 'HospitalController@informacoes');
     Route::post('', 'HospitalController@salvar');
+
+    Route::get('config', 'HospitalController@configuracoes');
+    Route::post('config', 'HospitalController@salvarConfiguracoes');
 });
 
 Route::group(['prefix' => 'carga', 'middleware' => 'autenticacao:med'], function() {
@@ -111,5 +114,11 @@ Route::group(['prefix' => 'pacientes'], function() {
         Route::get('apagar/{id}', 'PacienteController@apagar')->where('id', '[0-9]+');
 
         Route::get('{id}/consultas', 'ConsultaController@listaPaciente')->where('id', '[0-9]+');
+    });
+
+    Route::group(['middleware' => 'autenticacao:med|nme'], function() {
+        Route::get('{id}/evolucoes', 'EvolucaoController@lista')->where('id', '[0-9]+');
+        Route::get('{id}/evolucoes/nova', 'EvolucaoController@nova')->where('id', '[0-9]+');
+        Route::post('{id}/evolucoes/nova', 'EvolucaoController@salvar')->where('id', '[0-9]+');
     });
 });
