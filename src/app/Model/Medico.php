@@ -27,4 +27,9 @@ class Medico extends Model
         return $this->hasOne(CargaHoraria::class, 'medico_id', 'usuario_id');
     }
 
+    public function consultas()
+    {
+        return $this->hasMany(Consulta::class, 'medico_id', 'usuario_id');
+    }
+
 }

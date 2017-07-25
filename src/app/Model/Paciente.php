@@ -29,4 +29,9 @@ class Paciente extends Model
     	'uf',
     	'obs'
     ];
+
+    public function consultas()
+    {
+        return $this->hasMany(Consulta::class, 'paciente_id', 'id');
+    }
 }

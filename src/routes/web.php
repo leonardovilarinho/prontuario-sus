@@ -39,6 +39,14 @@ Route::group(['prefix' => 'medicos'], function() {
         Route::get('ferias', 'MedicoController@ferias');
         Route::post('ferias', 'MedicoController@salvarFerias');
     });
+
+     Route::group(['middleware' => 'autenticacao:sec'], function() {
+        Route::get('{id}/consulta/data', 'ConsultaController@data');
+        Route::get('{id}/consulta/horarios', 'ConsultaController@horarios');
+        Route::get('{id}/consulta/marcar', 'ConsultaController@marcar');
+        Route::get('{id}/consulta/finalizar', 'ConsultaController@finalizar');
+        Route::post('{id}/consulta/finalizar', 'ConsultaController@salvar');
+    });
 });
 
 Route::group(['prefix' => 'administradores', 'middleware' => 'autenticacao:adm'], function() {

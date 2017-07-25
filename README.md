@@ -36,7 +36,7 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 
 - [x] [Gerenciamento de pacientes](./planejamento/gerencia-pacientes.md)
 - [x] [Pesquisa por médico](./planejamento/pesquisa-medico.md)
-- [ ] [Gerenciamento de consultas](./planejamento/gerencia-consultas.md)
+- [x] [Gerenciamento de consultas](./planejamento/gerencia-consultas.md)
 
 ### Não médicos
 

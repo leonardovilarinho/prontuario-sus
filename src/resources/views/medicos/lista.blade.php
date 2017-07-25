@@ -64,7 +64,7 @@
                             <a href="{{ url('usuarios/desbloquear/' . $medico->usuario->id) }}" class="btn verde">Desbloquear</a>
                         @endif
                     @else
-                        <a href="{{ url('medicos/editar/' . $medico->id) }}" class="btn amarelo">Editar</a>
+                        <a href="{{ url('medicos/'.$medico->usuario_id.'/consulta/data') }}" class="btn azul">Marcar consulta</a>
                     @endif
                 </td>
                 <td>{{ $medico->usuario->nome }}</td>

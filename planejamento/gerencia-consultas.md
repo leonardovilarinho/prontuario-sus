@@ -23,6 +23,28 @@ Após a seleção de médico e busca por dia, ao clicar em criar uma nova consul
 
 ## Lista de consultas
 
-O usuário poderá ver as consultas cadastradas por si mesmo e editar aquelas que ainda não foram atendidas.
+O usuário poderá ver as consultas cadastradas por si mesmo e apagar aquelas que ainda não foram atendidas.
+
+## Implementação
+
+Ao gerenciar médicos, temos um novo motão para marcar a consulta, como na imagem:
+
+![Tela](./img/seleciona-medico.jpeg?raw=true)
+
+Após a seleção, é exibida a imagem abaixo, com objetivo de informar a data da consulta:
+
+![Tela](./img/seleciona-data.jpeg?raw=true)
+
+Com a data e o médico, temos que ver os horários dispóníveis naquele dia para o médico, para isso temos a tela a seguir:
+
+![Tela](./img/seleciona-hora.jpeg?raw=true)
+
+Para terminar os processos de seleção, temos que definir um paciente para a consulta, para isso temos a listagem dos mesmos, com um botão de seleção:
+
+![Tela](./img/seleciona-paciente.jpeg?raw=true)
+
+Por fim, é possível terminar preenchendo os campos de status e observação, como é mostrado abaixo:
+
+![Tela](./img/finaliza-consulta.jpeg?raw=true)
 
 [Voltar](../README.md)
