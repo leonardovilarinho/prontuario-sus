@@ -165,16 +165,18 @@ class ConsultaController extends Controller
         $intervalo = new \DateInterval('PT'.$medico->carga_horaria->intervalo.'M');
         $periodo = new \DatePeriod($inicio, $intervalo ,$fim);
 
+        $ini = $agora;
         foreach($periodo as $data) {
             if($agora <= $data->format('U')) {
                 $depois = $data->format('U');
+                $ini = $depois - ($medico->carga_horaria->intervalo * 60);
                 break;
             }
         }
 
         $tipo = 'med';
 
-        return view('consulta.lista', compact('agora', 'depois', 'medico', 'consultas', 'tipo'));
+        return view('consulta.lista', compact('agora', 'depois', 'medico', 'consultas', 'tipo', 'ini'));
     }
 
     public function apagar($id, $consulta)

@@ -42,7 +42,6 @@
     <ul class="lista-vermelha">
         <li>Meu 1º item da lista</li>
         <li>Meu 2º item da lista</li>
-
     </ul>
 
     <ul class="lista-amarela">

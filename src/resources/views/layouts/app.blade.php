@@ -39,6 +39,7 @@
                         <p>{!! Saudacoes::gerar() !!}</p>
                     @else
                         <p>Olá, {{ explode(' ', auth()->user()->nome)[0] }}</p>
+                        <small>{{ date('d/m/Y H:i') }}</small>
                         <small>{{ auth()->user()->tipo() }}</small>
                     @endif
                 </section>

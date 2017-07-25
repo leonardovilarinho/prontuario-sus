@@ -77,9 +77,9 @@
                 @if($tipo == 'med')
                     <td>
 
-                        @if($agora > strtotime($consulta->horario))
+                        @if($ini > strtotime($consulta->horario))
                             <a href="#" class="btn verde">Concluída</a>
-                        @elseif($depois < strtotime($consulta->horario))
+                        @elseif($depois <= strtotime($consulta->horario))
                             <a href="#" class="btn vermelho">Pendente</a>
                         @else
                             <a href="#" class="btn amarelo">Atendendo</a>

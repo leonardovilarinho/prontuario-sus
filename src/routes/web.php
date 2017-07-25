@@ -38,6 +38,8 @@ Route::group(['prefix' => 'medicos'], function() {
     Route::group(['middleware' => 'autenticacao:med'], function() {
         Route::get('ferias', 'MedicoController@ferias');
         Route::post('ferias', 'MedicoController@salvarFerias');
+
+        Route::get('dia', 'MedicoController@doDia');
     });
 
      Route::group(['middleware' => 'autenticacao:sec'], function() {
