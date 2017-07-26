@@ -22,7 +22,7 @@
 var_dump($_SERVER['MYSQLCONNSTR_localdb']);
 
 
-// require __DIR__.'/../bootstrap/autoload.php';
+//require __DIR__.'/../bootstrap/autoload.php';
 
 /*
 |--------------------------------------------------------------------------
