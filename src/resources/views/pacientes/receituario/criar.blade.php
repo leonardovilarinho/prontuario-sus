@@ -4,7 +4,6 @@
 
 @section('conteudo')
 
-    <script src="{{ asset('js/editor.js') }}"></script>
     <p>
        Aqui você pode cadastrar um novo receituário para <span class="texto-verde">{{ $paciente->nome }}</span>, preencha os campos vermelhos.
     </p>
