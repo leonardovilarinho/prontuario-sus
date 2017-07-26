@@ -31,6 +31,9 @@ class ConsultaController extends Controller
     	if(strtotime($_GET['data'] . ' 23:59:59') < strtotime( date('Y-m-a') . ' 23:59:59' ))
     		return redirect('medicos/'.$id.'/consulta/data')->withErro('Por favor, selecione uma data posterior ou igual a hoje.');
 
+        if(!$medico->carga_horaria)
+            return redirect('medicos')->withErro($medico->usuario->nome . ' não tem uma carga horária!');
+
     	$inicio = new \DateTime($_GET['data'] . ' ' . $medico->carga_horaria->inicio);
         $fim = new \DateTime($_GET['data'] . ' ' . $medico->carga_horaria->fim);
 		$agora = new \DateTime(date('Y-m-d H:i'));
