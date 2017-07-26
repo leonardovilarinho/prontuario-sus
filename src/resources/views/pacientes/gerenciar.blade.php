@@ -129,7 +129,7 @@
 
             <p>
             	<strong>Observação: </strong>
-            	{{ $paciente->obs }}
+            	{!! $paciente->obs !!}
             </p>
 
             <hr>

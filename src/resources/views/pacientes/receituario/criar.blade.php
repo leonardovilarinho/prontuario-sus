@@ -31,4 +31,10 @@
         </footer>
     {!! Form::close() !!}
 
+
+     <script>
+        CKEDITOR.config.width = '100%';
+        CKEDITOR.replace( 'conteudo' );
+    </script>
+
 @endsection

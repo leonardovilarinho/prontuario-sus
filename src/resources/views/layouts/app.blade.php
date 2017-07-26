@@ -9,6 +9,7 @@
         <title>@yield('titulo') - {{ config('prontuario.nome') }}</title>
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/app.mob.css') }}" rel="stylesheet" media="(max-width: 992px)">
+        <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
     </head>
 
     <body class="pagina">

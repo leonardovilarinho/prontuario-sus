@@ -49,7 +49,6 @@
             <td>Ações</td>
             <td>Autor</td>
             <td>Horário</td>
-            <td>Resumo</td>
         </tr>
 
         @foreach($paciente->receituarios as $receituario)
@@ -67,11 +66,6 @@
                 </td>
                 <td>{{ $receituario->autor->nome }}</td>
                 <td>{{ date('d/m/Y H:i', strtotime($receituario->created_at)) }}</td>
-                <td>
-                	{{ strlen($receituario->conteudo) > 80
-                	? substr($receituario->conteudo, 0, 78) .'..'
-                	: $receituario->conteudo }}
-                </td>
             </tr>
         @endforeach
     </table>

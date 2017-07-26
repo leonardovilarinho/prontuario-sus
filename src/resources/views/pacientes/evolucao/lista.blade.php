@@ -49,7 +49,6 @@
             <td>Ações</td>
             <td>Autor</td>
             <td>Horário</td>
-            <td>Resumo</td>
             <td>CID</td>
         </tr>
 
@@ -67,7 +66,6 @@
                 </td>
                 <td>{{ $evolucao->autor->nome }}</td>
                 <td>{{ date('d/m/Y H:i', strtotime($evolucao->created_at)) }}</td>
-                <td>{{ strlen($evolucao->evolucao) > 80 ? substr($evolucao->evolucao, 0, 78) .'..' : $evolucao->evolucao }}</td>
                 <td>{{ ($evolucao->cid  != null) ? $evolucao->cid : 'n/d' }}</td>
             </tr>
         @endforeach

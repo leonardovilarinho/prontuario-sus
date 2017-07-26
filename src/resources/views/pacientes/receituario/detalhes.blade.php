@@ -51,7 +51,7 @@
             <hr>
 
             <p>
-            	{{ $receita->conteudo }}
+            	{!! $receita->conteudo !!}
             </p>
 
 			<br><br><br>

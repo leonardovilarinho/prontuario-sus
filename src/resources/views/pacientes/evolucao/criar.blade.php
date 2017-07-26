@@ -30,7 +30,8 @@
 
             <div>
                 {!! Form::label('diagnostico', 'Diagnóstico') !!}
-                <textarea id="diagnostico" name="diagnostico" placeholder="Diagnóstico da evolução" class="editable" 
+                <textarea id="diagnostico" name="diagnostico" placeholder="Diagnóstico da evolução"
+                    style="width: 100%" 
                     {{ config('prontuario.config.cid') ? 'required' : '' }}
                 ></textarea>
             </div>
@@ -44,5 +45,11 @@
             <span class="texto-vermelho">{{ $errors->first() }}</span>
         </footer>
     {!! Form::close() !!}
+
+    <script>
+        CKEDITOR.config.width = '100%';
+        CKEDITOR.replace( 'evolucao' );
+        CKEDITOR.replace( 'diagnostico' );
+    </script>
 
 @endsection

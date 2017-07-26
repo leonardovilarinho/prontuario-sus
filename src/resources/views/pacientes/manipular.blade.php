@@ -133,4 +133,9 @@
         </footer>
     {!! Form::close() !!}
 
+    <script>
+        CKEDITOR.config.width = '100%';
+        CKEDITOR.replace( 'obs' );
+    </script>
+
 @endsection

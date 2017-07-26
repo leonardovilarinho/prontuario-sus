@@ -50,7 +50,7 @@
 
 			<hr>
 			<p>
-				{{ $evolucao->evolucao }}
+				{!! $evolucao->evolucao !!}
 			</p>
 
 			<hr>
@@ -60,7 +60,7 @@
             </p>
 
             <p>
-            	{{ $evolucao->diagnostico }}
+                {!! $evolucao->diagnostico !!}
             </p>
 
 			<br><br><br>
