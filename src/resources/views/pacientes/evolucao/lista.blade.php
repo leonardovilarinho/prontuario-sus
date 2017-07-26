@@ -38,9 +38,11 @@
     </p>
     <br>
     
-    <a class="btn verde" href="{{ url('pacientes/'.$paciente->id.'/evolucoes/nova') }}">
-    	Cadastrar nova evolução
-    </a>
+    @if(!auth()->user()->administrador)
+        <a class="btn verde" href="{{ url('pacientes/'.$paciente->id.'/evolucoes/nova') }}">
+            Cadastrar nova evolução
+        </a>
+    @endif
 
     <table>
         <tr>
@@ -55,14 +57,13 @@
             <tr>
                 <td>
                     @if(auth()->user()->administrador)
-                        <a href="{{ url('pacientes/apagar/' . $paciente->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
-                    @else
-                        <a href="{{ url('pacientes/' . $paciente->id .'/evolucoes/'.$evolucao->id.'/detalhes') }}"
-                        	class="btn verde"
-                        >
-                            Detalhes
-                        </a>
+                        <a href="{{ url('pacientes/evolucoes/' . $evolucao->id . '/apagar') }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
                     @endif
+                    <a href="{{ url('pacientes/' . $paciente->id .'/evolucoes/'.$evolucao->id.'/detalhes') }}"
+                    	class="btn verde"
+                    >
+                        Detalhes
+                    </a>
                 </td>
                 <td>{{ $evolucao->autor->nome }}</td>
                 <td>{{ date('d/m/Y H:i', strtotime($evolucao->created_at)) }}</td>

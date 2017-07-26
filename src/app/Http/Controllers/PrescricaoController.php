@@ -15,8 +15,12 @@ class PrescricaoController extends Controller
     	if(!$paciente)
     		return redirect('pacientes')->withErro('Paciente não encontrado');
 
+        $ehHistorico = (auth()->user()->nao_medico and auth()->user()->nao_medico->historico);
+        $usu_val = (auth()->user()->medico or $ehHistorico or auth()->user()->administrador);
+
+
         if(!isset($_GET['q'])) {
-            if(auth()->user()->medico or (auth()->user()->nao_medico and auth()->user()->nao_medico->historico)) {
+            if($usu_val) {
                 $paciente->prescricoes = Prescricao::where('paciente_id', $id)
                     ->orderBy('created_at', 'desc')
                 ->paginate(config('prontuario.paginacao'));
@@ -31,7 +35,7 @@ class PrescricaoController extends Controller
         } 
         else {
 
-            if(auth()->user()->medico or (auth()->user()->nao_medico and auth()->user()->nao_medico->historico)) {
+            if($usu_val) {
 
                 $paciente->prescricoes = Prescricao::where('paciente_id', $id)
                     ->orderBy('created_at', 'desc')
@@ -224,5 +228,14 @@ class PrescricaoController extends Controller
         $equipamento->delete();
 
         return redirect('pacientes/'.$id.'/prescricoes/'.$prescricao->id.'/gerenciar')->withMsg('Equipamento apagado!');
+    }
+
+    public function apagar($id)
+    {
+
+        $rec = Prescricao::find($id);
+        $rec->delete();
+
+        return redirect('pacientes/'.$rec->paciente_id.'/prescricoes')->withMsg('Prescrição foi apagada!');
     }
 }

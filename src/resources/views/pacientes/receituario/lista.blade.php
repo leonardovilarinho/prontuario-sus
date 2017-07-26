@@ -37,10 +37,12 @@
         Aqui você pode gerenciar as evoluções do paciente <span class="texto-verde">{{ $paciente->nome }}</span>:
     </p>
     <br>
-    
-    <a class="btn verde" href="{{ url('pacientes/'.$paciente->id.'/receituarios/novo') }}">
-    	Cadastrar novo receituario
-    </a>
+
+    @if(!auth()->user()->administrador)
+        <a class="btn verde" href="{{ url('pacientes/'.$paciente->id.'/receituarios/novo') }}">
+            Cadastrar novo receituario
+        </a>
+    @endif
 
     <table>
         <tr>
@@ -54,14 +56,14 @@
             <tr>
                 <td>
                     @if(auth()->user()->administrador)
-                        <a href="{{ url('pacientes/apagar/' . $paciente->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
-                    @else
-                        <a href="{{ url('pacientes/' . $paciente->id .'/receituarios/'.$receituario->id.'/detalhes') }}"
-                        	class="btn verde"
-                        >
-                            Detalhes
-                        </a>
+                        <a href="{{ url('pacientes/receituarios/' . $receituario->id . '/apagar') }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
                     @endif
+                    <a href="{{ url('pacientes/' . $paciente->id .'/receituarios/'.$receituario->id.'/detalhes') }}"
+                    	class="btn verde"
+                    >
+                        Detalhes
+                    </a>
+                    
                 </td>
                 <td>{{ $receituario->autor->nome }}</td>
                 <td>{{ date('d/m/Y H:i', strtotime($receituario->created_at)) }}</td>

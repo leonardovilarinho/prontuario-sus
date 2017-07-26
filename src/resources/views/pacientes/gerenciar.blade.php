@@ -159,7 +159,7 @@
 
                 <a href="{{ url('pacientes/' . $paciente->id .'/prescricoes') }}" class="btn verde">Prescrição</a>
             @endif
-            <button onclick="printDiv('imprimir')" class="btn verde">Imprimir</button>
+            <button onclick="printDiv('imprimir')" class="btn verde oculta-tel">Imprimir</button>
         </footer>
     </section>
 

@@ -103,7 +103,7 @@
                 <a href="{{ url('nao-medicos/historico/' . $medico->id) }}" class="btn vermelho">D. histórico</a>
             @endif
 
-            <button onclick="printDiv('imprimir')" class="btn verde">Imprimir</button>
+            <button onclick="printDiv('imprimir')" class="btn verde oculta-tel" >Imprimir</button>
 
         </footer>
     </section>

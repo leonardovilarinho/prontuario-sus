@@ -46,7 +46,7 @@
 		@endif
 
 		@if(count($futuras) > 0)
-	    	<h2>Consultas futuras</h2>
+	    	<h2>Aguardando atendimento</h2>
 			<ul class="lista-vermelha">
 		        @foreach ($futuras as $consulta)
 		        	<li>
@@ -64,7 +64,7 @@
 		@endif
 
 		@if(count($passadas) > 0)
-		    <h2>Consultas passadas</h2>
+		    <h2>Atendimento finalizado</h2>
 			<ul class="lista-verde">
 		        @foreach ($passadas as $consulta)
 		        	<li>
@@ -82,5 +82,5 @@
 		@endif
 	</section>
 
-	<button onclick="printDiv('imprimir')" class="btn verde">Imprimir</button>
+	<button onclick="printDiv('imprimir')" class="btn verde oculta-tel">Imprimir</button>
 @endsection

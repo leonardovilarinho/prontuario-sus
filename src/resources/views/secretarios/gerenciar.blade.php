@@ -74,18 +74,23 @@
         </article>
         <footer style="text-align: right">
 
-        	 <a href="{{ url('usuarios/apagar/' . $secretario->usuario->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
-            <a href="{{ url('secretarios/editar/' . $secretario->id) }}" class="btn amarelo">Editar</a>
+            @if(auth()->user()->administrador)
+                <a href="{{ url('usuarios/apagar/' . $secretario->usuario->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
 
-            @if($secretario->usuario->valido)
-                <a href="{{ url('usuarios/bloquear/' . $secretario->usuario->id) }}" class="btn azul">Bloquear</a>
-            @else
-                <a href="{{ url('usuarios/desbloquear/' . $secretario->usuario->id) }}" class="btn azul">Desbloquear</a>
+                <a href="{{ url('secretarios/editar/' . $secretario->id) }}" class="btn amarelo">Editar</a>
+
+                @if($secretario->usuario->valido)
+                    <a href="{{ url('usuarios/bloquear/' . $secretario->usuario->id) }}" class="btn azul">Bloquear</a>
+                @else
+                    <a href="{{ url('usuarios/desbloquear/' . $secretario->usuario->id) }}" class="btn azul">Desbloquear</a>
+                @endif
+
+                <a href="{{ url('usuarios/redefinir/' . $secretario->usuario->id) }}" class="btn verde">Redefinir senha</a>
             @endif
+        	 
 
-            <a href="{{ url('usuarios/redefinir/' . $secretario->usuario->id) }}" class="btn verde">Redefinir senha</a>
 
-            <button onclick="printDiv('imprimir')" class="btn verde">Imprimir</button>
+            <button onclick="printDiv('imprimir')" class="btn verde oculta-tel">Imprimir</button>
         </footer>
     </section>
 

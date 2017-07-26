@@ -15,9 +15,11 @@ class EvolucaoController extends Controller
     	if(!$paciente)
     		return redirect('pacientes')->withErro('Paciente não encontrado');
 
+        $ehHistorico = (auth()->user()->nao_medico and auth()->user()->nao_medico->historico);
+        $usu_val = (auth()->user()->medico or $ehHistorico or auth()->user()->administrador);
 
         if(!isset($_GET['q'])) {
-            if(auth()->user()->medico or (auth()->user()->nao_medico and auth()->user()->nao_medico->historico)) {
+            if($usu_val) {
                 $paciente->evolucoes = Evolucao::where('paciente_id', $id)
                     ->orderBy('created_at', 'desc')
                 ->paginate( config('prontuario.paginacao') );
@@ -32,7 +34,7 @@ class EvolucaoController extends Controller
         } 
         else {
 
-            if(auth()->user()->medico or (auth()->user()->nao_medico and auth()->user()->nao_medico->historico)) {
+            if($usu_val) {
                 $paciente->evolucoes = Evolucao::where('paciente_id', $id)
                     ->where('created_at', 'like', '%'.$_GET['q'].'%')
                     ->orWhere('evolucao', 'like', '%'.$_GET['q'].'%')
@@ -100,5 +102,14 @@ class EvolucaoController extends Controller
     	Evolucao::create($requisicao->all());
 
     	return redirect('pacientes/'.$id.'/evolucoes')->withMsg('Evolução foi cadastrada!');
+    }
+
+    public function apagar($id)
+    {
+
+        $rec = Evolucao::find($id);
+        $rec->delete();
+
+        return redirect('pacientes/'.$rec->paciente_id.'/evolucoes')->withMsg('Evolução foi apagada!');
     }
 }

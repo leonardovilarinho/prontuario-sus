@@ -28,6 +28,8 @@
     <br>
 
 
+
+
     @if($tipo == 'med')
         {{ Form::open(['url' => 'medicos/'.$medico->usuario_id.'/consultas', 'method' => 'get']) }}
             <section>
@@ -46,6 +48,12 @@
                 </div>
             </section>
         {{ Form::close() }}
+    @endif
+
+    @if(!auth()->user()->administrador and $tipo == 'med')
+        <a class="btn verde" href="{{ url('medicos/'.$medico->usuario_id.'/consulta/data') }}">
+            Cadastrar nova consulta
+        </a>
     @endif
 
 	<table>

@@ -55,7 +55,7 @@
             </p>
 
 			<br><br><br>
-            <div style="text-align:center">
+            <div style="text-align:center" class="oculta-tel">
             	<p>_______________________________________________________________</p>
             	<p>({{ $receita->autor->nome }})</p>
             </div>
@@ -75,7 +75,7 @@
         </article>
         <footer style="text-align: right">
 
-			<button onclick="printDiv('imprimir')" class="btn verde">Imprimir</button>
+			<button onclick="printDiv('imprimir')" class="btn verde oculta-tel">Imprimir</button>
 
         </footer>
     </section>

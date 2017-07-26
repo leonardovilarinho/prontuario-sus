@@ -37,10 +37,12 @@
         Aqui você pode gerenciar as prescrições do paciente <span class="texto-verde">{{ $paciente->nome }}</span>:
     </p>
     <br>
-    
-    <a class="btn verde" href="{{ url('pacientes/'.$paciente->id.'/prescricoes/nova') }}">
-    	Cadastrar nova prescrição
-    </a>
+
+    @if(!auth()->user()->administrador)
+        <a class="btn verde" href="{{ url('pacientes/'.$paciente->id.'/prescricoes/nova') }}">
+            Cadastrar nova prescrição
+        </a>
+    @endif
 
     <table>
         <tr>
@@ -54,14 +56,13 @@
             <tr>
                 <td>
                     @if(auth()->user()->administrador)
-                        <a href="{{ url('pacientes/apagar/' . $paciente->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
-                    @else
-                        <a href="{{ url('pacientes/' . $paciente->id .'/prescricoes/'.$prescricao->id.'/gerenciar') }}"
-                        	class="btn azul"
-                        >
-                            Gerenciar
-                        </a>
+                        <a href="{{ url('pacientes/prescricoes/' . $prescricao->id . '/apagar') }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
                     @endif
+                    <a href="{{ url('pacientes/' . $paciente->id .'/prescricoes/'.$prescricao->id.'/gerenciar') }}"
+                    	class="btn azul"
+                    >
+                        Gerenciar
+                    </a>
                 </td>
                 <td>{{ $prescricao->autor->nome }}</td>
                 <td>{{ date('d/m/Y H:i', strtotime($prescricao->created_at)) }}</td>

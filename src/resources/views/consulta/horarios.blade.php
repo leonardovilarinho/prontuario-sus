@@ -41,10 +41,10 @@
                 	@foreach($periodo as $data)
 					    <input type="radio" id="{{ $data->format('Hi') }}" name="horario"
                             value="{{ $data->format('Y-m-d H:i') }}"
-                            {{ in_array($data->format('H:i'), $consultas) ? 'disabled' : '' }}
+                            {{ in_array($data->format('Y-m-d H:i'), $consultas) ? 'disabled' : '' }}
                             {{ ($data < $agora) ? 'disabled' : '' }}
                         />
-                    	<label for="{{ $data->format('Hi') }}">{{ $data->format('H:i') }}</label>
+                    	<label for="{{ $data->format('Hi') }}">{{ $data->format('d á\s H:i') }}</label>
                     @endforeach
                 </div>
             </div>

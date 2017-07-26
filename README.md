@@ -70,7 +70,7 @@ Aqui estão tarefas planejadas para serem executadas posteriormente, são tarefa
 
 ### Secretários
 
-- [ ] [Gerenciamento de secretários](./planejamento/gerencia-secretarios.md)
+- [x] [Gerenciamento de secretários](./planejamento/gerencia-secretarios.md)
 - [ ] [Agendamento de férias completo](./planejamento/gerencia-ferias.md)
 - [ ] [Gerenciar agenda do pronto socorro](./planejamento/gerencia-pronto-socorro.md)
 

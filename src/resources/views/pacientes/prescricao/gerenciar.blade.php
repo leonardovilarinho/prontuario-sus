@@ -82,6 +82,12 @@
 		        @endforeach
 		    </ul>
 
+            <br><br><br>
+            <div style="text-align:center" class="oculta-tel">
+                <p>_______________________________________________________________</p>
+                <p>({{ $evolucao->autor->nome }})</p>
+            </div>
+
             <hr>
 
             <p style="text-align: right;">
@@ -96,12 +102,14 @@
 
         </article>
         <footer style="text-align: right">
-            <a href="{{ url('pacientes/' . $paciente->id.'/prescricoes/'.$prescricao->id.'/addmed') }}"
-            	class="btn azul">Add Medicamento</a>
+            @if(!auth()->user()->administrador)
+                <a href="{{ url('pacientes/' . $paciente->id.'/prescricoes/'.$prescricao->id.'/addmed') }}"
+                class="btn azul">Add Medicamento</a>
 
-            <a href="{{ url('pacientes/' . $paciente->id.'/prescricoes/'.$prescricao->id.'/addequ') }}"
-            	class="btn amarelo">Add Equipamento</a>
-            <button onclick="printDiv('imprimir')" class="btn verde">Imprimir</button>
+                <a href="{{ url('pacientes/' . $paciente->id.'/prescricoes/'.$prescricao->id.'/addequ') }}"
+                class="btn amarelo">Add Equipamento</a>
+            @endif
+            <button onclick="printDiv('imprimir')" class="btn verde  oculta-tel">Imprimir</button>
         </footer>
     </section>
 

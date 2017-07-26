@@ -39,6 +39,8 @@ Route::group(['prefix' => 'medicos'], function() {
     Route::group(['middleware' => 'autenticacao:adm|sec'], function() {
         Route::get('', 'MedicoController@lista');
         Route::get('gerenciar/{id}', 'MedicoController@gerenciar');
+
+        Route::get('{id}/consultas', 'ConsultaController@lista')->where('id', '[0-9]+');
     });
 
     Route::group(['middleware' => 'autenticacao:med'], function() {
@@ -49,7 +51,6 @@ Route::group(['prefix' => 'medicos'], function() {
     });
 
      Route::group(['middleware' => 'autenticacao:sec'], function() {
-        Route::get('{id}/consultas', 'ConsultaController@lista')->where('id', '[0-9]+');
 
         Route::get('{id}/consulta/data', 'ConsultaController@data')->where('id', '[0-9]+');
         Route::get('{id}/consulta/horarios', 'ConsultaController@horarios')->where('id', '[0-9]+');
@@ -85,15 +86,18 @@ Route::group(['prefix' => 'nao-medicos', 'middleware' => 'autenticacao:adm'], fu
     Route::get('historico/{id}', 'NaoMedicoController@historico')->where('id', '[0-9]+');
 });
 
-Route::group(['prefix' => 'secretarios', 'middleware' => 'autenticacao:adm'], function() {
+Route::group(['prefix' => 'secretarios', 'middleware' => 'autenticacao:adm|sec'], function() {
     Route::get('', 'SecretarioController@lista');
     Route::get('gerenciar/{id}', 'SecretarioController@gerenciar');
 
     Route::get('novo', 'SecretarioController@criar');
     Route::post('novo', 'SecretarioController@salvar');
 
-    Route::get('editar/{id}', 'SecretarioController@edicao')->where('id', '[0-9]+');
-    Route::put('editar/{id}', 'SecretarioController@editar')->where('id', '[0-9]+');
+    Route::group(['prefix' => 'secretarios', 'middleware' => 'autenticacao:adm'], function() {
+
+        Route::get('editar/{id}', 'SecretarioController@edicao')->where('id', '[0-9]+');
+        Route::put('editar/{id}', 'SecretarioController@editar')->where('id', '[0-9]+');
+    });
 });
 
 Route::group(['prefix' => 'hospital', 'middleware' => 'autenticacao:adm'], function() {
@@ -119,12 +123,12 @@ Route::group(['prefix' => 'carga', 'middleware' => 'autenticacao:med'], function
 
 Route::group(['prefix' => 'pacientes'], function() {
 
-    Route::group(['middleware' => 'autenticacao:sec|med|nme'], function() {
+    Route::group(['middleware' => 'autenticacao:sec|med|nme|adm'], function() {
         Route::get('', 'PacienteController@lista');
         Route::get('gerenciar/{id}', 'PacienteController@gerenciar');
     });
 
-    Route::group(['middleware' => 'autenticacao:sec'], function() {
+    Route::group(['middleware' => 'autenticacao:sec|adm'], function() {
         Route::get('novo', 'PacienteController@criar');
         Route::post('novo', 'PacienteController@salvar');
 
@@ -137,23 +141,15 @@ Route::group(['prefix' => 'pacientes'], function() {
     });
 
     Route::group(['middleware' => 'autenticacao:med|nme'], function() {
-        Route::get('{id}/evolucoes', 'EvolucaoController@lista')->where('id', '[0-9]+');
         Route::get('{id}/evolucoes/nova', 'EvolucaoController@nova')->where('id', '[0-9]+');
         Route::post('{id}/evolucoes/nova', 'EvolucaoController@salvar')->where('id', '[0-9]+');
 
-        Route::get('{id}/evolucoes/{ev}/detalhes', 'EvolucaoController@detalhes')->where('id', '[0-9]+');
-
-        Route::get('{id}/receituarios', 'ReceituarioController@lista')->where('id', '[0-9]+');
         Route::get('{id}/receituarios/novo', 'ReceituarioController@novo')->where('id', '[0-9]+');
         Route::post('{id}/receituarios/novo', 'ReceituarioController@salvar')->where('id', '[0-9]+');
 
-        Route::get('{id}/receituarios/{rec}/detalhes', 'ReceituarioController@detalhes')->where('id', '[0-9]+');
 
-        Route::get('{id}/prescricoes', 'PrescricaoController@lista')->where('id', '[0-9]+');
         Route::get('{id}/prescricoes/nova', 'PrescricaoController@nova')->where('id', '[0-9]+');
         Route::post('{id}/prescricoes/nova', 'PrescricaoController@salvar')->where('id', '[0-9]+');
-
-        Route::get('{id}/prescricoes/{prescricao}/gerenciar', 'PrescricaoController@gerenciar')->where('id', '[0-9]+');
 
         Route::get('{id}/prescricoes/{prescricao}/addmed', 'PrescricaoController@addmed')->where('id', '[0-9]+');
         Route::post('{id}/prescricoes/{prescricao}/addmed', 'PrescricaoController@addmedSal')->where('id', '[0-9]+');
@@ -164,5 +160,27 @@ Route::group(['prefix' => 'pacientes'], function() {
         Route::post('{id}/prescricoes/{prescricao}/addequ', 'PrescricaoController@addequSal')->where('id', '[0-9]+');
 
         Route::get('{id}/prescricoes/{prescricao}/remequ/{med}', 'PrescricaoController@remequ')->where('id', '[0-9]+');
+    });
+
+    Route::group(['middleware' => 'autenticacao:med|nme|adm'], function() {
+        Route::get('{id}/evolucoes', 'EvolucaoController@lista')->where('id', '[0-9]+');
+    
+        Route::get('{id}/evolucoes/{ev}/detalhes', 'EvolucaoController@detalhes')->where('id', '[0-9]+');
+
+        Route::get('{id}/receituarios', 'ReceituarioController@lista')->where('id', '[0-9]+');
+
+        Route::get('{id}/receituarios/{rec}/detalhes', 'ReceituarioController@detalhes')->where('id', '[0-9]+');
+
+        Route::get('{id}/prescricoes', 'PrescricaoController@lista')->where('id', '[0-9]+');
+       
+        Route::get('{id}/prescricoes/{prescricao}/gerenciar', 'PrescricaoController@gerenciar')->where('id', '[0-9]+');
+    });
+
+     Route::group(['middleware' => 'autenticacao:adm'], function() {
+        Route::get('evolucoes/{id}/apagar', 'EvolucaoController@apagar')->where('id', '[0-9]+');
+    
+        Route::get('receituarios/{id}/apagar', 'ReceituarioController@apagar')->where('id', '[0-9]+');
+
+        Route::get('prescricoes/{id}/apagar', 'PrescricaoController@apagar')->where('id', '[0-9]+');
     });
 });

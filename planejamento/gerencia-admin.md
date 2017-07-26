@@ -12,13 +12,18 @@ O primeiro administrador registrado no sistema será considerado o super adminis
 
 ## Implementação
 
-Em um item do menu lateral existe o atalho apra o gerenciamento de administradores, ao clicar no mesmo, é exibida uma tela com a listagem dos administradores registrados, o resultado de qualquer ação é exibido na mesma tela, como no exemplo abaixo, onde houve a edição do administrador 'José Antonio Silveira':
+Em um item do menu lateral existe o atalho apra o gerenciamento de administradores, ao clicar no mesmo, é exibida uma tela com a listagem dos administradores registrados:
 
 ![Tela de login](./img/lista-adm.jpeg?raw=true)
 
 
-Note também a existência das opções de edição, remoção e bloqueio/desbloqueio de um administrador, além disso é possível clicar em criar um novo, onde teremos acesso a seguinte página com o formulário validando cada dado:
+Além da opção de busca por diversos atributos, podemos criar um novo administrado, com o seguinte formulário:
 
 ![Painel inicial](./img/cadastro-adm.jpeg?raw=true)
+
+Por fim, possuímos um botão 'gerenciar', onde é exibido todos os dados do administrador, além das opções de gerenciamento, como remoção, edição, bloqueio e impressão:
+
+![Tela de login](./img/gerencia-adm.jpeg?raw=true)
+
 
 [Voltar](../README.md)

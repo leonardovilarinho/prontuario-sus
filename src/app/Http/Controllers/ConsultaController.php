@@ -43,8 +43,9 @@ class ConsultaController extends Controller
 
         $consultas = [];
         foreach ($medico->consultas as $key => $value) {
-            $consultas[] = date('H:i', strtotime($value->horario));
+            $consultas[] = date('Y-m-d H:i', strtotime($value->horario));
         }
+
 
     	return view('consulta.horarios', compact('medico', 'inicio', 'agora', 'fim', 'periodo', 'consultas'));
     }
@@ -126,7 +127,7 @@ class ConsultaController extends Controller
         
         Consulta::create($requisicao->all());
 
-        return redirect('medicos')->withMsg('Consulta marcada em '.$horario->format('d/m/Y á\s H:i') . ' para '.$medico->usuario->nome);
+        return redirect('medicos/'.$id.'/consultas')->withMsg('Consulta marcada em '.$horario->format('d/m/Y á\s H:i') . ' para '.$medico->usuario->nome);
     }
 
     public function lista($id)

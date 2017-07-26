@@ -87,6 +87,7 @@ class MedicoController extends Controller
 
     public function doDia()
     {
+        echo 'oi';
         $carga = auth()->user()->medico->carga_horaria;
 
         $agora = strtotime('now');
@@ -95,8 +96,11 @@ class MedicoController extends Controller
         $inicio = new \DateTime(date('Y-m-d') . ' ' . $carga->inicio);
         $fim = new \DateTime(date('Y-m-d') . ' ' . $carga->fim);
 
-        if($inicio > $fim)
-            $fim->add( new \DateInterval('P1D') );
+        if($inicio > $fim) {
+            $inicio->sub( new \DateInterval('P1D') );
+        }
+
+        
 
         $intervalo = new \DateInterval('PT'.$carga->intervalo.'M');
         $periodo = new \DatePeriod($inicio, $intervalo ,$fim);
@@ -114,18 +118,22 @@ class MedicoController extends Controller
         $futuras = Consulta::where('medico_id', auth()->user()->id)
             ->where('horario', '>=', date('Y-m-d H:i', $depois))
             ->where('horario', 'like', date('Y-m-d', $depois) . '%')
+            ->orderBy('horario', 'asc')
         ->get();
 
         $passadas = Consulta::where('medico_id', auth()->user()->id)
             ->where('horario', '<', date('Y-m-d H:i', $ini))
             ->where('horario', 'like', date('Y-m-d', $agora) . '%')
+            ->orderBy('horario', 'asc')
         ->get();
 
         $andamento = Consulta::where('medico_id', auth()->user()->id)
-            ->where('horario', '<=', date('Y-m-d H:i', $depois))
+            ->where('horario', '<', date('Y-m-d H:i', $depois))
             ->where('horario', '>=', date('Y-m-d H:i', $ini))
             ->where('horario', 'like', date('Y-m-d', $agora) . '%')
+            ->orderBy('horario', 'asc')
         ->get();
+
 
         return view('medicos.dia', compact('futuras', 'passadas', 'andamento'));
     }

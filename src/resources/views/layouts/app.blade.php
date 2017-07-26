@@ -55,6 +55,7 @@
                                 <li><a href="{{ url('medicos') }}">Médicos</a></li>
                                 <li><a href="{{ url('nao-medicos') }}">Não-Médicos</a></li>
                                 <li><a href="{{ url('secretarios') }}">Secretários</a></li>
+                                <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
                                 <li><a href="{{ url('hospital/medicamentos') }}">Medicamentos</a></li>
                                 <li><a href="{{ url('hospital/equipamentos') }}">Equipamentos</a></li>
                                 <li><a href="{{ url('hospital/config') }}">Configurações</a></li>
@@ -68,6 +69,7 @@
                             @elseif(auth()->user()->secretario)
                                 <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
                                 <li><a href="{{ url('medicos') }}">Médicos</a></li>
+                                <li><a href="{{ url('secretarios') }}">Secretários</a></li>
 
                             @elseif(auth()->user()->nao_medico)
                                 <li><a href="{{ url('pacientes') }}">Pacientes</a></li>

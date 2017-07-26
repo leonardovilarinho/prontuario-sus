@@ -108,7 +108,7 @@
 			    <a href="{{ url('medicos/'.$medico->usuario_id.'/consultas') }}" class="btn verde">Consultas</a>
 			@endif
 
-            <button onclick="printDiv('imprimir')" class="btn verde">Imprimir</button>
+            <button onclick="printDiv('imprimir')" class="btn verde oculta-tel">Imprimir</button>
 
         </footer>
     </section>

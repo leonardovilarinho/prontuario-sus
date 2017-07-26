@@ -75,7 +75,7 @@
 
             <a href="{{ url('usuarios/redefinir/' . $administrador->usuario->id) }}" class="btn verde">Redefinir senha</a>
 
-            <button onclick="printDiv('imprimir')" class="btn verde">Imprimir</button>
+            <button onclick="printDiv('imprimir')" class="btn verde oculta-tel">Imprimir</button>
         </footer>
     </section>
 
