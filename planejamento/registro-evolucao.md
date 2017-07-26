@@ -21,4 +21,12 @@ Ao selecionar um paciente na lista, é possível ver uma lista de evoluções co
 
 ![Tela](./img/lista-evolucao.jpeg?raw=true)
 
+Você também pode registrar uma nova evolução, preenchendo o seguinte formulário:
+
+![Tela](./img/cadastro-evolucao.jpeg?raw=true)
+
+E por fim, é possível ver toda a evolução e imprimi-la:
+
+![Tela](./img/gerencia-evolucao.jpeg?raw=true)
+
 [Voltar](../README.md) 

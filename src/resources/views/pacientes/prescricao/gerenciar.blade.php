@@ -85,7 +85,7 @@
             <br><br><br>
             <div style="text-align:center" class="oculta-tel">
                 <p>_______________________________________________________________</p>
-                <p>({{ $evolucao->autor->nome }})</p>
+                <p>({{ $prescricao->autor->nome }})</p>
             </div>
 
             <hr>
