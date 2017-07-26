@@ -4,8 +4,8 @@ Para eventuais estudos, poderá ser considerado obrigatório o preenchimento do 
 
 ## Implementação
 
-Na tela 'configurações' é possível configurar os campos obrigatórios do sistema, como na imagem:
+Na tela 'configurações' é possível configurar o campo obrigatório do sistema, como na imagem:
 
-![Tela](./img/obrigatorio.jpeg?raw=true)
+![Tela](./img/config.jpeg?raw=true)
 
 [Voltar](../README.md)
