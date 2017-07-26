@@ -9,13 +9,17 @@ Realizar o gerenciamento dos secretários no sistema, podendo:
 
 ## Implementação
 
-Em um item do menu lateral existe o atalho apra o gerenciamento de secretários, ao clicar no mesmo, é exibida uma tela com a listagem dos secretários registrados, o resultado de qualquer ação é exibido na mesma tela, como no exemplo abaixo, onde houve o bloqueio do secretário 'Alice Alves':
+Em um item do menu lateral existe o atalho apra o gerenciamento de secretários, ao clicar no mesmo, é exibida uma tela com a listagem dos secretários registrados:
 
 ![Tela de login](./img/lista-secretario.jpeg?raw=true)
 
 
-Note também a existência das opções de edição, remoção e bloqueio/desbloqueio de um secretário, além disso é possível clicar em criar um novo, onde teremos acesso a seguinte página com o formulário validando cada dado:
+Além da opção de busca por diversos atributos, podemos criar um novo secretário, com o seguinte formulário:
 
 ![Painel inicial](./img/cadastro-secretario.jpeg?raw=true)
+
+Por fim, possuímos um botão 'gerenciar', onde é exibido todos os dados do secretário, além das opções de gerenciamento, como remoção, edição, bloqueio e impressão:
+
+![Tela de login](./img/gerencia-secretario.jpeg?raw=true)
 
 [Voltar](../README.md) 
