@@ -10,7 +10,7 @@ Medicar uma lista de medicamentos para um paciente, onde são necessários os da
 
 ## Implementação
 
-Ao selecionar um paciente na lista, é possível ver uma lista de prescrições com possivel busca por horario, autor, evolucao ou cid, como na tela abaixo:
+Ao selecionar um paciente na lista, é possível ver uma lista de prescrições com possivel busca por horario, autor ou nome, como na tela abaixo:
 
 ![Tela](./img/lista-prescricao.jpeg?raw=true)
 
