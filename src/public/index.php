@@ -19,6 +19,9 @@
 |
 */
 
+var_dump($_SERVER['MYSQLCONNSTR_localdb']);
+
+
 require __DIR__.'/../bootstrap/autoload.php';
 
 /*
@@ -57,4 +60,4 @@ $response->send();
 
 $kernel->terminate($request, $response);
 
-var_dump($_SERVER['MYSQLCONNSTR_localdb']);
+
