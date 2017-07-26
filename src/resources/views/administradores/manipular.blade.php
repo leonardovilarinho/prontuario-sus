@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('titulo', 'Criar um novo administrador')
+@if($administrador->nome == '')
+    @section('titulo', 'Criar um novo administrador')
+@else
+    @section('titulo', 'Editar esse administrador')
+@endif
 
 @section('conteudo')
     @if($administrador->nome == '')

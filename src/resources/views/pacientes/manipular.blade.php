@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('titulo', 'Criar um novo paciente')
+@if($paciente->nome == '')
+    @section('titulo', 'Criar um novo paciente')
+@else
+    @section('titulo', 'Editar esse paciente')
+@endif
 
 @section('conteudo')
     @if($paciente->nome == '')

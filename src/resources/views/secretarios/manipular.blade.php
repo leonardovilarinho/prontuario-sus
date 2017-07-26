@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('titulo', 'Criar um novo secretário')
+@if($secretario->usuario->nome == '')
+    @section('titulo', 'Criar um novo secretário')
+@else
+    @section('titulo', 'Editar esse secretário')
+@endif
 
 @section('conteudo')
     @if($secretario->usuario->nome == '')

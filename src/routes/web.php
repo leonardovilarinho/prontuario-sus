@@ -93,7 +93,7 @@ Route::group(['prefix' => 'secretarios', 'middleware' => 'autenticacao:adm|sec']
     Route::get('novo', 'SecretarioController@criar');
     Route::post('novo', 'SecretarioController@salvar');
 
-    Route::group(['prefix' => 'secretarios', 'middleware' => 'autenticacao:adm'], function() {
+    Route::group(['middleware' => 'autenticacao:adm'], function() {
 
         Route::get('editar/{id}', 'SecretarioController@edicao')->where('id', '[0-9]+');
         Route::put('editar/{id}', 'SecretarioController@editar')->where('id', '[0-9]+');

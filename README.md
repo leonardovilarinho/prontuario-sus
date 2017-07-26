@@ -46,6 +46,17 @@ A seguir são dispostos os requisitos do sistema, em forma de lista de tarefas, 
 
 **Obs:** Para ver detalhes da tarefa, clique em seu nome.
 
+## Extras
+
+Aqui estão tarefas não planejadas. mas que foram implementadas para melhorar a experiência de uso do sistema.
+
+
+### Administrador
+
+- [x] [Gerenciamento de equipamentos](./planejamento/gerencia-equipamento.md)
+- [x] [Gerenciamento de medicamentos](./planejamento/gerencia-medicamento.md)
+
+
 ## Tarefas futuras
 
 Aqui estão tarefas planejadas para serem executadas posteriormente, são tarefas das quais o sistema não possui tanta dependência:
