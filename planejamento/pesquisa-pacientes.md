@@ -16,7 +16,7 @@ Após realizar uma busca, será mostrada uma tabela com os principais dados dos 
 
 ## Implementação
 
-Na listagem de pacientes foi inserido um formulário simples de busca, onde ao buscar por um campo, a mesma tela é apresentada com o resultado, como no exemplo:
+Na listagem de pacientes foi inserido um formulário simples de busca, onde ao buscar por um campo, a mesma tela é apresentada com o resultado, além de ter o gerenciamento de paciente, como no exemplo:
 
 ![Tela de busca](./img/busca-paciente.jpeg?raw=true)
 
