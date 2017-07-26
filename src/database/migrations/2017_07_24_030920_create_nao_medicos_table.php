@@ -27,6 +27,8 @@ class CreateNaoMedicosTable extends Migration
             $table->string('especialidade')->nullable();
             $table->string('cargo')->nullable();
             $table->string('telefone')->nullable();
+
+            $table->tinyInteger('historico')->default('0');
         });
     }
 

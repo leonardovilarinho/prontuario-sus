@@ -36,14 +36,6 @@
 
         <section>
             <div>
-                {!! Form::label('sistema', 'Sistema') !!}
-                {!! Form::text('sistema', config('prontuario.nome') , ['required' => '', 'placeholder' => 'Nome dado ao sistema']) !!}
-
-                {!! Form::label('paginacao', 'Paginação') !!}
-                {!! Form::number('paginacao', config('prontuario.paginacao') , ['required' => '', 'placeholder' => 'Itens por página', 'min' => 1, 'max' => 20]) !!}
-            </div>
-
-            <div>
                 {!! Form::label('nome', 'Nome') !!}
                 {!! Form::text('nome', config('prontuario.hospital.nome') , ['required' => '', 'placeholder' => 'Nome do hospital']) !!}
             </div>

@@ -36,8 +36,8 @@ class UsuarioRequest extends FormRequest
             case 'PUT':
                 return [
                     'nome' => 'max:200|min:3|required',
-                    'email' => 'max:200|email|required',
-                    'cpf' => 'max:11|min:11|required',
+                    'email' => 'max:200|email|nullable',
+                    'cpf' => 'max:11|min:11|nullable',
                     'nascimento' => 'max:200|min:3|required|older:18',
                     'senha' => 'max:20|min:6|nullable|confirmed',
                 ];

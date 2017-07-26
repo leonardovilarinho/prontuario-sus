@@ -23,6 +23,16 @@ class MedicoController extends Controller
         return view('medicos.lista', compact('medicos'));
     }
 
+    public function gerenciar($id)
+    {
+        $medico = Medico::find($id);
+
+        if(!$medico)
+            return redirect('medicos');
+
+        return view('medicos.gerenciar', compact('medico'));
+    }
+
     public function criar()
     {
         $medico = new Medico;
@@ -59,7 +69,7 @@ class MedicoController extends Controller
         $medico->fill($requisicao->all());
         $medico->save();
 
-        return redirect('medicos')->withMsg($medico->usuario->nome . ' foi editada(o)!');
+        return redirect('medicos/gerenciar/'.$id)->withMsg($medico->usuario->nome . ' foi editada(o)!');
     }
 
     public function ferias()

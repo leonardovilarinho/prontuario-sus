@@ -57,4 +57,4 @@ $response->send();
 
 $kernel->terminate($request, $response);
 
-// var_dump($_SERVER['MYSQLCONNSTR_localdb']);
+var_dump($_SERVER['MYSQLCONNSTR_localdb']);

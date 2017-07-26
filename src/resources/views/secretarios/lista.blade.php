@@ -50,14 +50,7 @@
         @foreach($secretarios as $secretario)
             <tr>
                 <td>
-                    <a href="{{ url('usuarios/apagar/' . $secretario->usuario->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
-                    <a href="{{ url('secretarios/editar/' . $secretario->id) }}" class="btn amarelo">Editar</a>
-
-                    @if($secretario->usuario->valido)
-                        <a href="{{ url('usuarios/bloquear/' . $secretario->usuario->id) }}" class="btn azul">Bloquear</a>
-                    @else
-                        <a href="{{ url('usuarios/desbloquear/' . $secretario->usuario->id) }}" class="btn verde">Desbloquear</a>
-                    @endif
+                    <a href="{{ url('secretarios/gerenciar/' . $secretario->id) }}" class="btn azul">Gerenciar</a>
                 </td>
                 <td>{{ $secretario->usuario->nome }}</td>
                 <td>{{ $secretario->usuario->email }}</td>

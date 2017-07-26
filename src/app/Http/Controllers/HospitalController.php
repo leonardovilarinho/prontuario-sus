@@ -26,8 +26,6 @@ class HospitalController extends Controller
         copy($filePath, $tmpFile);
 
         $contents = $writer->toFile($filePath, [
-        	'nome' => $requisicao->sistema,
-        	'paginacao' => $requisicao->paginacao,
         	'hospital.nome' => $requisicao->nome,
         	'hospital.local' => $requisicao->local
         ]);
@@ -56,8 +54,9 @@ class HospitalController extends Controller
         copy($filePath, $tmpFile);
 
         $contents = $writer->toFile($filePath, [
+            'nome' => $requisicao->sistema,
+            'paginacao' => $requisicao->paginacao,
             'config.cid' => $requisicao->cid,
-            'config.diagnostico' => $requisicao->diagnostico,
         ]);
 
 

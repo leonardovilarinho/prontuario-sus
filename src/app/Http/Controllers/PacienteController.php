@@ -24,6 +24,17 @@ class PacienteController extends Controller
         return view('pacientes.lista', compact('pacientes'));
     }
 
+    public function gerenciar($id)
+    {
+        $paciente = Paciente::find($id);
+
+        if(!$paciente)
+            return redirect('pacientes');
+
+        return view('pacientes.gerenciar', compact('paciente'));
+    }
+
+
     public function criar()
     {
         $paciente = new Paciente;
@@ -61,6 +72,6 @@ class PacienteController extends Controller
         $paciente->fill($requisicao->all());
         $paciente->save();
 
-        return redirect('pacientes')->withMsg($paciente->nome . ' foi editada(o)!');
+        return redirect('pacientes/gerenciar/'.$id)->withMsg($paciente->nome . ' foi editada(o)!');
     }
 }

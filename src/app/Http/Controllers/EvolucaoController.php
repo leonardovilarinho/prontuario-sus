@@ -17,7 +17,7 @@ class EvolucaoController extends Controller
 
 
         if(!isset($_GET['q'])) {
-            if(auth()->user()->medico) {
+            if(auth()->user()->medico or (auth()->user()->nao_medico and auth()->user()->nao_medico->historico)) {
                 $paciente->evolucoes = Evolucao::where('paciente_id', $id)
                     ->orderBy('created_at', 'desc')
                 ->paginate( config('prontuario.paginacao') );
@@ -32,7 +32,7 @@ class EvolucaoController extends Controller
         } 
         else {
 
-            if(auth()->user()->medico) {
+            if(auth()->user()->medico or (auth()->user()->nao_medico and auth()->user()->nao_medico->historico)) {
                 $paciente->evolucoes = Evolucao::where('paciente_id', $id)
                     ->where('created_at', 'like', '%'.$_GET['q'].'%')
                     ->orWhere('evolucao', 'like', '%'.$_GET['q'].'%')
@@ -63,6 +63,21 @@ class EvolucaoController extends Controller
 
 
     	return view('pacientes.evolucao.lista', compact('paciente'));
+    }
+
+    public function detalhes($id, $evo)
+    {
+        $paciente = Paciente::find($id);
+
+        if(!$paciente)
+            return redirect('pacientes')->withErro('Paciente não encontrado');
+
+        $evolucao = Evolucao::find($evo);
+
+        if(!$evolucao)
+            return redirect('pacientes/'.$id.'/evolucoes')->withErro('Evolução não encontrada');
+
+        return view('pacientes.evolucao.detalhes', compact('paciente', 'evolucao'));
     }
 
     public function nova($id)

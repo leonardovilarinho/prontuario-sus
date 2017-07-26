@@ -12,6 +12,10 @@ class LoginController extends Controller
     {
         if(Administrador::all()->count() == 0)
             return redirect('administradores/primeiro');
+
+        if(!auth()->guest())
+            return redirect('painel');
+        
         return view('login');
     }
 

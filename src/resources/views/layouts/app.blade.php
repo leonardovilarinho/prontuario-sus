@@ -23,7 +23,7 @@
             <nav class="links">
                 @if(!Auth::guest())
                     <ul>
-                        <li><a href="#">Perfil</a></li>
+                        <li><a href="{{ url('perfil') }}">Perfil</a></li>
                         <li><a href="{{ url('sair') }}">Sair</a></li>
                     </ul>
                 @endif
@@ -48,15 +48,19 @@
                     <ul>
                         <li class="fixo"><span>Ações a fazer:</span></li>
                         @if(!auth()->guest())
+                            <li><a href="{{ url('painel') }}">Inicial</a></li>
                             @if(auth()->user()->administrador)
                                 <li><a href="{{ url('hospital') }}">Hospital</a></li>
                                 <li><a href="{{ url('administradores') }}">Administradores</a></li>
                                 <li><a href="{{ url('medicos') }}">Médicos</a></li>
                                 <li><a href="{{ url('nao-medicos') }}">Não-Médicos</a></li>
                                 <li><a href="{{ url('secretarios') }}">Secretários</a></li>
+                                <li><a href="{{ url('hospital/medicamentos') }}">Medicamentos</a></li>
+                                <li><a href="{{ url('hospital/equipamentos') }}">Equipamentos</a></li>
                                 <li><a href="{{ url('hospital/config') }}">Configurações</a></li>
 
                             @elseif(auth()->user()->medico)
+                                <li><a href="{{ url('medicos/dia') }}">Seu dia</a></li>
                                 <li><a href="{{ url('carga') }}">Carga horária</a></li>
                                 <li><a href="{{ url('medicos/ferias') }}">Férias</a></li>
                                 <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
@@ -101,5 +105,17 @@
         </footer>
 
         <script src="{{ asset('js/app.js') }}"></script>
+        <script type="text/javascript">
+            function printDiv(divName) {
+                 var printContents = document.getElementById(divName).innerHTML;
+                 var originalContents = document.body.innerHTML;
+
+                 document.body.innerHTML = printContents;
+
+                 window.print();
+
+                 document.body.innerHTML = originalContents;
+            }
+        </script>
     </body>
 </html>

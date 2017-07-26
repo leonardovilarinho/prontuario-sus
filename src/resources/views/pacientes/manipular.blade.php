@@ -104,7 +104,7 @@
 
             <div>
                 {!! Form::label('bairro', 'Bairro') !!}
-                {!! Form::email('bairro', $paciente->bairro, ['placeholder' => 'Nome do bairro']) !!}
+                {!! Form::text('bairro', $paciente->bairro, ['placeholder' => 'Nome do bairro']) !!}
 
                 {!! Form::label('cidade', 'Cidade') !!}
                 {!! Form::text('cidade', $paciente->cidade, ['placeholder' => 'Nome da cidade']) !!}
@@ -116,13 +116,13 @@
             <h4>Observação:</h4>
 
             <div>
-                {!! Form::email('obs', $paciente->obs, ['placeholder' => 'Obversações sobre o paciente']) !!}
+                {!! Form::textarea('obs', $paciente->obs, ['placeholder' => 'Obversações sobre o paciente']) !!}
             </div>
         </section>
 
         <footer>
             <section>
-                <input type="submit" value="Salvar esse médico" class="btn verde">
+                <input type="submit" value="Salvar esse paciente" class="btn verde">
             </section>
 
             <span class="texto-vermelho">{{ $errors->first() }}</span>

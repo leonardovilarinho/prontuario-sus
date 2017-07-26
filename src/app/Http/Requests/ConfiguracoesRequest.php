@@ -24,8 +24,9 @@ class ConfiguracoesRequest extends FormRequest
     public function rules()
     {
         return [
+            'sistema' => 'required|min:2:max:12',
+            'paginacao' => 'required|numeric|min:1',
             'cid' => 'required|min:0|max:1',
-            'diagnostico' => 'required|min:0|max:1',
         ];
     }
 }

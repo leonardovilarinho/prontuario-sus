@@ -24,6 +24,16 @@ class SecretarioController extends Controller
         return view('secretarios.lista', compact('secretarios'));
     }
 
+    public function gerenciar($id)
+    {
+        $secretario = Secretario::find($id);
+
+        if(!$secretario)
+            return redirect('secretarios');
+
+        return view('secretarios.gerenciar', compact('secretario'));
+    }
+
     public function criar()
     {
         $secretario = new Secretario;
@@ -60,6 +70,6 @@ class SecretarioController extends Controller
         $secretario->fill($requisicao->all());
         $secretario->save();
 
-        return redirect('secretarios')->withMsg($secretario->usuario->nome . ' foi editada(o)!');
+        return redirect('secretarios/gerenciar/'.$id)->withMsg($secretario->usuario->nome . ' foi editada(o)!');
     }
 }

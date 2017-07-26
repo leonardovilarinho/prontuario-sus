@@ -22,6 +22,8 @@
         @endif
     </p>
 
+    <a href="{{ url('pacientes/gerenciar/'.$paciente->id) }}" class="btn secundaria">Voltar</a>
+
     {{ Form::open(['url' => 'pacientes/'.$paciente->id.'/evolucoes', 'method' => 'get']) }}
         <section>
             <div>

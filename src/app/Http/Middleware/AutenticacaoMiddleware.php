@@ -22,6 +22,9 @@ class AutenticacaoMiddleware
 
         foreach ($permissoes as $permissao) {
             switch ($permissao) {
+                case '*':
+                    return $next($request);
+                break;
                 case 'adm':
                     if(auth()->user()->administrador)
                         return $next($request);

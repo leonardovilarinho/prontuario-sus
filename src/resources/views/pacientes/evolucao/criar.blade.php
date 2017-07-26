@@ -3,6 +3,7 @@
 @section('titulo', 'Criar uma evolução')
 
 @section('conteudo')
+
     <p>
        Aqui você pode cadastrar uma nova evolução para <span class="texto-verde">{{ $paciente->nome }}</span>, preencha os campos vermelhos.
     </p>
@@ -24,13 +25,13 @@
 
             <div>
                 {!! Form::label('evolucao', 'Evolução') !!}
-                {!! Form::textarea('evolucao', '', ['required' => '', 'placeholder' => 'Detalhes da evolução']) !!}
+                {!! Form::textarea('evolucao', '', ['required' => '', 'placeholder' => 'Detalhes da evolução']  ) !!}
             </div>
 
             <div>
                 {!! Form::label('diagnostico', 'Diagnóstico') !!}
-                <textarea id="diagnostico" name="diagnostico" placeholder="Diagnóstico da evolução"
-                    {{ config('prontuario.config.diagnostico') ? 'required' : '' }}
+                <textarea id="diagnostico" name="diagnostico" placeholder="Diagnóstico da evolução" class="editable" 
+                    {{ config('prontuario.config.cid') ? 'required' : '' }}
                 ></textarea>
             </div>
         </section>

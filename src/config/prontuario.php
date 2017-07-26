@@ -1,14 +1,13 @@
 <?php
 
 return [
-	'nome' => 'SUS',
-    'paginacao' => '10',
+	'nome' => 'Prontuário SUS',
+    'paginacao' => '7',
     'hospital' => [
-    	'nome' => 'PS',
-    	'local' => 'GitHub'
+    	'nome' => 'São José',
+    	'local' => 'Ituiutaba-MG'
     ],
     'config' => [
-    	'cid' => '1',
-    	'diagnostico' => '1'
+    	'cid' => '0'
     ]
 ];

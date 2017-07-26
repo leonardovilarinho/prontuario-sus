@@ -14,6 +14,7 @@ class NaoMedico extends Model
         'cargo',
         'telefone',
         'usuario_id',
+        'historico'
     ];
 
     public function usuario()

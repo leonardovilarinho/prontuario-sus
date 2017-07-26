@@ -49,6 +49,16 @@ class AdministradorController extends Controller
         return view('administradores.lista', compact('administradores'));
     }
 
+    public function gerenciar($id)
+    {
+        $administrador = Administrador::find($id);
+
+        if(!$administrador)
+            return redirect('administradores');
+
+        return view('administradores.gerenciar', compact('administrador'));
+    }
+
     public function criar()
     {
         $administrador = new Administrador;
@@ -84,6 +94,6 @@ class AdministradorController extends Controller
         $administrador->fill($requisicao->all());
         $administrador->save();
 
-        return redirect('administradores')->withMsg($administrador->nome . ' foi editada(o)!');
+        return redirect('administradores/gerenciar/'.$id)->withMsg($administrador->nome . ' foi editada(o)!');
     }
 }

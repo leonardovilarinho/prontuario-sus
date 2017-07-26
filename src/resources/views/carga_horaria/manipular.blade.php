@@ -4,7 +4,7 @@
 
 @section('conteudo')
     <p>
-       {{ auth()->user()->nome }}, aqui você pode editar qual horário você começa e termina o trabalho, assim como a duração média de cada consulta. Assim nós podemos montar os horários para agendamento de suas consultas automaticamente.
+       Olá <span class="texto-verde">{{ auth()->user()->nome }}</span>, aqui você pode editar qual horário você começa e termina o trabalho, assim como a duração média de cada consulta. Assim nós podemos montar os horários para agendamento de suas consultas automaticamente.
     </p>
 
     <p class="texto-vermelho">

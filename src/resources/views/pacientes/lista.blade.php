@@ -54,18 +54,7 @@
         @foreach($pacientes as $paciente)
             <tr>
                 <td>
-                    @if(auth()->user()->secretario)
-                        <a href="{{ url('pacientes/apagar/' . $paciente->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
-                        <a href="{{ url('pacientes/editar/' . $paciente->id) }}" class="btn amarelo">Editar</a>
-
-                        <a href="{{ url('pacientes/' . $paciente->id .'/consultas') }}" class="btn verde">
-                            Consultas
-                        </a>
-                    @else
-                        <a href="{{ url('pacientes/' . $paciente->id .'/evolucoes') }}" class="btn amarelo">
-                            Evoluções
-                        </a>
-                    @endif
+                    <a href="{{ url('pacientes/gerenciar/' . $paciente->id) }}" class="btn azul">Gerenciar</a>
                 </td>
                 <td>{{ $paciente->nome }}</td>
                 <td>{{ $paciente->prontuario }}</td>

@@ -23,6 +23,16 @@ class NaoMedicoController extends Controller
         return view('nao-medicos.lista', compact('nmedicos'));
     }
 
+    public function gerenciar($id)
+    {
+        $medico = NaoMedico::find($id);
+
+        if(!$medico)
+            return redirect('nao-medicos');
+
+        return view('nao-medicos.gerenciar', compact('medico'));
+    }
+
     public function criar()
     {
         $nmedico = new NaoMedico;
@@ -59,6 +69,15 @@ class NaoMedicoController extends Controller
         $nmedico->fill($requisicao->all());
         $nmedico->save();
 
-        return redirect('nao-medicos')->withMsg($nmedico->usuario->nome . ' foi editada(o)!');
+        return redirect('nao-medicos/gerenciar/'.$id)->withMsg($nmedico->usuario->nome . ' foi editada(o)!');
+    }
+
+    public function historico($id)
+    {
+        $nmedico = NaoMedico::find($id);
+        $nmedico->historico = ($nmedico->historico) ? 0 : 1;
+        $nmedico->save();
+
+        return redirect('nao-medicos/gerenciar/'.$id)->withMsg($nmedico->usuario->nome . ' foi alterada(o)!');
     }
 }

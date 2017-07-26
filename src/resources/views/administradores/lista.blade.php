@@ -50,15 +50,7 @@
             <tr>
                 <td>
                     @if($administrador->usuario->id != 1 and auth()->user()->administrador->usuario_id == 1)
-                    	<a href="{{ url('usuarios/apagar/' . $administrador->usuario->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
-
-	                    <a href="{{ url('administradores/editar/' . $administrador->usuario->id) }}" class="btn amarelo">Editar</a>
-
-	                    @if($administrador->usuario->valido)
-	                        <a href="{{ url('usuarios/bloquear/' . $administrador->usuario->id) }}" class="btn azul">Bloquear</a>
-	                    @else
-	                        <a href="{{ url('usuarios/desbloquear/' . $administrador->usuario->id) }}" class="btn verde">Desbloquear</a>
-	                    @endif
+                        <a href="{{ url('administradores/gerenciar/' . $administrador->usuario->id) }}" class="btn azul">Gerenciar</a>
 	                @else
 	                	<span class="texto-vermelho">Indisponível</span>
 	                @endif

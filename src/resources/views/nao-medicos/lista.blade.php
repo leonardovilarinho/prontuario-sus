@@ -50,14 +50,7 @@
         @foreach($nmedicos as $nmedico)
             <tr>
                 <td>
-                    <a href="{{ url('usuarios/apagar/' . $nmedico->usuario->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
-                    <a href="{{ url('nao-medicos/editar/' . $nmedico->id) }}" class="btn amarelo">Editar</a>
-
-                    @if($nmedico->usuario->valido)
-                        <a href="{{ url('usuarios/bloquear/' . $nmedico->usuario->id) }}" class="btn azul">Bloquear</a>
-                    @else
-                        <a href="{{ url('usuarios/desbloquear/' . $nmedico->usuario->id) }}" class="btn verde">Desbloquear</a>
-                    @endif
+                    <a href="{{ url('nao-medicos/gerenciar/' . $nmedico->id) }}" class="btn azul">Gerenciar</a>
                 </td>
                 <td>{{ $nmedico->usuario->nome }}</td>
                 <td>{{ $nmedico->usuario->email }}</td>

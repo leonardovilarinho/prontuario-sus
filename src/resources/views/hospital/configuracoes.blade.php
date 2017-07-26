@@ -34,6 +34,13 @@
 
         <section>
             <div>
+                {!! Form::label('sistema', 'Sistema') !!}
+                {!! Form::text('sistema', config('prontuario.nome') , ['required' => '', 'placeholder' => 'Nome dado ao sistema']) !!}
+
+                {!! Form::label('paginacao', 'Paginação') !!}
+                {!! Form::number('paginacao', config('prontuario.paginacao') , ['required' => '', 'placeholder' => 'Itens por página', 'min' => 1, 'max' => 20]) !!}
+            </div>
+            <div>
                 <label>CID obrigatório?</label>
                 <div class="selecao">
                     <input type="radio" id="sim" name="cid" value="1" {{ config('prontuario.config.cid') ? 'checked' : '' }}/>
@@ -41,17 +48,6 @@
 
                     <input type="radio" id="nao" name="cid" value="0" {{ !config('prontuario.config.cid') ? 'checked' : '' }}/>
                     <label for="nao">Não</label>
-                </div>
-            </div>
-
-            <div>
-                <label>Diagnóstivo obrigatório?</label>
-                <div class="selecao">
-                    <input type="radio" id="simd" name="diagnostico" value="1" {{ config('prontuario.config.diagnostico') ? 'checked' : '' }}/>
-                    <label for="simd">Sim</label>
-
-                    <input type="radio" id="naod" name="diagnostico" value="0" {{ !config('prontuario.config.diagnostico') ? 'checked' : '' }}/>
-                    <label for="naod">Não</label>
                 </div>
             </div>
         </section>

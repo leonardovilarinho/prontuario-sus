@@ -54,20 +54,7 @@
         @foreach($medicos as $medico)
             <tr>
                 <td>
-                    @if(auth()->user()->administrador)
-                        <a href="{{ url('usuarios/apagar/' . $medico->usuario->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
-                        <a href="{{ url('medicos/editar/' . $medico->id) }}" class="btn amarelo">Editar</a>
-
-                        @if($medico->usuario->valido)
-                            <a href="{{ url('usuarios/bloquear/' . $medico->usuario->id) }}" class="btn azul">Bloquear</a>
-                        @else
-                            <a href="{{ url('usuarios/desbloquear/' . $medico->usuario->id) }}" class="btn verde">Desbloquear</a>
-                        @endif
-                    @else
-                        <a href="{{ url('medicos/'.$medico->usuario_id.'/consulta/data') }}" class="btn azul">Marcar</a>
-
-                        <a href="{{ url('medicos/'.$medico->usuario_id.'/consultas') }}" class="btn verde">Consultas</a>
-                    @endif
+                    <a href="{{ url('medicos/gerenciar/' . $medico->id) }}" class="btn azul">Gerenciar</a>
                 </td>
                 <td>{{ $medico->usuario->nome }}</td>
                 <td>{{ $medico->usuario->email }}</td>
@@ -82,3 +69,4 @@
         {{ $medicos->links() }}
     </section>
 @endsection
+
