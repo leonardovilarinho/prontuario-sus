@@ -98,9 +98,9 @@ class ReceituarioController extends Controller
     	if(!$paciente)
     		return redirect('pacientes')->withErro('Paciente não encontrado');
 
-    	Receituario::create($requisicao->all());
+    	$rec = Receituario::create($requisicao->all());
 
-    	return redirect('pacientes/'.$id.'/receituarios')->withMsg('Receituário foi cadastrada!');
+    	return redirect('pacientes/'.$id.'/receituarios/'.$rec->id.'/detalhes')->withMsg('Receituário foi cadastrada!');
     }
 
     public function apagar($id)

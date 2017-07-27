@@ -101,7 +101,7 @@ class EvolucaoController extends Controller
 
     	Evolucao::create($requisicao->all());
 
-    	return redirect('pacientes/'.$id.'/evolucoes')->withMsg('Evolução foi cadastrada!');
+    	return redirect('pacientes/gerenciar/'.$id)->withMsg('Evolução foi cadastrada!');
     }
 
     public function apagar($id)

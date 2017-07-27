@@ -55,7 +55,7 @@
             </p>
 
 			<br><br><br>
-            <div style="text-align:center" class="oculta-tel">
+            <div style="text-align:center">
             	<p>_______________________________________________________________</p>
             	<p>({{ $receita->autor->nome }})</p>
             </div>
