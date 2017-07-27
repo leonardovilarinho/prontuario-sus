@@ -91,15 +91,17 @@ class MedicoController extends Controller
 
         $agora = strtotime('now');
         
-        if(isset($_GET['dias'])) {
-            $_GET['dias'] = (int)$_GET['dias'];
-            $agora = strtotime('now+'.$_GET['dias'].'days');
-        }
+        
 
         $depois =  strtotime('+'.$carga->intervalo.' minutes');
 
         $inicio = new \DateTime(date('Y-m-d') . ' ' . $carga->inicio);
         $fim = new \DateTime(date('Y-m-d') . ' ' . $carga->fim);
+
+        if(isset($_GET['dias'])) {
+            $_GET['dias'] = (int)$_GET['dias'];
+            $fim->add( new \DateInterval('P' . ($_GET['dias'] - 1) . 'D') );
+        }
 
         if($inicio > $fim) {
             $inicio->sub( new \DateInterval('P1D') );
@@ -122,7 +124,7 @@ class MedicoController extends Controller
 
         $futuras = Consulta::where('medico_id', auth()->user()->id)
             ->where('horario', '>=', date('Y-m-d H:i', $depois))
-            ->where('horario', 'like', date('Y-m-d', $depois) . '%')
+            ->where('horario', '<=', $fim->format('Y-m-d H:i'))
             ->orderBy('horario', 'asc')
         ->get();
 
@@ -140,6 +142,6 @@ class MedicoController extends Controller
         ->get();
 
 
-        return view('medicos.dia', compact('futuras', 'passadas', 'andamento'));
+        return view('medicos.dia', compact('futuras', 'passadas', 'andamento', 'inicio', 'fim'));
     }
 }

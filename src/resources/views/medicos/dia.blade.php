@@ -24,8 +24,8 @@
     {{ Form::open(['url' => 'medicos/dia', 'method' => 'get']) }}
 		<section>
 			<div>
-				{{ Form::label('dias', 'Dias a frente') }}
-				{{ Form::number('dias', (isset($_GET['dias']) ? $_GET['dias'] : 0), ['required' => '', 'min' => 0]) }}
+				{{ Form::label('dias', 'Dias') }}
+				{{ Form::number('dias', (isset($_GET['dias']) ? $_GET['dias'] : 1), ['required' => '', 'min' => 1]) }}
 
 				{{ Form::submit('Buscar', ['class' => 'btn verde']) }}
 			</div>
@@ -35,7 +35,7 @@
 
     <section id="imprimir">
     	<p>
-	        Olá <span class="texto-verde">{{ auth()->user()->nome }}</span>, aqui estão suas consultas de hoje:
+	        Olá <span class="texto-verde">{{ auth()->user()->nome }}</span>, aqui estão suas consultas entre <span class="texto-verde">{{ $inicio->format('d/m/Y á\s H:i') }}</span> e <span class="texto-verde">{{ $fim->format('d/m/Y á\s H:i') }}</span:
 	    </p>
 	    <br>
 		@if(count($andamento) > 0)

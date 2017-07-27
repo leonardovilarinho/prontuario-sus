@@ -66,7 +66,11 @@
 			<br><br><br>
             <div style="text-align:center">
             	<p>_______________________________________________________________</p>
-            	<p>({{ $evolucao->autor->nome }}) CRM: {{ $evolucao->autor->crm }}</p>
+            	@if($evolucao->autor->medico)
+                   <p>{{ $evolucao->autor->nome }} | {{ $evolucao->autor->medico->conselho }}</p>
+                @elseif($evolucao->autor->nao_medico)
+                    <p>{{ $evolucao->autor->nome }} | {{ $evolucao->autor->nao_medico->conselho }}</p>
+                @endif
             </div>
 
             <hr>

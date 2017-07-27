@@ -85,7 +85,11 @@
             <br><br><br>
             <div style="text-align:center">
                 <p>_______________________________________________________________</p>
-                <p>({{ $prescricao->autor->nome }}) CRM: {{ $prescricao->autor->crm }}</p>
+                @if($prescricao->autor->medico)
+                   <p>{{ $prescricao->autor->nome }} | {{ $prescricao->autor->medico->conselho }}</p>
+                @elseif($prescricao->autor->nao_medico)
+                    <p>{{ $prescricao->autor->nome }} | {{ $prescricao->autor->nao_medico->conselho }}</p>
+                @endif
             </div>
 
             <hr>

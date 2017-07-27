@@ -7,7 +7,7 @@
     <p>
        Aqui você pode cadastrar uma nova evolução para <span class="texto-verde">{{ $paciente->nome }}</span>, preencha os campos vermelhos.
     </p>
-
+                    
     {!! Form::open(['url' => 'pacientes/'.$paciente->id.'/evolucoes/nova', 'method' => 'post']) !!}
     	{{ Form::hidden('paciente_id', $paciente->id) }}
     	{{ Form::hidden('autor_id', auth()->user()->id) }}
