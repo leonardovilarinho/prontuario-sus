@@ -15,6 +15,9 @@ class AutenticacaoMiddleware
      */
     public function handle($request, Closure $next, $perm)
     {
+        if(auth()->guest())
+            return redirect('');
+        
         if(stripos($perm, '|') !== false)
             $permissoes = explode('|', $perm);
         else
