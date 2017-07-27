@@ -57,13 +57,13 @@
                 {!! Form::date('nascimento', $paciente->nascimento, ['placeholder' => 'Data de nascimento', 'required' => '']) !!}
 
                 {!! Form::label('sexo', 'Sexo') !!}
-                {!! Form::select('sexo', ['Masculino' => 'Masculino', 'Feminino' => 'Feminino'], $paciente->sexo, ['required' => '']) !!}
+                {!! Form::select('sexo', ['Masculino' => 'Masculino', 'Feminino' => 'Feminino', '' => 'Selecione algum'], ($paciente->sexo == null) ? '': $paciente->sexo, ['required' => '']) !!}
 
                 {!! Form::label('civil', 'E. Civil') !!}
-                {!! Form::select('civil', ['Solteiro' => 'Solteiro', 'Divorciado' => 'Divorciado', 'Casado' => 'Casado', 'Viúvo' => 'Viúvo', 'Separado' => 'Separado'], $paciente->civil, ['required' => '']) !!}
+                {!! Form::select('civil', ['Solteiro' => 'Solteiro', 'Divorciado' => 'Divorciado', 'Casado' => 'Casado', 'Viúvo' => 'Viúvo', 'Separado' => 'Separado', '' => 'Selecione algum'],($paciente->civil == null) ? '' : $paciente->civil, ['required' => '']) !!}
 
                 {!! Form::label('cor', 'Cor') !!}
-                {!! Form::select('cor', ['Preta' => 'Preta', 'Branca' => 'Branca', 'Parda' => 'Parda', 'Indigena' => 'Indigena', 'Amarela' => 'Amarela', 'Não declarado' => 'Não declarado'], $paciente->cor, ['required' => '']) !!}              
+                {!! Form::select('cor', ['Preta' => 'Preta', 'Branca' => 'Branca', 'Parda' => 'Parda', 'Indigena' => 'Indigena', 'Amarela' => 'Amarela', 'Não declarado' => 'Não declarado', '' => 'Selecione algum'], ($paciente->cor == null) ? '' : $paciente->cor , ['required' => '']) !!}              
             </div>
 
             <div>
@@ -82,7 +82,7 @@
                 {!! Form::text('grau', $paciente->grau, ['placeholder' => 'Grau de Instrução']) !!}
 
                 {!! Form::label('naturalidade', 'Natural') !!}
-                {!! Form::text('naturalidade', $paciente->naturalidade, ['placeholder' => 'Naturalidade', 'required' => '']) !!}
+                {!! Form::text('naturalidade', $paciente->naturalidade, ['placeholder' => 'Naturalidade']) !!}
 
                 {!! Form::label('profissao', 'Profissão') !!}
                 {!! Form::text('profissao', $paciente->profissao, ['placeholder' => 'Profissão']) !!}

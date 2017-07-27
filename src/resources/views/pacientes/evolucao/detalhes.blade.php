@@ -24,6 +24,11 @@
         @endif
     </p>
 
+    <p>
+        <strong>CID: </strong>
+        {{ $evolucao->cid }}
+    </p>
+
     <section class="cartao" id="imprimir">
         <header>
             Evolução
@@ -54,14 +59,7 @@
 			</p>
 
 			<hr>
-			<p>
-            	<strong>CID: </strong>
-            	{{ $evolucao->cid }}
-            </p>
-
-            <p>
-                {!! $evolucao->diagnostico !!}
-            </p>
+			
 
 			<br><br><br>
             <div style="text-align:center" class="oculta-tel">

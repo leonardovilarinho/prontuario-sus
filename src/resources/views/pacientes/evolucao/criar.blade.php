@@ -16,24 +16,17 @@
         </header>
 
         <section>
-            <div>
-                {!! Form::label('cid', 'CID') !!}
-                <input type="text" id="cid" name="cid" placeholder="Código CID"
-                    {{ config('prontuario.config.cid') ? 'required' : '' }}
-                >
-            </div>
-
+  
             <div>
                 {!! Form::label('evolucao', 'Evolução') !!}
                 {!! Form::textarea('evolucao', '', ['required' => '', 'placeholder' => 'Detalhes da evolução']  ) !!}
             </div>
 
             <div>
-                {!! Form::label('diagnostico', 'Diagnóstico') !!}
-                <textarea id="diagnostico" name="diagnostico" placeholder="Diagnóstico da evolução"
-                    style="width: 100%" 
+                {!! Form::label('cid', 'CID') !!}
+                <input type="text" id="cid" name="cid" placeholder="Código CID"
                     {{ config('prontuario.config.cid') ? 'required' : '' }}
-                ></textarea>
+                >
             </div>
         </section>
 

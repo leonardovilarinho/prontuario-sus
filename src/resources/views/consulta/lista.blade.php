@@ -50,7 +50,7 @@
         {{ Form::close() }}
     @endif
 
-    @if(!auth()->user()->administrador and $tipo == 'med')
+    @if($tipo == 'med')
         <a class="btn verde" href="{{ url('medicos/'.$medico->usuario_id.'/consulta/data') }}">
             Cadastrar nova consulta
         </a>

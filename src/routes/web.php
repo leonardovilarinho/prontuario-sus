@@ -7,6 +7,7 @@ Route::get('sair', 'LoginController@sair');
 Route::group(['middleware' => 'autenticacao:*'], function() {
     Route::get('perfil', 'UsuarioController@perfil');
     Route::put('perfil', 'UsuarioController@salvarPerfil');
+    Route::put('perfil/senha', 'UsuarioController@alterarSenha');
 });
 
 Route::group(['prefix' => 'administradores'], function() {
@@ -50,7 +51,7 @@ Route::group(['prefix' => 'medicos'], function() {
         Route::get('dia', 'MedicoController@doDia');
     });
 
-     Route::group(['middleware' => 'autenticacao:sec'], function() {
+     Route::group(['middleware' => 'autenticacao:sec|adm'], function() {
 
         Route::get('{id}/consulta/data', 'ConsultaController@data')->where('id', '[0-9]+');
         Route::get('{id}/consulta/horarios', 'ConsultaController@horarios')->where('id', '[0-9]+');

@@ -33,7 +33,7 @@ class PacienteRequest extends FormRequest
             'sexo' => 'required',
             'civil' => 'required',
             'cor' => 'required',
-            'naturalidade' => 'required|max:30',
+            'naturalidade' => 'nullable|max:30',
             'grau' => 'nullable|max:80',
             'cpf' => 'nullable|min:11|max:11',
             'profissao' => 'nullable|max:50',

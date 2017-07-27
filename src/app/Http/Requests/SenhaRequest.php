@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EvolucaoRequest extends FormRequest
+class SenhaRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,10 +24,7 @@ class EvolucaoRequest extends FormRequest
     public function rules()
     {
         return [
-            'evolucao' => 'required|min:3',
-            'cid' => 'nullable|max:100',
-            'paciente_id' => 'required|numeric',
-            'autor_id' => 'required|numeric',
+            'senha' => 'max:20|min:6|nullable|confirmed',
         ];
     }
 }

@@ -10,7 +10,6 @@ class Evolucao extends Model
 
     protected $fillable = [
         'evolucao',
-        'diagnostico',
         'cid',
         'paciente_id',
         'autor_id',

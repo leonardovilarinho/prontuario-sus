@@ -17,7 +17,6 @@ class CreateEvolucaosTable extends Migration
             $table->increments('id');
 
             $table->text('evolucao');
-            $table->text('diagnostico')->nullable();
             $table->string('cid', 100)->nullable();
 
             $table->integer('paciente_id')->unsigned();

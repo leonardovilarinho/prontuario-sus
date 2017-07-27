@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Model\Usuario;
-use App\Http\Requests\UsuarioRequest;
+use App\Http\Requests\{UsuarioRequest, SenhaRequest};
 
 class UsuarioController extends Controller
 {
@@ -65,4 +65,15 @@ class UsuarioController extends Controller
 
         return redirect('perfil')->withMsg('Perfil atualizado!');
     }
+
+    public function alterarSenha(SenhaRequest $requisicao)
+    {
+        $requisicao->merge(['senha' => bcrypt($requisicao->senha)]);
+
+        auth()->user()->fill($requisicao->all());
+        auth()->user()->save();
+
+        return redirect('perfil')->withMsg('Senha atualizada!');
+    }
+
 }

@@ -44,6 +44,9 @@ class PacienteController extends Controller
 
     public function salvar(PacienteRequest $requisicao)
     {
+        if($requisicao->naturalidade == null)
+            $requisicao->merge(['naturalidade' => ' ']);
+
         $paciente = Paciente::create($requisicao->all());
 
         if($requisicao->foto != null)
@@ -68,6 +71,9 @@ class PacienteController extends Controller
 
     public function editar(PacienteRequest $requisicao, $id)
     {
+        if($requisicao->naturalidade == null)
+            $requisicao->merge(['naturalidade' => ' ']);
+
         $paciente = Paciente::find($id);
         $paciente->fill($requisicao->all());
         $paciente->save();

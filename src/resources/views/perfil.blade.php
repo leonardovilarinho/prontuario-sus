@@ -3,6 +3,20 @@
 @section('titulo', 'Seu perfil')
 
 @section('conteudo')
+    <p style="text-align:center">
+        @if(session('msg'))
+            <span class="texto-verde">
+                {{ session('msg') }}
+            </span>
+        @endif
+
+         @if(session('erro'))
+            <span class="texto-vermelho">
+                {{ session('erro') }}
+            </span>
+        @endif
+    </p>
+    
     <p>
        Olá <span class="texto-verde">{{ auth()->user()->nome }}</span>, nessa tela você poderá alterar seus dados:
     </p>
@@ -60,6 +74,31 @@
         <footer>
             <section>
                 <input type="submit" value="Salvar seus dados" class="btn verde">
+            </section>
+
+            <span class="texto-vermelho">{{ $errors->first() }}</span>
+        </footer>
+    {!! Form::close() !!}
+
+    {!! Form::open(['url' => 'perfil/senha', 'method' => 'post']) !!}
+        {{ Form::hidden('_method', 'put') }}
+        <header>
+            Para altera sua senha:
+        </header>
+
+        <section>
+            <div>
+                {!! Form::label('senha', 'Nova senha') !!}
+                {!! Form::password('senha', ['required' => '', 'placeholder' => 'Sua nova senha']) !!}
+
+                {!! Form::label('senha_confirmation', 'Confirmar') !!}
+                {!! Form::password('senha_confirmation', ['required' => '', 'placeholder' => 'Sua nova senha']) !!}
+            </div>
+        </section>
+
+        <footer>
+            <section>
+                <input type="submit" value="Editar sua senha" class="btn verde">
             </section>
 
             <span class="texto-vermelho">{{ $errors->first() }}</span>
