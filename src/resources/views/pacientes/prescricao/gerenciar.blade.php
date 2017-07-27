@@ -109,6 +109,12 @@
                 <a href="{{ url('pacientes/' . $paciente->id.'/prescricoes/'.$prescricao->id.'/addequ') }}"
                 class="btn amarelo">Add Equipamento</a>
             @endif
+
+            <a href="{{ url('pacientes/' . $paciente->id .'/evolucoes') }}" class="btn amarelo">Evoluções</a>
+
+            <a href="{{ url('pacientes/' . $paciente->id .'/receituarios') }}" class="btn azul">Receituários</a>
+
+            <a href="{{ url('pacientes/' . $paciente->id .'/prescricoes') }}" class="btn verde">Prescrição</a>
             <button onclick="printDiv('imprimir')" class="btn verde  oculta-tel">Imprimir</button>
         </footer>
     </section>
