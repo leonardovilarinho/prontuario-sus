@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\MedicoRequest;
-use App\Model\{Medico, Usuario, Consulta};
+use App\Model\{Medico, Usuario, Consulta, CargaHoraria};
 
 class MedicoController extends Controller
 {
@@ -72,9 +72,14 @@ class MedicoController extends Controller
         return redirect('medicos/gerenciar/'.$id)->withMsg($medico->usuario->nome . ' foi editada(o)!');
     }
 
-    public function ferias()
+    public function config()
     {
-        return view('medicos.ferias');
+        $carga = new CargaHoraria;
+
+        if(auth()->user()->medico->carga_horaria)
+            $carga = auth()->user()->medico->carga_horaria;
+
+        return view('medicos.config', compact('carga'));
     }
 
     public function salvarFerias(Request $requisicao)
@@ -82,7 +87,7 @@ class MedicoController extends Controller
         auth()->user()->medico->ferias = $requisicao->ferias;
         auth()->user()->medico->save();
 
-        return redirect('medicos/ferias')->withMsg('Férias foram salvas!');
+        return redirect('medicos/config')->withMsg('Férias foram salvas!');
     }
 
     public function doDia()

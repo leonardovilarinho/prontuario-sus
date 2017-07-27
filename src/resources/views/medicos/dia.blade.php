@@ -32,7 +32,6 @@
 		</section>
     {{ Form::close() }}
 
-
     <section id="imprimir">
     	<p>
 	        Olá <span class="texto-verde">{{ auth()->user()->nome }}</span>, aqui estão suas consultas entre <span class="texto-verde">{{ $inicio->format('d/m/Y á\s H:i') }}</span> e <span class="texto-verde">{{ $fim->format('d/m/Y á\s H:i') }}</span:
@@ -45,7 +44,8 @@
 		        	<li>
 		        		<span>
 		        			{{ date('d/m/Y á\s H:i', strtotime($consulta->horario)) }} -
-		        			{{ $consulta->paciente->nome }}
+		        			{{ $consulta->paciente->nome }} |
+		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s)
 		        		</span>
 
 		        		<div class="direita">
@@ -63,7 +63,8 @@
 		        	<li>
 		        		<span>
 		        			{{ date('d/m/Y á\s H:i', strtotime($consulta->horario)) }} -
-		        			{{ $consulta->paciente->nome }}
+		        			{{ $consulta->paciente->nome }} |
+		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s)
 		        		</span>
 
 		        		<div class="direita">
@@ -81,7 +82,8 @@
 		        	<li>
 		        		<span>
 		        			{{ date('d/m/Y á\s H:i', strtotime($consulta->horario)) }} -
-		        			{{ $consulta->paciente->nome }}
+		        			{{ $consulta->paciente->nome }} |
+		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s)
 		        		</span>
 
 		        		<div class="direita">

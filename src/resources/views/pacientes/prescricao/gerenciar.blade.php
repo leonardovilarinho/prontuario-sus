@@ -40,10 +40,6 @@
             </section>
 
             <hr>
-            <p>
-                <strong>Autor: </strong>
-                {{ $prescricao->autor->nome }}
-            </p>
 
             <p>
             	<strong>Paciente: </strong>

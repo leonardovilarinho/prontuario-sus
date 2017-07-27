@@ -38,10 +38,6 @@
             </section>
 
             <hr>
-            <p>
-            	<strong>Autor: </strong>
-            	{{ $receita->autor->nome }}
-            </p>
 
             <p>
             	<strong>Paciente: </strong>

@@ -10,6 +10,9 @@ class PainelController extends Controller
     public function inicial()
     {
 
+    	if(auth()->user()->medico)
+    		return redirect('medicos/dia');
+
 
 		$medicos = Medico::count();
 		$nao_medicos = NaoMedico::count();

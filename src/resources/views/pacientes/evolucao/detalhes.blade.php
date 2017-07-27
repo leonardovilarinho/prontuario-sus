@@ -45,10 +45,6 @@
             </section>
 
             <hr>
-            <p>
-            	<strong>Autor: </strong>
-            	{{ $evolucao->autor->nome }}
-            </p>
 
             <p>
             	<strong>Paciente: </strong>

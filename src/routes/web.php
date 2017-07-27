@@ -45,8 +45,10 @@ Route::group(['prefix' => 'medicos'], function() {
     });
 
     Route::group(['middleware' => 'autenticacao:med'], function() {
-        Route::get('ferias', 'MedicoController@ferias');
-        Route::post('ferias', 'MedicoController@salvarFerias');
+        Route::get('config', 'MedicoController@config');
+        Route::post('config/ferias', 'MedicoController@salvarFerias');
+
+        Route::post('config/carga', 'CargaHorariaController@salvar');
 
         Route::get('dia', 'MedicoController@doDia');
     });
@@ -117,10 +119,6 @@ Route::group(['prefix' => 'hospital', 'middleware' => 'autenticacao:adm'], funct
     Route::get('medicamentos/{id}/apagar', 'MedicamentoController@apagar')->where('id', '[0-9]+');
 });
 
-Route::group(['prefix' => 'carga', 'middleware' => 'autenticacao:med'], function() {
-    Route::get('', 'CargaHorariaController@manipular');
-    Route::post('', 'CargaHorariaController@salvar');
-});
 
 Route::group(['prefix' => 'pacientes'], function() {
 
