@@ -87,10 +87,15 @@ class MedicoController extends Controller
 
     public function doDia()
     {
-        echo 'oi';
         $carga = auth()->user()->medico->carga_horaria;
 
         $agora = strtotime('now');
+        
+        if(isset($_GET['dias'])) {
+            $_GET['dias'] = (int)$_GET['dias'];
+            $agora = strtotime('now+'.$_GET['dias'].'days');
+        }
+
         $depois =  strtotime('+'.$carga->intervalo.' minutes');
 
         $inicio = new \DateTime(date('Y-m-d') . ' ' . $carga->inicio);

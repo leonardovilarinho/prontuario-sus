@@ -29,11 +29,13 @@
         {{ $evolucao->cid }}
     </p>
 
-    <section class="cartao" id="imprimir">
+
+
+    <section class="cartao" >
         <header>
             Evolução
         </header>
-        <article>
+        <article id="imprimir">
         	<section>
                 <figure style="float:right; margin: 0">
                     <img src="{{ Storage::url('logo.jpg') }}" width="150" alt="Logo de {{ config('prontuario.hospital.nome') }}">
@@ -64,7 +66,7 @@
 			<br><br><br>
             <div style="text-align:center">
             	<p>_______________________________________________________________</p>
-            	<p>({{ $evolucao->autor->nome }})</p>
+            	<p>({{ $evolucao->autor->nome }}) CRM: {{ $evolucao->autor->crm }}</p>
             </div>
 
             <hr>
@@ -73,9 +75,6 @@
             	<small>
             		<strong>Criado em: </strong>
 	            	{{ date('d/m/Y á\s H:i', strtotime($evolucao->created_at)) }}
-					|
-	            	<strong>Última edição: </strong>
-	            	{{ date('d/m/Y á\s H:i', strtotime($evolucao->updated_at)) }}
             	</small>
             </p>
 
@@ -92,5 +91,10 @@
 
         </footer>
     </section>
+
+    <small>
+        <strong>Última edição: </strong>
+        {{ date('d/m/Y á\s H:i', strtotime($evolucao->updated_at)) }}
+    </small>
 
 @endsection

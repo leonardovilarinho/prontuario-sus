@@ -21,6 +21,17 @@
         @endif
     </p>
 
+    {{ Form::open(['url' => 'medicos/dia', 'method' => 'get']) }}
+		<section>
+			<div>
+				{{ Form::label('dias', 'Dias a frente') }}
+				{{ Form::number('dias', (isset($_GET['dias']) ? $_GET['dias'] : 0), ['required' => '', 'min' => 0]) }}
+
+				{{ Form::submit('Buscar', ['class' => 'btn verde']) }}
+			</div>
+		</section>
+    {{ Form::close() }}
+
 
     <section id="imprimir">
     	<p>

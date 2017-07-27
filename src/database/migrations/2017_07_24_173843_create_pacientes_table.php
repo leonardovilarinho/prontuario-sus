@@ -23,9 +23,9 @@ class CreatePacientesTable extends Migration
             $table->string('convenio', 40);
             $table->string('num_convenio', 50)->nullable();
             $table->enum('sexo', ['Masculino', 'Feminino']);
-            $table->enum('civil', ['Solteiro', 'Divorciado', 'Casado', 'Viúvo', 'Separado']);
-            $table->enum('cor', ['Preta', 'Branca', 'Parda', 'Indigena', 'Amarela', 'Não declarado']);
-            $table->string('naturalidade', 30);
+            $table->enum('civil', ['Solteiro', 'Divorciado', 'Casado', 'Viúvo', 'Separado'])->nullable();
+            $table->enum('cor', ['Preta', 'Branca', 'Parda', 'Indigena', 'Amarela', 'Não declarado'])->nullable();
+            $table->string('naturalidade', 30)->nullable();
             $table->string('grau', 80)->nullable();
             $table->string('cpf', 11)->nullable();
             $table->string('profissao', 50)->nullable();

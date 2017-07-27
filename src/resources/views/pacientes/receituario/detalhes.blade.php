@@ -24,11 +24,11 @@
         @endif
     </p>
 
-    <section class="cartao" id="imprimir">
+    <section class="cartao">
         <header>
             Receituário
         </header>
-        <article>
+        <article id="imprimir">
         	<section>
                 <figure style="float:right; margin: 0">
                     <img src="{{ Storage::url('logo.jpg') }}" width="150" alt="Logo de {{ config('prontuario.hospital.nome') }}">
@@ -57,7 +57,7 @@
 			<br><br><br>
             <div style="text-align:center">
             	<p>_______________________________________________________________</p>
-            	<p>({{ $receita->autor->nome }})</p>
+            	<p>({{ $receita->autor->nome }}) CRM: {{ $receita->autor->crm }}</p>
             </div>
 
             <hr>
@@ -66,9 +66,6 @@
             	<small>
             		<strong>Criado em: </strong>
 	            	{{ date('d/m/Y á\s H:i', strtotime($receita->created_at)) }}
-					|
-	            	<strong>Última edição: </strong>
-	            	{{ date('d/m/Y á\s H:i', strtotime($receita->updated_at)) }}
             	</small>
             </p>
 
@@ -85,5 +82,9 @@
 
         </footer>
     </section>
+    <small>
+        <strong>Última edição: </strong>
+        {{ date('d/m/Y á\s H:i', strtotime($receita->updated_at)) }}
+    </small>
 
 @endsection

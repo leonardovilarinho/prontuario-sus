@@ -25,11 +25,11 @@
     </p>
 
 
-    <section class="cartao" id="imprimir">
+    <section class="cartao">
         <header>
             {{ $prescricao->nome }}
         </header>
-        <article>
+        <article id="imprimir">
 
             <section>
                 <figure style="float:right; margin: 0">
@@ -85,7 +85,7 @@
             <br><br><br>
             <div style="text-align:center">
                 <p>_______________________________________________________________</p>
-                <p>({{ $prescricao->autor->nome }})</p>
+                <p>({{ $prescricao->autor->nome }}) CRM: {{ $prescricao->autor->crm }}</p>
             </div>
 
             <hr>
@@ -94,9 +94,6 @@
             	<small>
             		<strong>Criado em: </strong>
 	            	{{ date('d/m/Y á\s H:i', strtotime($prescricao->created_at)) }}
-					|
-	            	<strong>Última edição: </strong>
-	            	{{ date('d/m/Y á\s H:i', strtotime($prescricao->updated_at)) }}
             	</small>
             </p>
 
@@ -118,5 +115,9 @@
             <button onclick="printDiv('imprimir')" class="btn verde  oculta-tel">Imprimir</button>
         </footer>
     </section>
+    <small>
+        <strong>Última edição: </strong>
+        {{ date('d/m/Y á\s H:i', strtotime($prescricao->updated_at)) }}
+    </small>
 
 @endsection

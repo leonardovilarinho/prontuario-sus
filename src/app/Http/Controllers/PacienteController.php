@@ -10,9 +10,23 @@ class PacienteController extends Controller
 {
     public function lista()
     {
+
         if(!isset($_GET['q']))
             $pacientes = Paciente::paginate( config('prontuario.paginacao') );
         else {
+
+
+            if (\DateTime::createFromFormat('d/m/Y', $_GET['q']) !== false) {
+                $d = explode('/', $_GET['q']);
+                $tmp = '';
+                foreach ($d as $valor) {
+                    $tmp = $valor . '-' . $tmp;
+                }
+                $tmp = substr($tmp, 0, -1);
+                $_GET['q'] = $tmp;
+            }
+
+
             $pacientes = Paciente::where('nome', 'like', '%'.$_GET['q'].'%')
                 ->orWhere('email', 'like', '%'.$_GET['q'].'%')
                 ->orWhere('cpf', 'like', '%'.$_GET['q'].'%')
