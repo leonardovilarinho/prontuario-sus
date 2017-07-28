@@ -8,7 +8,7 @@
 
 @section('conteudo')
 
-	<a href="{{ url('pacientes/'.$paciente->id.'/receituarios') }}" class="btn secundaria">Voltar</a>
+    <a href="{{ url('pacientes/'.$paciente->id.'/receituarios') }}" class="btn secundaria">Voltar</a>
 
     <p style="text-align:center">
         @if(session('msg'))
@@ -29,7 +29,7 @@
             Receituário
         </header>
         <article id="imprimir">
-        	<section>
+            <section style="margin: 5px; padding: 5px; border: 1px solid #999999">
                 <figure style="float:right; margin: 0">
                     <img src="{{ Storage::url('logo.jpg') }}" width="150" alt="Logo de {{ config('prontuario.hospital.nome') }}">
                 </figure>
@@ -37,24 +37,24 @@
                 <small>{{ config('prontuario.hospital.local') }}</small>
             </section>
 
-            <hr>
+            <br><br><br>
 
             <p>
-            	<strong>Paciente: </strong>
-            	{{ $receita->paciente->nome }}
+                <strong>Paciente: </strong>
+                {{ $receita->paciente->nome }}
             </p>
 
             <hr>
 
             <p>
-            	{!! $receita->conteudo !!}
+                {!! $receita->conteudo !!}
             </p>
 
-			<br><br><br>
+            <br><br><br>
             <div style="text-align:center">
-            	<p>_______________________________________________________________</p>
+                <p>_______________________________________________________________</p>
                 @if($receita->autor->medico)
-            	   <p>{{ $receita->autor->nome }} | {{ $receita->autor->medico->conselho }}</p>
+                   <p>{{ $receita->autor->nome }} | {{ $receita->autor->medico->conselho }}</p>
                 @elseif($receita->autor->nao_medico)
                     <p>{{ $receita->autor->nome }} | {{ $receita->autor->nao_medico->conselho }}</p>
                 @endif
@@ -63,10 +63,10 @@
             <hr>
 
             <p style="text-align: right;">
-            	<small>
-            		<strong>Criado em: </strong>
-	            	{{ date('d/m/Y á\s H:i', strtotime($receita->created_at)) }}
-            	</small>
+                <small>
+                    <strong>Criado em: </strong>
+                    {{ date('d/m/Y á\s H:i', strtotime($receita->created_at)) }}
+                </small>
             </p>
 
         </article>
@@ -78,7 +78,7 @@
 
             <a href="{{ url('pacientes/' . $paciente->id .'/prescricoes') }}" class="btn verde">Prescrição</a>
 
-			<button onclick="printDiv('imprimir')" class="btn verde oculta-tel">Imprimir</button>
+            <button onclick="printDiv('imprimir')" class="btn verde oculta-tel">Imprimir</button>
 
         </footer>
     </section>
