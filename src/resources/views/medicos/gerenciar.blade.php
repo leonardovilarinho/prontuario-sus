@@ -103,7 +103,7 @@
 			    <a href="{{ url('usuarios/redefinir/' . $medico->usuario->id) }}" class="btn verde">Redefinir senha</a>
 			@endif
 
-            <a href="{{ url('medicos/'.$medico->usuario_id.'/consulta/data') }}" class="btn azul">Marcar</a>
+            <a href="{{ url('medicos/'.$medico->usuario_id.'/consulta/data') }}" class="btn azul">Marcar consulta</a>
 
             <a href="{{ url('medicos/'.$medico->usuario_id.'/consultas') }}" class="btn verde">Consultas</a>
 

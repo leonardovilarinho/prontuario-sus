@@ -50,6 +50,8 @@ Route::group(['prefix' => 'medicos'], function() {
 
         Route::post('config/carga', 'CargaHorariaController@salvar');
 
+        Route::post('lugar', 'MedicoController@lugar');
+
         Route::get('dia', 'MedicoController@doDia');
     });
 
@@ -104,9 +106,6 @@ Route::group(['prefix' => 'secretarios', 'middleware' => 'autenticacao:adm|sec']
 });
 
 Route::group(['prefix' => 'hospital', 'middleware' => 'autenticacao:adm'], function() {
-    Route::get('', 'HospitalController@informacoes');
-    Route::post('', 'HospitalController@salvar');
-
     Route::get('config', 'HospitalController@configuracoes');
     Route::post('config', 'HospitalController@salvarConfiguracoes');
 
@@ -181,5 +180,21 @@ Route::group(['prefix' => 'pacientes'], function() {
         Route::get('receituarios/{id}/apagar', 'ReceituarioController@apagar')->where('id', '[0-9]+');
 
         Route::get('prescricoes/{id}/apagar', 'PrescricaoController@apagar')->where('id', '[0-9]+');
+    });
+});
+
+Route::group(['prefix' => 'postos', 'middleware' => 'autenticacao:adm'], function() {
+    Route::get('', 'CabecalhoController@lista');
+    Route::get('gerenciar/{id}', 'CabecalhoController@gerenciar');
+
+    Route::get('novo', 'CabecalhoController@criar');
+    Route::post('novo', 'CabecalhoController@salvar');
+
+    Route::group(['middleware' => 'autenticacao:adm'], function() {
+
+        Route::get('apagar/{id}', 'CabecalhoController@apagar')->where('id', '[0-9]+');
+
+        Route::get('editar/{id}', 'CabecalhoController@edicao')->where('id', '[0-9]+');
+        Route::put('editar/{id}', 'CabecalhoController@editar')->where('id', '[0-9]+');
     });
 });

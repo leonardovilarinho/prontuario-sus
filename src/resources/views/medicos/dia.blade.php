@@ -21,13 +21,24 @@
         @endif
     </p>
 
+    {{ Form::open(['url' => 'medicos/lugar', 'method' => 'post']) }}
+		<section>
+			<div>
+				{{ Form::label('posto', 'Hoje você está no') }}
+				{{ Form::select('posto', $postos + ['' => 'Nenhum'], (auth()->user()->medico->cabecalho) ? auth()->user()->medico->cabecalho_id : '', ['required' => '']) }}
+
+				{{ Form::submit('Alterar', ['class' => 'btn verde', 'style' => 'flex-grow: 1; margin-left: 3px']) }}
+			</div>
+		</section>
+    {{ Form::close() }}
+
     {{ Form::open(['url' => 'medicos/dia', 'method' => 'get']) }}
 		<section>
 			<div>
 				{{ Form::label('dias', 'Dias') }}
 				{{ Form::number('dias', (isset($_GET['dias']) ? $_GET['dias'] : 1), ['required' => '', 'min' => 1]) }}
 
-				{{ Form::submit('Buscar', ['class' => 'btn verde']) }}
+				{{ Form::submit('Buscar', ['class' => 'btn verde', 'style' => 'flex-grow: 1; margin-left: 3px']) }}
 			</div>
 		</section>
     {{ Form::close() }}

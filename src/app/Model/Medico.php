@@ -14,7 +14,8 @@ class Medico extends Model
         'cargo',
         'telefone',
         'usuario_id',
-        'ferias'
+        'ferias',
+        'cabecalho_id'
     ];
 
     public function usuario()
@@ -30,6 +31,11 @@ class Medico extends Model
     public function consultas()
     {
         return $this->hasMany(Consulta::class, 'medico_id', 'usuario_id');
+    }
+
+    public function cabecalho()
+    {
+        return $this->belongsTo(Cabecalho::class, 'cabecalho_id', 'id');
     }
 
 }

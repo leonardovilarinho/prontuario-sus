@@ -35,6 +35,9 @@
         </header>
 
         <section>
+
+           
+
             <div>
                 {!! Form::label('nome', 'Nome') !!}
                 {!! Form::text('nome', config('prontuario.hospital.nome') , ['required' => '', 'placeholder' => 'Nome do hospital']) !!}

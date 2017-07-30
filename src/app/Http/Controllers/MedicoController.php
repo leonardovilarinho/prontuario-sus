@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\MedicoRequest;
-use App\Model\{Medico, Usuario, Consulta, CargaHoraria};
+use App\Model\{Medico, Usuario, Consulta, CargaHoraria, Cabecalho};
 
 class MedicoController extends Controller
 {
@@ -92,11 +92,20 @@ class MedicoController extends Controller
 
     public function doDia()
     {
+        if(!auth()->user()->medico->carga_horaria)
+            return redirect('medicos/config')->withMsg('Por favor, configure seus horários');
+
         $carga = auth()->user()->medico->carga_horaria;
 
         $agora = strtotime('now');
         
-        
+        $postos_ = Cabecalho::all();
+
+        $postos = [];
+
+        foreach ($postos_ as $value) {
+            $postos[$value->id] = $value->nome .' | ' . $value->local;
+        }
 
         $depois =  strtotime('+'.$carga->intervalo.' minutes');
 
@@ -147,6 +156,20 @@ class MedicoController extends Controller
         ->get();
 
 
-        return view('medicos.dia', compact('futuras', 'passadas', 'andamento', 'inicio', 'fim'));
+        return view('medicos.dia', compact('futuras', 'passadas', 'andamento', 'inicio', 'fim', 'postos'));
+    }
+
+    public function lugar(Request $requisicao)
+    {
+        $posto = Cabecalho::find($requisicao->posto);
+
+        if(!$posto)
+            return redirect('medicos/dia')->withErro('Posto inválido!');
+
+
+        auth()->user()->medico->cabecalho_id = $posto->id;
+        auth()->user()->medico->save();
+
+        return redirect('medicos/dia')->withMsg('Posto alterado!');
     }
 }

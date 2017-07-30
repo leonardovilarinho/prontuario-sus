@@ -51,7 +51,7 @@
                         @if(!auth()->guest())
                             <li><a href="{{ url('painel') }}">Inicial</a></li>
                             @if(auth()->user()->administrador)
-                                <li><a href="{{ url('hospital') }}">Hospital</a></li>
+                                <li><a href="{{ url('postos') }}">Postos</a></li>
                                 <li><a href="{{ url('administradores') }}">Administradores</a></li>
                                 <li><a href="{{ url('medicos') }}">Médicos</a></li>
                                 <li><a href="{{ url('nao-medicos') }}">Não-Médicos</a></li>

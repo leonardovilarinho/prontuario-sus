@@ -29,14 +29,17 @@
             Receituário
         </header>
         <article id="imprimir">
-            <section style="margin: 5px; padding: 5px; border: 1px solid #999999">
-                <figure style="float:right; margin: 0">
-                    <img src="{{ Storage::url('logo.jpg') }}" width="150" alt="Logo de {{ config('prontuario.hospital.nome') }}">
-                </figure>
-                <h3>{{ config('prontuario.hospital.nome') }}</h3>
-                <small>{{ config('prontuario.hospital.local') }}</small>
-            </section>
-
+            @if (auth()->user()->medico)
+                @if(auth()->user()->medico->cabecalho)
+                    <section style="margin: 5px; padding: 5px; border: 1px solid #999999">
+                        <figure style="float:right; margin: 0">
+                            <img src="{{ Storage::url('postos/'.auth()->user()->medico->cabecalho_id.'.jpg') }}" width="150" alt="Logo de {{ auth()->user()->medico->cabecalho->nome }}">
+                        </figure>
+                        <h3>{{ auth()->user()->medico->cabecalho->nome }}</h3>
+                        <small>{{ auth()->user()->medico->cabecalho->local }}</small>
+                    </section>
+                @endif
+            @endif
             <br><br><br>
 
             <p>
