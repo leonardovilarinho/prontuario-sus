@@ -54,7 +54,7 @@
                                 <li><a href="{{ url('postos') }}">Postos</a></li>
                                 <li><a href="{{ url('administradores') }}">Administradores</a></li>
                                 <li><a href="{{ url('medicos') }}">Médicos</a></li>
-                                <li><a href="{{ url('nao-medicos') }}">Não-Médicos</a></li>
+                                <li><a href="{{ url('nao-medicos') }}">Profissionais</a></li>
                                 <li><a href="{{ url('secretarios') }}">Secretários</a></li>
                                 <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
                                 <li><a href="{{ url('hospital/medicamentos') }}">Medicamentos</a></li>
@@ -74,6 +74,7 @@
                                 <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
                             @endif
                         @endif
+                        <li><a href="{{ url('sobre') }}">Sobre</a></li>
                         @section('lateral')
                         @show
                     </ul>

@@ -29,17 +29,13 @@
             Receituário
         </header>
         <article id="imprimir">
-            @if (auth()->user()->medico)
-                @if(auth()->user()->medico->cabecalho)
-                    <section style="margin: 5px; padding: 5px; border: 1px solid #999999">
-                        <figure style="float:right; margin: 0">
-                            <img src="{{ Storage::url('postos/'.auth()->user()->medico->cabecalho_id.'.jpg') }}" width="150" alt="Logo de {{ auth()->user()->medico->cabecalho->nome }}">
-                        </figure>
-                        <h3>{{ auth()->user()->medico->cabecalho->nome }}</h3>
-                        <small>{{ auth()->user()->medico->cabecalho->local }}</small>
-                    </section>
-                @endif
-            @endif
+            <section style="margin: 5px; padding: 5px; border: 1px solid #999999; height: 100px">
+                <figure style="float:right; margin: 0">
+                    <img src="{{ Storage::url('postos/'.$receita->cabecalho->id.'.jpg') }}" height="100" alt="Logo de {{ $receita->cabecalho->nome }}">
+                </figure>
+                <h3>{{ $receita->cabecalho->nome }}</h3>
+                <small>{{ $receita->cabecalho->local }}</small>
+            </section>
             <br><br><br>
 
             <p>
@@ -58,8 +54,10 @@
                 <p>_______________________________________________________________</p>
                 @if($receita->autor->medico)
                    <p>{{ $receita->autor->nome }} | {{ $receita->autor->medico->conselho }}</p>
+                   <p><strong>{{ $receita->autor->medico->especialidade }}</strong></p>
                 @elseif($receita->autor->nao_medico)
                     <p>{{ $receita->autor->nome }} | {{ $receita->autor->nao_medico->conselho }}</p>
+                    <p><strong>{{ $receita->autor->nao_medico->especialidade }}</strong></p>
                 @endif
             </div>
 

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AlterMedicosTable extends Migration
+class AlterNaoMedicosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class AlterMedicosTable extends Migration
      */
     public function up()
     {
-        Schema::table('medicos', function (Blueprint $table) {
+        Schema::table('nao_medicos', function (Blueprint $table) {
             $table->integer('cabecalho_id')->unsigned()->nullable();
 
             $table->foreign('cabecalho_id')
@@ -30,7 +30,7 @@ class AlterMedicosTable extends Migration
      */
     public function down()
     {
-        Schema::table('medicos', function (Blueprint $table) {
+        Schema::table('nao_medicos', function (Blueprint $table) {
             //
         });
     }

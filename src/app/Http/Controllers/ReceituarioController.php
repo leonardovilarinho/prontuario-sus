@@ -98,7 +98,12 @@ class ReceituarioController extends Controller
     	if(!$paciente)
     		return redirect('pacientes')->withErro('Paciente não encontrado');
 
-    	$rec = Receituario::create($requisicao->all());
+        $user = (auth()->user()->medico) ? auth()->user()->medico : auth()->user()->nao_medico;
+
+        if(!$user->cabecalho)
+            return redirect('pacientes')->withErro('Você não está em um posto');
+
+    	$rec = Receituario::create($requisicao->all() + ['cabecalho_id' => $user->cabecalho_id]);
 
     	return redirect('pacientes/'.$id.'/receituarios/'.$rec->id.'/detalhes')->withMsg('Receituário foi cadastrada!');
     }

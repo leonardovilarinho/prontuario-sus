@@ -26,7 +26,7 @@ class CabecalhoRequest extends FormRequest
         return [
             'nome' => 'required|min:2',
             'local' => 'required|min:2',
-            'logo' => 'nullable|image',
+            'logo' => 'nullable|image|max:250',
         ];
     }
 }

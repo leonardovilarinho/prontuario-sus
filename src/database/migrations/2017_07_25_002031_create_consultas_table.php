@@ -25,8 +25,8 @@ class CreateConsultasTable extends Migration
             $table->integer('medico_id')->unsigned();
 
             $table->foreign('medico_id')
-              ->references('usuario_id')
-              ->on('medicos')
+              ->references('id')
+              ->on('usuarios')
             ->onDelete('cascade');
 
             $table->integer('paciente_id')->unsigned();

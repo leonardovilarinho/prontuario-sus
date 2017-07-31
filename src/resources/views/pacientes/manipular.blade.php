@@ -20,7 +20,7 @@
     @if($paciente->nome == '')
         {!! Form::open(['url' => 'pacientes/novo', 'method' => 'post', 'files' => true]) !!}
     @else
-        {!! Form::open(['url' => 'pacientes/editar/'.$paciente->id, 'method' => 'post']) !!}
+        {!! Form::open(['url' => 'pacientes/editar/'.$paciente->id, 'method' => 'post', 'files' => true]) !!}
             {{ Form::hidden('_method', 'put') }}
     @endif
         <header>
@@ -29,17 +29,16 @@
 
         <section>
 
-            @if($paciente->nome == '')
-                <div>
-                    {!! Form::label('foto', 'Foto 3x4') !!}
-                    {!! Form::file('foto', ['accept' => 'image/*']) !!}
-                </div>
-            @else
+            @if($paciente->nome != '')
                 <figure style="text-align:center">
                     <img src="{{ Storage::url('pacientes/'.$paciente->id.'.jpg') }}" width="150" alt="Foto de {{ $paciente->nome }}">
                 </figure>
-
             @endif
+
+            <div>
+                    {!! Form::label('foto', 'Editar foto 3x4') !!}
+                    {!! Form::file('foto', ['accept' => 'image/*']) !!}
+                </div>
 
             <div>
                 {!! Form::label('nome', 'Nome') !!}

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\NaoMedicoRequest;
-use App\Model\{NaoMedico, Usuario};
+use App\Model\{NaoMedico, Usuario, Cabecalho};
 
 class NaoMedicoController extends Controller
 {
@@ -79,5 +79,32 @@ class NaoMedicoController extends Controller
         $nmedico->save();
 
         return redirect('nao-medicos/gerenciar/'.$id)->withMsg($nmedico->usuario->nome . ' foi alterada(o)!');
+    }
+
+    public function doDia()
+    {
+        $postos_ = Cabecalho::all();
+
+        $postos = [];
+
+        foreach ($postos_ as $value) {
+            $postos[$value->id] = $value->nome .' | ' . $value->local;
+        }
+
+        return view('nao-medicos.dia', compact('postos'));
+    }
+
+    public function lugar(Request $requisicao)
+    {
+        $posto = Cabecalho::find($requisicao->posto);
+
+        if(!$posto)
+            return redirect('nao-medicos/dia')->withErro('Posto inválido!');
+
+
+        auth()->user()->nao_medico->cabecalho_id = $posto->id;
+        auth()->user()->nao_medico->save();
+
+        return redirect('nao-medicos/dia')->withMsg('Posto alterado!');
     }
 }

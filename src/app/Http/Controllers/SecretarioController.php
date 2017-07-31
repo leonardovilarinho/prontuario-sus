@@ -14,10 +14,22 @@ class SecretarioController extends Controller
         if(!isset($_GET['q']))
             $secretarios = Secretario::paginate( config('prontuario.paginacao') );
         else {
+
+            if (\DateTime::createFromFormat('d/m/Y', $_GET['q']) !== false) {
+                $d = explode('/', $_GET['q']);
+                $tmp = '';
+                foreach ($d as $valor) {
+                    $tmp = $valor . '-' . $tmp;
+                }
+                $tmp = substr($tmp, 0, -1);
+                $_GET['q'] = $tmp;
+            }
+
             $secretarios = Secretario::whereHas('usuario', function($query) {
                 $query->where('nome', 'like', '%'.$_GET['q'].'%')
                     ->orWhere('email', 'like', '%'.$_GET['q'].'%')
-                    ->orWhere('cpf', 'like', '%'.$_GET['q'].'%');
+                    ->orWhere('cpf', 'like', '%'.$_GET['q'].'%')
+                    ->orWhere('nascimento', 'like', '%'.$_GET['q'].'%');
             })->paginate( config('prontuario.paginacao') );
         }
 

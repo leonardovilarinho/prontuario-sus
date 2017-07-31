@@ -23,8 +23,8 @@ class CreateCargaHorariasTable extends Migration
             $table->integer('medico_id')->unsigned()->unique();
 
             $table->foreign('medico_id')
-              ->references('usuario_id')
-              ->on('medicos')
+              ->references('id')
+              ->on('usuarios')
             ->onDelete('cascade');
         });
     }

@@ -99,7 +99,12 @@ class EvolucaoController extends Controller
     	if(!$paciente)
     		return redirect('pacientes')->withErro('Paciente não encontrado');
 
-    	Evolucao::create($requisicao->all());
+        $user = (auth()->user()->medico) ? auth()->user()->medico : auth()->user()->nao_medico;
+
+        if(!$user->cabecalho)
+            return redirect('pacientes')->withErro('Você não está em um posto');
+
+    	Evolucao::create($requisicao->all() + ['cabecalho_id' => $user->cabecalho_id]);
 
     	return redirect('pacientes/gerenciar/'.$id)->withMsg('Evolução foi cadastrada!');
     }

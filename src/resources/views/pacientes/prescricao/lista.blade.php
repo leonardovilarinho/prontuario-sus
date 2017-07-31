@@ -50,6 +50,7 @@
             <td>Autor</td>
             <td>Horário</td>
             <td>Nome</td>
+            <td>Posto</td>
         </tr>
 
         @foreach($paciente->prescricoes as $prescricao)
@@ -67,6 +68,7 @@
                 <td>{{ $prescricao->autor->nome }}</td>
                 <td>{{ date('d/m/Y H:i', strtotime($prescricao->created_at)) }}</td>
                 <td>{{ $prescricao->nome }}</td>
+                <td>{{ $prescricao->cabecalho->nome . ' - ' . $prescricao->cabecalho->local}}</td>
             </tr>
         @endforeach
     </table>

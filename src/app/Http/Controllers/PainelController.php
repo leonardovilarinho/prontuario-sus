@@ -13,6 +13,8 @@ class PainelController extends Controller
     	if(auth()->user()->medico)
     		return redirect('medicos/dia');
 
+    	if(auth()->user()->nao_medico)
+    		return redirect('nao-medicos/dia');
 
 		$medicos = Medico::count();
 		$nao_medicos = NaoMedico::count();
@@ -32,5 +34,10 @@ class PainelController extends Controller
 			'medicamentos', 'pacientes', 'evolucoes',
 			'prescricoes', 'receituarios'
 		));
+    }
+
+    public function sobre()
+    {
+    	return view('sobre');
     }
 }

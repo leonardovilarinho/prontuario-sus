@@ -50,6 +50,8 @@
             <td>Autor</td>
             <td>Horário</td>
             <td>CID</td>
+            <td>Posto</td>
+            
         </tr>
 
         @foreach($paciente->evolucoes as $evolucao)
@@ -67,6 +69,7 @@
                 <td>{{ $evolucao->autor->nome }}</td>
                 <td>{{ date('d/m/Y H:i', strtotime($evolucao->created_at)) }}</td>
                 <td>{{ ($evolucao->cid  != null) ? $evolucao->cid : 'n/d' }}</td>
+                <td>{{ $evolucao->cabecalho->nome . ' - ' . $evolucao->cabecalho->local }}</td>
             </tr>
         @endforeach
     </table>

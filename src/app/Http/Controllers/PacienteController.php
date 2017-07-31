@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\PacienteRequest;
 use App\Model\Paciente;
+use Illuminate\Support\Facades\Storage;
 
 class PacienteController extends Controller
 {
@@ -12,7 +13,7 @@ class PacienteController extends Controller
     {
 
         if(!isset($_GET['q']))
-            $pacientes = Paciente::paginate( config('prontuario.paginacao') );
+            $pacientes = Paciente::orderBy('nome', 'asc')->paginate( config('prontuario.paginacao') );
         else {
 
 
@@ -32,6 +33,7 @@ class PacienteController extends Controller
                 ->orWhere('cpf', 'like', '%'.$_GET['q'].'%')
                 ->orWhere('prontuario', 'like', '%'.$_GET['q'].'%')
                 ->orWhere('nascimento', 'like', '%'.$_GET['q'].'%')
+                ->orderBy('nome', 'asc')
             ->paginate( config('prontuario.paginacao') );
         }
 
@@ -69,12 +71,23 @@ class PacienteController extends Controller
         return redirect('pacientes')->withMsg($requisicao->nome . ' foi cadastrada(o)!');
     }
 
+    public function apagarfoto($id)
+    {
+        $paciente = Paciente::find($id);
+
+        Storage::delete('public/pacientes/'.$id.'.jpg');
+
+        return redirect($_SERVER['HTTP_REFERER'])->withMsg('Foto de ' . $paciente->nome . ' foi apagada!');
+    }
+
     public function apagar($id)
     {
         $paciente = Paciente::find($id);
         $paciente->delete();
 
-        return redirect($_SERVER['HTTP_REFERER'])->withMsg($paciente->nome . ' foi apagada(o)!');
+        Storage::delete('public/pacientes/'.$id.'.jpg');
+
+        return redirect('pacientes/gerenciar/'.$id)->withMsg($paciente->nome . ' foi apagada(o)!');
     }
 
     public function edicao($id)
@@ -91,6 +104,9 @@ class PacienteController extends Controller
         $paciente = Paciente::find($id);
         $paciente->fill($requisicao->all());
         $paciente->save();
+
+        if($requisicao->foto != null)
+            $requisicao->foto->storeAs('public/pacientes', $paciente->id.'.jpg');
 
         return redirect('pacientes/gerenciar/'.$id)->withMsg($paciente->nome . ' foi editada(o)!');
     }

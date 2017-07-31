@@ -30,8 +30,8 @@
         </header>
         <article>
 
-            <figure style="text-align:center">
-                <img src="{{ Storage::url('postos/'.$posto->id.'.jpg') }}" width="250" alt="Logo de {{ $posto->local }}">
+            <figure style="text-align:center; height: 200px">
+                <img src="{{ Storage::url('postos/'.$posto->id.'.jpg') }}" alt="Logo de {{ $posto->local }}">
             </figure>
 
             <p>

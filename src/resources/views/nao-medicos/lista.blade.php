@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Gerenciamento de não-médicos')
+@section('titulo', 'Gerenciamento de profissionais')
 
 @section('lateral')
     {{--  <li><a href="#">Item person</a></li>  --}}
@@ -32,10 +32,10 @@
     {{ Form::close() }}
 
     <p>
-        Aqui você pode gerenciar qualquer não-médico registrado no sistema, veja a seguir alguns dos quais estão na sua base de dados:
+        Aqui você pode gerenciar qualquer profissional registrado no sistema, veja a seguir alguns dos quais estão na sua base de dados:
     </p>
     <br>
-    <a class="btn verde" href="{{ url('nao-medicos/novo') }}">Cadastrar novo não-médico</a>
+    <a class="btn verde" href="{{ url('nao-medicos/novo') }}">Cadastrar novo profissional</a>
 
     <table>
         <tr>
@@ -45,6 +45,7 @@
             <td>Especialidade</td>
             <td>Cargo</td>
             <td>Conselho</td>
+            <td>Nascimento</td>
         </tr>
 
         @foreach($nmedicos as $nmedico)
@@ -57,6 +58,7 @@
                 <td>{{ $nmedico->especialidade }}</td>
                 <td>{{ $nmedico->cargo }}</td>
                 <td>{{ $nmedico->conselho }}</td>
+                <td>{{ date('d/m/Y', strtotime($nmedico->usuario->nascimento)) }}</td>
             </tr>
         @endforeach
     </table>

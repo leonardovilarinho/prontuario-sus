@@ -125,38 +125,31 @@ class MedicoController extends Controller
 
         $intervalo = new \DateInterval('PT'.$carga->intervalo.'M');
         $periodo = new \DatePeriod($inicio, $intervalo ,$fim);
-        $ini = $agora;
 
         foreach($periodo as $data) {
             if($agora <= $data->format('U')) {
                 $depois = $data->format('U');
-                $ini = $depois - ($carga->intervalo * 60);
                 break;
             }
         }
 
 
         $futuras = Consulta::where('medico_id', auth()->user()->id)
-            ->where('horario', '>=', date('Y-m-d H:i', $depois))
+            ->where('horario', '>=', $inicio->format('Y-m-d H:i'))
             ->where('horario', '<=', $fim->format('Y-m-d H:i'))
+            ->where('atendida', 0)
             ->orderBy('horario', 'asc')
         ->get();
 
         $passadas = Consulta::where('medico_id', auth()->user()->id)
-            ->where('horario', '<', date('Y-m-d H:i', $ini))
-            ->where('horario', 'like', date('Y-m-d', $agora) . '%')
-            ->orderBy('horario', 'asc')
-        ->get();
-
-        $andamento = Consulta::where('medico_id', auth()->user()->id)
-            ->where('horario', '<', date('Y-m-d H:i', $depois))
-            ->where('horario', '>=', date('Y-m-d H:i', $ini))
-            ->where('horario', 'like', date('Y-m-d', $agora) . '%')
+            ->where('horario', '>=', $inicio->format('Y-m-d H:i'))
+            ->where('horario', '<=', $fim->format('Y-m-d H:i'))
+            ->where('atendida', 1)
             ->orderBy('horario', 'asc')
         ->get();
 
 
-        return view('medicos.dia', compact('futuras', 'passadas', 'andamento', 'inicio', 'fim', 'postos'));
+        return view('medicos.dia', compact('futuras', 'passadas', 'inicio', 'fim', 'postos'));
     }
 
     public function lugar(Request $requisicao)

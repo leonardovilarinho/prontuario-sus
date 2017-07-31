@@ -31,6 +31,8 @@
         <article>
         	<figure style="float: right; border: 1px solid #eee">
                 <img src="{{ Storage::url('pacientes/'.$paciente->id.'.jpg') }}" width="150" alt="Foto de {{ $paciente->nome }}">
+                <br>
+                <small><a href="{{ url('pacientes/apagarfoto/'.$paciente->id) }}">Apagar imagem</a></small>
             </figure>
 
 			<p>

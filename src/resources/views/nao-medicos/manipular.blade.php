@@ -1,16 +1,16 @@
 @extends('layouts.app')
 
 @if($nmedico->usuario->nome == '')
-    @section('titulo', 'Criar um novo não-médico')
+    @section('titulo', 'Criar um novo profissional')
 @else
-    @section('titulo', 'Editar esse não-médico')
+    @section('titulo', 'Editar esse profissional')
 @endif
 
 
 @section('conteudo')
     @if($nmedico->usuario->nome == '')
         <p>
-           Aqui você pode cadastrar um novo não-médico no sistema, os campos em vermelhos são obrigatórios, então devem ser preenchidos.
+           Aqui você pode cadastrar um novo profissional no sistema, os campos em vermelhos são obrigatórios, então devem ser preenchidos.
         </p>
 
         <p class="texto-vermelho" style="text-align: right">
@@ -68,7 +68,7 @@
 
         <footer>
             <section>
-                <input type="submit" value="Salvar esse não-médico" class="btn verde">
+                <input type="submit" value="Salvar esse profissional" class="btn verde">
             </section>
 
             <span class="texto-vermelho">{{ $errors->first() }}</span>

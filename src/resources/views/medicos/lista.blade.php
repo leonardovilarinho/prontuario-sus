@@ -49,6 +49,7 @@
             <td>Especialidade</td>
             <td>Cargo</td>
             <td>Conselho</td>
+            <td>Nascimento</td>
         </tr>
 
         @foreach($medicos as $medico)
@@ -61,6 +62,7 @@
                 <td>{{ $medico->especialidade }}</td>
                 <td>{{ $medico->cargo }}</td>
                 <td>{{ $medico->conselho }}</td>
+                <td>{{ date('d/m/Y', strtotime($medico->usuario->nascimento)) }}</td>
             </tr>
         @endforeach
     </table>

@@ -193,6 +193,19 @@ class ConsultaController extends Controller
         return redirect($_SERVER['HTTP_REFERER'])->withMsg('Consulta foi apagada!');
     }
 
+    public function atender($id)
+    {
+        $consulta = Consulta::find($id);
+
+        if(!$consulta)
+            return redirect('medicos/dia')->withErro('Consulta não encontrada!');
+
+        $consulta->atendida = 1;
+        $consulta->save();
+
+        return redirect($_SERVER['HTTP_REFERER'])->withMsg('Consulta marcada como atendida!');
+    }
+
     public function listaPaciente($id)
     {
         $paciente = Paciente::find($id);

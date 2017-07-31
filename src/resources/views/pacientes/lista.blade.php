@@ -46,10 +46,10 @@
             <td>Nome</td>
             <td>Prontuário</td>
             <td>Sexo</td>
-            <td>Nascimento</td>
             <td>Idade</td>
             <td>Leito</td>
             <td>Convênio</td>
+            <td>Nascimento</td>
         </tr>
 
         @foreach($pacientes as $paciente)
@@ -60,10 +60,10 @@
                 <td>{{ $paciente->nome }}</td>
                 <td>{{ $paciente->prontuario }}</td>
                 <td>{{ $paciente->sexo }}</td>
-                <td>{{ date('d/m/Y', strtotime($paciente->nascimento)) }}</td>
                 <td>{{ Saudacoes::idade($paciente->nascimento) }} ano(s)</td>
                 <td>{{ $paciente->leito != null ? $paciente->leito : 'n/d'  }}</td>
                 <td>{{ $paciente->convenio }}</td>
+                <td>{{ date('d/m/Y', strtotime($paciente->nascimento)) }}</td>
             </tr>
         @endforeach
     </table>

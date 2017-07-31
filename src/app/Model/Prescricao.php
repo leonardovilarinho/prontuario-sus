@@ -9,8 +9,14 @@ class Prescricao extends Model
     protected $fillable = [
         'nome',
         'paciente_id',
-        'autor_id'
+        'autor_id',
+        'cabecalho_id'
     ];
+
+    public function cabecalho()
+    {
+        return $this->belongsTo(Cabecalho::class, 'cabecalho_id', 'id');
+    }
 
     public function autor()
     {

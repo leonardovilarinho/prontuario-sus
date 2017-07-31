@@ -12,11 +12,12 @@ class Consulta extends Model
         'status',
         'medico_id',
         'paciente_id',
+        'atendida'
     ];
 
     public function medico()
     {
-    	return $this->belongsTo(Medico::class, 'medico_id', 'usuario_id');
+    	return $this->belongsTo(Usuario::class, 'medico_id', 'id');
     }
 
     public function paciente()

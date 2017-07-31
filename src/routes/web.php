@@ -3,6 +3,7 @@
 Route::get('/', 'LoginController@entrar');
 Route::post('/', 'LoginController@logar');
 Route::get('sair', 'LoginController@sair');
+Route::get('sobre', 'PainelController@sobre');
 
 Route::group(['middleware' => 'autenticacao:*'], function() {
     Route::get('perfil', 'UsuarioController@perfil');
@@ -53,6 +54,8 @@ Route::group(['prefix' => 'medicos'], function() {
         Route::post('lugar', 'MedicoController@lugar');
 
         Route::get('dia', 'MedicoController@doDia');
+
+        Route::get('consulta/{id}/atender', 'ConsultaController@atender');
     });
 
      Route::group(['middleware' => 'autenticacao:sec|adm'], function() {
@@ -79,7 +82,7 @@ Route::group(['prefix' => 'administradores', 'middleware' => 'autenticacao:adm']
     Route::put('editar/{id}', 'AdministradorController@editar')->where('id', '[0-9]+');
 });
 
-Route::group(['prefix' => 'nao-medicos', 'middleware' => 'autenticacao:adm'], function() {
+Route::group(['prefix' => 'nao-medicos', 'middleware' => 'autenticacao:adm|nme'], function() {
     Route::get('', 'NaoMedicoController@lista');
     Route::get('gerenciar/{id}', 'NaoMedicoController@gerenciar');
 
@@ -89,6 +92,11 @@ Route::group(['prefix' => 'nao-medicos', 'middleware' => 'autenticacao:adm'], fu
     Route::get('editar/{id}', 'NaoMedicoController@edicao')->where('id', '[0-9]+');
     Route::put('editar/{id}', 'NaoMedicoController@editar')->where('id', '[0-9]+');
     Route::get('historico/{id}', 'NaoMedicoController@historico')->where('id', '[0-9]+');
+
+    Route::group(['middleware' => 'autenticacao:nme'], function() {
+        Route::get('dia', 'NaoMedicoController@doDia');
+        Route::post('lugar', 'NaoMedicoController@lugar');
+    });
 });
 
 Route::group(['prefix' => 'secretarios', 'middleware' => 'autenticacao:adm|sec'], function() {
@@ -134,6 +142,7 @@ Route::group(['prefix' => 'pacientes'], function() {
         Route::put('editar/{id}', 'PacienteController@editar')->where('id', '[0-9]+');
 
         Route::get('apagar/{id}', 'PacienteController@apagar')->where('id', '[0-9]+');
+        Route::get('apagarfoto/{id}', 'PacienteController@apagarfoto')->where('id', '[0-9]+');
 
         Route::get('{id}/consultas', 'ConsultaController@listaPaciente')->where('id', '[0-9]+');
     });
@@ -174,7 +183,7 @@ Route::group(['prefix' => 'pacientes'], function() {
         Route::get('{id}/prescricoes/{prescricao}/gerenciar', 'PrescricaoController@gerenciar')->where('id', '[0-9]+');
     });
 
-     Route::group(['middleware' => 'autenticacao:adm'], function() {
+     Route::group(['middleware' => 'autenticacao:adm|med'], function() {
         Route::get('evolucoes/{id}/apagar', 'EvolucaoController@apagar')->where('id', '[0-9]+');
     
         Route::get('receituarios/{id}/apagar', 'ReceituarioController@apagar')->where('id', '[0-9]+');

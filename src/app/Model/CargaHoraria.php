@@ -17,6 +17,6 @@ class CargaHoraria extends Model
 
     public function medico()
     {
-    	return $this->belongsTo(Medico::class, 'medico_id', 'usuario_id');
+    	return $this->belongsTo(Usuario::class, 'medico_id', 'id');
     }
 }

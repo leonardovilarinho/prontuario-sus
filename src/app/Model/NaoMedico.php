@@ -14,11 +14,18 @@ class NaoMedico extends Model
         'cargo',
         'telefone',
         'usuario_id',
-        'historico'
+        'historico',
+        'ferias',
+        'cabecalho_id'
     ];
 
     public function usuario()
     {
     	return $this->belongsTo(Usuario::class, 'usuario_id', 'id');
+    }
+
+    public function cabecalho()
+    {
+        return $this->belongsTo(Cabecalho::class, 'cabecalho_id', 'id');
     }
 }

@@ -24,7 +24,7 @@
     {{ Form::open(['url' => 'medicos/lugar', 'method' => 'post']) }}
 		<section>
 			<div>
-				{{ Form::label('posto', 'Hoje você está no') }}
+				<span style="font-size: 18pt; margin-right: 5px">Hoje você está no: </span> 
 				{{ Form::select('posto', $postos + ['' => 'Nenhum'], (auth()->user()->medico->cabecalho) ? auth()->user()->medico->cabecalho_id : '', ['required' => '']) }}
 
 				{{ Form::submit('Alterar', ['class' => 'btn verde', 'style' => 'flex-grow: 1; margin-left: 3px']) }}
@@ -48,27 +48,9 @@
 	        Olá <span class="texto-verde">{{ auth()->user()->nome }}</span>, aqui estão suas consultas entre <span class="texto-verde">{{ $inicio->format('d/m/Y á\s H:i') }}</span> e <span class="texto-verde">{{ $fim->format('d/m/Y á\s H:i') }}</span:
 	    </p>
 	    <br>
-		@if(count($andamento) > 0)
-			<h2>Consultas em andamento</h2>
-			<ul class="lista-amarela">
-		        @foreach ($andamento as $consulta)
-		        	<li>
-		        		<span>
-		        			{{ date('d/m/Y á\s H:i', strtotime($consulta->horario)) }} -
-		        			{{ $consulta->paciente->nome }} |
-		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s)
-		        		</span>
-
-		        		<div class="direita">
-			                <a href="{{ url('pacientes/gerenciar/'.$consulta->paciente->id) }}" class="btn azul">Paciente</a>
-			            </div>
-		        	</li>
-		        @endforeach
-		    </ul>
-		@endif
 
 		@if(count($futuras) > 0)
-	    	<h2>Aguardando atendimento</h2>
+	    	<h3>Aguardando atendimento</h3>
 			<ul class="lista-vermelha">
 		        @foreach ($futuras as $consulta)
 		        	<li>
@@ -80,6 +62,7 @@
 
 		        		<div class="direita">
 			                <a href="{{ url('pacientes/gerenciar/'.$consulta->paciente->id) }}" class="btn azul">Paciente</a>
+			                <a href="{{ url('medicos/consulta/'.$consulta->id.'/atender') }}" class="btn verde">Finalizar</a>
 			            </div>
 		        	</li>
 		        @endforeach
@@ -87,7 +70,7 @@
 		@endif
 
 		@if(count($passadas) > 0)
-		    <h2>Atendimento finalizado</h2>
+		    <h3>Atendimento finalizado</h3>
 			<ul class="lista-verde">
 		        @foreach ($passadas as $consulta)
 		        	<li>

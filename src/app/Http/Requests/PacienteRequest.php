@@ -24,6 +24,7 @@ class PacienteRequest extends FormRequest
     public function rules()
     {
         return [
+            'foto' => 'nullable|max:100|image',
             'nome' => 'required|min:3|max:150',
             'prontuario' => 'required',
             'leito' => 'nullable',

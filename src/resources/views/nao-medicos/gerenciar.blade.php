@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Gerenciar não-médico')
+@section('titulo', 'Gerenciar profissional')
 
 @section('lateral')
     {{--  <li><a href="#">Item person</a></li>  --}}
