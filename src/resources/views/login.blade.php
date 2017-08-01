@@ -9,7 +9,7 @@
 
 @section('conteudo')
     <section class="container">
-    	{!! Form::open(['url' => '/', 'method' => 'post']) !!}
+    	{!! Form::open(['url' => '/', 'method' => 'post', 'autocomplete' => 'off']) !!}
 	        <header>
 	            Entre no sistema
 	        </header>
@@ -17,12 +17,12 @@
 	        <section>
 	            <div>
 	                {!! Form::label('email', 'Email') !!}
-	                {!! Form::email('email', '', ['required' => '', 'minlength' => 3]) !!}
+	                {!! Form::email('email', '', ['required' => '', 'minlength' => 3, 'autocomplete' => 'off']) !!}
 	            </div>
 
 	            <div>
 	                {!! Form::label('senha', 'Senha') !!}
-	                {!! Form::password('senha', ['required' => '', 'minlength' => 6]) !!}
+	                {!! Form::password('senha', ['required' => '', 'minlength' => 6, 'autocomplete' => 'off']) !!}
 	            </div>
 	        </section>
 

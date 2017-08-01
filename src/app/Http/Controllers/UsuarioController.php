@@ -36,6 +36,7 @@ class UsuarioController extends Controller
     {
         $usuario = Usuario::find($id);
         $usuario->senha = bcrypt($usuario->cpf);
+        $usuario->save();
 
         return redirect($_SERVER['HTTP_REFERER'])->withMsg($usuario->nome . ' teve a senha redefinida!');
     }
