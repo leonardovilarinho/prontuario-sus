@@ -24,7 +24,7 @@
     {{ Form::open(['url' => 'medicos/lugar', 'method' => 'post']) }}
 		<section>
 			<div>
-				<span style="font-size: 18pt; margin-right: 5px">Hoje você está no: </span> 
+				<span style="font-size: 18pt; margin-right: 5px">Hoje você está no: </span>
 				{{ Form::select('posto', $postos + ['' => 'Nenhum'], (auth()->user()->medico->cabecalho) ? auth()->user()->medico->cabecalho_id : '', ['required' => '']) }}
 
 				{{ Form::submit('Alterar', ['class' => 'btn verde', 'style' => 'flex-grow: 1; margin-left: 3px']) }}
@@ -88,6 +88,8 @@
 		    </ul>
 		@endif
 	</section>
+
+	<button class="btn vermelho" disabled>Total de {{ $preco }} reais!</button>
 
 	<button onclick="printDiv('imprimir')" class="btn verde oculta-tel">Imprimir</button>
 @endsection

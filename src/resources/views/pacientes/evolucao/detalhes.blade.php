@@ -44,7 +44,6 @@
                 <h3>{{ $evolucao->cabecalho->nome }}</h3>
                 <small>{{ $evolucao->cabecalho->local }}</small>
             </section>
-            
 
             <br><br><br>
 
@@ -53,13 +52,27 @@
                 {{ $evolucao->paciente->nome }}
             </p>
 
+            <p>
+                <strong>Prontuário: </strong>
+                {{ $evolucao->paciente->prontuario }}
+            </p>
+
+            <p>
+                <strong>Sexo: </strong>
+                {{ $evolucao->paciente->sexo }}
+            </p>
+
+            <p>
+                <strong>Nascimento: </strong>
+                {{ date('d/m/Y', strtotime($evolucao->paciente->nascimento)) }}
+            </p>
+
             <hr>
             <p>
                 {!! $evolucao->evolucao !!}
             </p>
 
             <hr>
-            
 
             <br><br><br>
             <div style="text-align:center">
@@ -89,7 +102,7 @@
                 <a href="{{ url('pacientes/evolucoes/'.$evolucao->id.'/apagar') }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
             @endif
 
-            @if(auth()->user()->id == $evolucao->autor->id and strtotime($evolucao->autor->created_at . '+2days') > time() )
+            @if(auth()->user()->id == $evolucao->autor->id and strtotime($evolucao->autor->created_at . '+1days') > time() )
                 <a href="{{ url('pacientes/evolucoes/'.$evolucao->id.'/apagar') }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
             @endif
 

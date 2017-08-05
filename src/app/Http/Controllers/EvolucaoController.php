@@ -24,14 +24,14 @@ class EvolucaoController extends Controller
                     ->orderBy('created_at', 'desc')
                 ->paginate( config('prontuario.paginacao') );
             }
-                
+
             else {
                 $paciente->evolucoes = Evolucao::where('paciente_id', $id)
                     ->where('autor_id', auth()->user()->id)
                     ->orderBy('created_at', 'desc')
                 ->paginate( config('prontuario.paginacao') );
             }
-        } 
+        }
         else {
 
             if($usu_val) {

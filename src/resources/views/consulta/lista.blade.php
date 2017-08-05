@@ -69,6 +69,7 @@
                 <td>Médico</td>
             @endif
             <td>Estado</td>
+            <td>Preço</td>
             <td>Observação</td>
         </tr>
 
@@ -81,7 +82,7 @@
                         Cancelar
                     </a>
                 </td>
-                
+
                 @if($tipo == 'med')
                     <td>
 
@@ -101,8 +102,8 @@
                 @else
                     <td>{{ $consulta->medico->usuario->nome }}</td>
                 @endif
-                
                 <td>{{ $consulta->status }}</td>
+                <td>{{ $consulta->valor }}</td>
                 <td>{{ $consulta->obs }}</td>
             </tr>
         @endforeach

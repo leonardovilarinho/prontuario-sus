@@ -23,6 +23,7 @@ class CreateConsultasTable extends Migration
             $table->enum('status', ['Primeira', 'Retorno', 'Nova']);
 
             $table->integer('medico_id')->unsigned();
+            $table->decimal('valor')->nullable();
 
             $table->foreign('medico_id')
               ->references('id')

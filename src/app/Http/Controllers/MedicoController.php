@@ -98,7 +98,7 @@ class MedicoController extends Controller
         $carga = auth()->user()->medico->carga_horaria;
 
         $agora = strtotime('now');
-        
+
         $postos_ = Cabecalho::all();
 
         $postos = [];
@@ -121,7 +121,6 @@ class MedicoController extends Controller
             $inicio->sub( new \DateInterval('P1D') );
         }
 
-        
 
         $intervalo = new \DateInterval('PT'.$carga->intervalo.'M');
         $periodo = new \DatePeriod($inicio, $intervalo ,$fim);
@@ -148,8 +147,18 @@ class MedicoController extends Controller
             ->orderBy('horario', 'asc')
         ->get();
 
+        $preco = 0;
 
-        return view('medicos.dia', compact('futuras', 'passadas', 'inicio', 'fim', 'postos'));
+        foreach ($futuras as $value) {
+            $preco += $value->valor;
+        }
+
+         foreach ($passadas as $value) {
+            $preco += $value->valor;
+        }
+
+
+        return view('medicos.dia', compact('futuras', 'passadas', 'inicio', 'fim', 'postos', 'preco'));
     }
 
     public function lugar(Request $requisicao)

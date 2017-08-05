@@ -29,6 +29,7 @@ class ConsultaRequest extends FormRequest
             'medico_id' => 'required|numeric',
             'status' => 'required',
             'obs' => 'nullable',
+            'valor' => 'nullable|min:0',
         ];
     }
 }

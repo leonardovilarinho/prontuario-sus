@@ -51,6 +51,15 @@
                 {{ Form::label('hor', 'Horário') }}
                 <input type="time" name="hor" readonly required value="{{ date('H:i', strtotime($_GET['horario'])) }}">
 
+            </div>
+
+            <div>
+                {{ Form::label('valor', 'Preço') }}
+                {{ Form::number('valor',
+                    0,
+                    ['step' => '0.1']
+                ) }}
+
                 {{ Form::label('status', 'Estado') }}
                 {{ Form::select('status', [
                         'Primeira' => 'Primeira',
