@@ -134,13 +134,13 @@ CREATE TABLE `carga_horarias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 
-DROP TABLE IF EXISTS `consultas`;
-CREATE TABLE `consultas` (
+CREATE TABLE IF NOT EXISTS `consultas` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `horario` datetime NOT NULL,
   `obs` text COLLATE utf8mb4_unicode_ci,
   `status` enum('Primeira','Retorno','Nova') COLLATE utf8mb4_unicode_ci NOT NULL,
   `medico_id` int(10) unsigned NOT NULL,
+  `valor` decimal(8,2) DEFAULT NULL,
   `paciente_id` int(10) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,

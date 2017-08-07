@@ -7,6 +7,7 @@
 
 @section('conteudo')
 
+
     <p style="text-align:center">
         @if(session('msg'))
             <span class="texto-verde">
@@ -43,6 +44,8 @@
 		</section>
     {{ Form::close() }}
 
+    <button onclick="mostrarPrecos()" class="btn verde">Mostrar/ocultar preços das consultas</button>
+
     <section id="imprimir">
     	<p>
 	        Olá <span class="texto-verde">{{ auth()->user()->nome }}</span>, aqui estão suas consultas entre <span class="texto-verde">{{ $inicio->format('d/m/Y á\s H:i') }}</span> e <span class="texto-verde">{{ $fim->format('d/m/Y á\s H:i') }}</span:
@@ -57,7 +60,8 @@
 		        		<span>
 		        			{{ date('d/m/Y á\s H:i', strtotime($consulta->horario)) }} -
 		        			{{ $consulta->paciente->nome }} |
-		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s)
+		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s) |
+		        			<span class="oculto">R${{ $consulta->valor }}</span>
 		        		</span>
 
 		        		<div class="direita">
@@ -77,7 +81,8 @@
 		        		<span>
 		        			{{ date('d/m/Y á\s H:i', strtotime($consulta->horario)) }} -
 		        			{{ $consulta->paciente->nome }} |
-		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s)
+		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s) |
+		        			<span class="oculto">R${{ $consulta->valor }}</span>
 		        		</span>
 
 		        		<div class="direita">
@@ -89,7 +94,24 @@
 		@endif
 	</section>
 
-	<button class="btn vermelho" disabled>Total de {{ $preco }} reais!</button>
+	<button class="btn vermelho oculto" disabled>Total de {{ $preco }} reais!</button>
 
 	<button onclick="printDiv('imprimir')" class="btn verde oculta-tel">Imprimir</button>
+
+	<script>
+		var ocultos = document.querySelectorAll('.oculto');
+		for (var i = 0; i < ocultos.length; i++) {
+			ocultos[i].style.display = 'none';
+		}
+
+		function mostrarPrecos() {
+			var ocultos = document.querySelectorAll('.oculto');
+			for (var i = 0; i < ocultos.length; i++) {
+				if(ocultos[i].style.display == 'none')
+					ocultos[i].style.display = '';
+				else
+					ocultos[i].style.display = 'none';
+			}
+		}
+	</script>
 @endsection
