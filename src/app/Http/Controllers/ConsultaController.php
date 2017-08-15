@@ -127,7 +127,6 @@ class ConsultaController extends Controller
         if($medico->ferias)
             return redirect('medicos')->withErro($medico->usuario->nome . ' está de férias!');
 
-        
         Consulta::create($requisicao->all());
 
         return redirect('medicos/'.$id.'/consultas')->withMsg('Consulta marcada em '.$horario->format('d/m/Y á\s H:i') . ' para '.$medico->usuario->nome);
@@ -141,7 +140,7 @@ class ConsultaController extends Controller
             $consultas = Consulta::where('medico_id', $id)
                 ->orderBy('horario', 'desc')
             ->paginate( config('prontuario.paginacao') );
-        } 
+        }
         else {
             $consultas = Consulta::where('medico_id', $id)
                 ->where('horario', 'like', '%'.$_GET['q'].'%')
@@ -155,32 +154,9 @@ class ConsultaController extends Controller
             ->paginate( config('prontuario.paginacao') );
         }
 
-        
-
-        $agora = strtotime('now');
-        $depois =  strtotime('+'.$medico->carga_horaria->intervalo.' minutes');
-
-        $inicio = new \DateTime(date('Y-m-d') . ' ' . $medico->carga_horaria->inicio);
-        $fim = new \DateTime(date('Y-m-d') . ' ' . $medico->carga_horaria->fim);
-
-        if($inicio > $fim)
-            $fim->add( new \DateInterval('P1D') );
-
-        $intervalo = new \DateInterval('PT'.$medico->carga_horaria->intervalo.'M');
-        $periodo = new \DatePeriod($inicio, $intervalo ,$fim);
-
-        $ini = $agora;
-        foreach($periodo as $data) {
-            if($agora <= $data->format('U')) {
-                $depois = $data->format('U');
-                $ini = $depois - ($medico->carga_horaria->intervalo * 60);
-                break;
-            }
-        }
-
         $tipo = 'med';
 
-        return view('consulta.lista', compact('agora', 'depois', 'medico', 'consultas', 'tipo', 'ini'));
+        return view('consulta.lista', compact('medico', 'consultas', 'tipo'));
     }
 
     public function apagar($id, $consulta)
@@ -210,12 +186,25 @@ class ConsultaController extends Controller
     {
         $paciente = Paciente::find($id);
 
+
+
         if(!isset($_GET['q'])) {
             $consultas = Consulta::where('paciente_id', $id)
                 ->orderBy('horario', 'desc')
             ->paginate( config('prontuario.paginacao') );
-        } 
+        }
         else {
+
+            if (\DateTime::createFromFormat('d/m/Y', $_GET['q']) !== false) {
+                $d = explode('/', $_GET['q']);
+                $tmp = '';
+                foreach ($d as $valor) {
+                    $tmp = $valor . '-' . $tmp;
+                }
+                $tmp = substr($tmp, 0, -1);
+                $_GET['q'] = $tmp;
+            }
+
             $consultas = Consulta::where('paciente_id', $id)
                 ->where('horario', 'like', '%'.$_GET['q'].'%')
                 ->orWhere('status', 'like', '%'.$_GET['q'].'%')

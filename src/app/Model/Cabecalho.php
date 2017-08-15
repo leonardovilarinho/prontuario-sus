@@ -10,6 +10,7 @@ class Cabecalho extends Model
 
     protected $fillable = [
     	'nome',
-    	'local'
+    	'local',
+    	'atendida'
     ];
 }

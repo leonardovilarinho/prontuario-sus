@@ -86,12 +86,10 @@
                 @if($tipo == 'med')
                     <td>
 
-                        @if($ini > strtotime($consulta->horario))
+                        @if($consulta->atendida)
                             <a href="#" class="btn verde">Concluída</a>
-                        @elseif($depois <= strtotime($consulta->horario))
-                            <a href="#" class="btn vermelho">Pendente</a>
                         @else
-                            <a href="#" class="btn amarelo">Atendendo</a>
+                            <a href="#" class="btn vermelho">Pendente</a>
                         @endif
                     </td>
                 @endif
@@ -100,10 +98,10 @@
                 @if($tipo == 'med')
                     <td>{{ $consulta->paciente->nome }}</td>
                 @else
-                    <td>{{ $consulta->medico->usuario->nome }}</td>
+                    <td>{{ $consulta->medico->nome }}</td>
                 @endif
                 <td>{{ $consulta->status }}</td>
-                <td>{{ $consulta->valor }}</td>
+                <td>R$ {{ number_format($consulta->valor, 2, ',', '.') }}</td>
                 <td>{{ $consulta->obs }}</td>
             </tr>
         @endforeach

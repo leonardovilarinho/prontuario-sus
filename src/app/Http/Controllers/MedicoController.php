@@ -95,70 +95,57 @@ class MedicoController extends Controller
         if(!auth()->user()->medico->carga_horaria)
             return redirect('medicos/config')->withMsg('Por favor, configure seus horários');
 
-        $carga = auth()->user()->medico->carga_horaria;
-
-        $agora = strtotime('now');
-
-        $postos_ = Cabecalho::all();
-
+        $postos_ = Cabecalho::where('atendida', 1)->get();
         $postos = [];
 
-        foreach ($postos_ as $value) {
+        foreach ($postos_ as $value)
             $postos[$value->id] = $value->nome .' | ' . $value->local;
-        }
 
-        $depois =  strtotime('+'.$carga->intervalo.' minutes');
+        if(!isset($_GET['data']))
+            $_GET['data'] = date('Y-m-d');
 
-        $inicio = new \DateTime(date('Y-m-d') . ' ' . $carga->inicio);
-        $fim = new \DateTime(date('Y-m-d') . ' ' . $carga->fim);
+        $_GET['data'] = $_GET['data'];
 
-        if(isset($_GET['dias'])) {
-            $_GET['dias'] = (int)$_GET['dias'];
-            $fim->add( new \DateInterval('P' . ($_GET['dias'] - 1) . 'D') );
-        }
-
-        if($inicio > $fim) {
-            $inicio->sub( new \DateInterval('P1D') );
-        }
-
-
-        $intervalo = new \DateInterval('PT'.$carga->intervalo.'M');
-        $periodo = new \DatePeriod($inicio, $intervalo ,$fim);
-
-        foreach($periodo as $data) {
-            if($agora <= $data->format('U')) {
-                $depois = $data->format('U');
-                break;
-            }
-        }
-
-
-        $futuras = Consulta::where('medico_id', auth()->user()->id)
-            ->where('horario', '>=', $inicio->format('Y-m-d H:i'))
-            ->where('horario', '<=', $fim->format('Y-m-d H:i'))
+        $n_atendidas = Consulta::where('medico_id', auth()->user()->id)
             ->where('atendida', 0)
+            ->where('horario', 'like', $_GET['data'].'%')
             ->orderBy('horario', 'asc')
         ->get();
 
-        $passadas = Consulta::where('medico_id', auth()->user()->id)
-            ->where('horario', '>=', $inicio->format('Y-m-d H:i'))
-            ->where('horario', '<=', $fim->format('Y-m-d H:i'))
+        $atendidas = Consulta::where('medico_id', auth()->user()->id)
             ->where('atendida', 1)
+            ->where('horario', 'like', $_GET['data'].'%')
+        ->get();
+
+        return view('medicos.dia', compact('atendidas', 'n_atendidas', 'postos'));
+    }
+
+    public function financas()
+    {
+        if(!isset($_GET['data']))
+            $_GET['data'] = date('Y-m-d');
+
+        $_GET['data'] = $_GET['data'];
+
+        if(isset($_GET['valor'])) {
+            $consulta = Consulta::find($_GET['id']);
+            $consulta->valor = $_GET['valor'];
+            $consulta->save();
+            return redirect('medicos/financas?data='.$_GET['data']);
+        }
+
+        $n_atendidas = Consulta::where('medico_id', auth()->user()->id)
+            ->where('atendida', 0)
+            ->where('horario', 'like', $_GET['data'].'%')
             ->orderBy('horario', 'asc')
         ->get();
 
-        $preco = 0;
+        $atendidas = Consulta::where('medico_id', auth()->user()->id)
+            ->where('atendida', 1)
+            ->where('horario', 'like', $_GET['data'].'%')
+        ->get();
 
-        foreach ($futuras as $value) {
-            $preco += $value->valor;
-        }
-
-         foreach ($passadas as $value) {
-            $preco += $value->valor;
-        }
-
-
-        return view('medicos.dia', compact('futuras', 'passadas', 'inicio', 'fim', 'postos', 'preco'));
+        return view('medicos.financas', compact('atendidas', 'n_atendidas', 'postos'));
     }
 
     public function lugar(Request $requisicao)

@@ -54,6 +54,7 @@ Route::group(['prefix' => 'medicos'], function() {
         Route::post('lugar', 'MedicoController@lugar');
 
         Route::get('dia', 'MedicoController@doDia');
+        Route::get('financas', 'MedicoController@financas');
 
         Route::get('consulta/{id}/atender', 'ConsultaController@atender');
     });
@@ -201,7 +202,8 @@ Route::group(['prefix' => 'postos', 'middleware' => 'autenticacao:adm'], functio
 
     Route::group(['middleware' => 'autenticacao:adm'], function() {
 
-        Route::get('apagar/{id}', 'CabecalhoController@apagar')->where('id', '[0-9]+');
+        Route::get('ativar/{id}', 'CabecalhoController@ativar')->where('id', '[0-9]+');
+        Route::get('desativar/{id}', 'CabecalhoController@desativar')->where('id', '[0-9]+');
 
         Route::get('editar/{id}', 'CabecalhoController@edicao')->where('id', '[0-9]+');
         Route::put('editar/{id}', 'CabecalhoController@editar')->where('id', '[0-9]+');

@@ -43,11 +43,14 @@
         <footer style="text-align: right">
 
             @if(auth()->user()->administrador)
-                <a href="{{ url('postos/apagar/' . $posto->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
+                @if($posto->atendida)
+                    <a href="{{ url('postos/desativar/' . $posto->id) }}" onclick="return confirm('Deseja desativar?')" class="btn vermelho">Desativar</a>
+                @else
+                    <a href="{{ url('postos/ativar/' . $posto->id) }}" onclick="return confirm('Deseja ativar?')" class="btn vermelho">Ativar</a>
+                @endif
 
                 <a href="{{ url('postos/editar/' . $posto->id) }}" class="btn amarelo">Editar</a>
             @endif
-        	 
 
 
             <button onclick="printDiv('imprimir')" class="btn verde oculta-tel">Imprimir</button>

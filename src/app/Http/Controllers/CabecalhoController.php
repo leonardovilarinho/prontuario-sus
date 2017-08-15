@@ -50,14 +50,22 @@ class CabecalhoController extends Controller
         return redirect('postos')->withMsg($p->nome . ' foi cadastrado!');
     }
 
-    public function apagar($id)
+    public function ativar($id)
     {
     	$p = Cabecalho::find($id);
-    	$p->delete();
+        $p->atendida = 1;
+    	$p->save();
 
-		Storage::delete('postos/'.$id.'.jpg');
+        return redirect('postos')->withMsg($p->nome . ' foi ativado!');
+    }
 
-        return redirect('postos')->withMsg($p->nome . ' foi apagado!');
+    public function desativar($id)
+    {
+        $p = Cabecalho::find($id);
+        $p->atendida = 0;
+        $p->save();
+
+        return redirect('postos')->withMsg($p->nome . ' foi desativado!');
     }
 
     public function edicao($id)

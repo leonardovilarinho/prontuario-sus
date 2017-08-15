@@ -1,13 +1,24 @@
 @extends('layouts.app')
 
-@section('titulo', 'Consultas do dia')
+@section('titulo', 'Suas finanças')
 
 @section('lateral')
 @endsection
 
 @section('conteudo')
+	<script type="text/javascript">
+		function alterarValor(preco, id) {
+			var el = document.getElementById('valor');
+			el.value = preco.replace(',', '.');
 
+			el = document.getElementById('id');
+			console.log(el);
+			el.value = id;
 
+			var oculto = document.getElementById('formval');
+			oculto.style.display = '';
+		}
+	</script>
     <p style="text-align:center">
         @if(session('msg'))
             <span class="texto-verde">
@@ -22,18 +33,7 @@
         @endif
     </p>
 
-    {{ Form::open(['url' => 'medicos/lugar', 'method' => 'post']) }}
-		<section>
-			<div>
-				<span style="font-size: 18pt; margin-right: 5px">Hoje você está no: </span>
-				{{ Form::select('posto', $postos + ['' => 'Nenhum'], (auth()->user()->medico->cabecalho) ? auth()->user()->medico->cabecalho_id : '', ['required' => '']) }}
-
-				{{ Form::submit('Alterar', ['class' => 'btn verde', 'style' => 'flex-grow: 1; margin-left: 3px']) }}
-			</div>
-		</section>
-    {{ Form::close() }}
-
-    {{ Form::open(['url' => 'medicos/dia', 'method' => 'get']) }}
+    {{ Form::open(['url' => 'medicos/financas', 'method' => 'get']) }}
 		<section>
 			<div>
 				{{ Form::label('data', 'Data') }}
@@ -47,19 +47,19 @@
 	    <br>
 
 		@if(count($n_atendidas) > 0)
-	    	<h3>Aguardando atendimento</h3>
 			<ul class="lista-vermelha">
 		        @foreach ($n_atendidas as $consulta)
 		        	<li>
 		        		<span>
 		        			{{ date('d/m/Y á\s H:i', strtotime($consulta->horario)) }} -
 		        			{{ $consulta->paciente->nome }} |
-		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s)
+		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s)|
+		        			R$ {{ number_format($consulta->valor, 2, ',', '.') }}
 		        		</span>
 
 		        		<div class="direita">
 			                <a href="{{ url('pacientes/gerenciar/'.$consulta->paciente->id) }}" class="btn azul">Paciente</a>
-			                <a href="{{ url('medicos/consulta/'.$consulta->id.'/atender') }}" class="btn verde">Finalizar</a>
+			                <a onclick="alterarValor('{{ $consulta->valor }}', {{ $consulta->id }})" class="btn amarelo">Trocar valor</a>
 			            </div>
 		        	</li>
 		        @endforeach
@@ -67,18 +67,19 @@
 		@endif
 
 		@if(count($atendidas) > 0)
-		    <h3>Atendimento finalizado</h3>
 			<ul class="lista-verde">
 		        @foreach ($atendidas as $consulta)
 		        	<li>
 		        		<span>
 		        			{{ date('d/m/Y á\s H:i', strtotime($consulta->horario)) }} -
 		        			{{ $consulta->paciente->nome }} |
-		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s)
+		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s) |
+		        			R$ {{ number_format($consulta->valor, 2, ',', '.') }}
 		        		</span>
 
 		        		<div class="direita">
 			                <a href="{{ url('pacientes/gerenciar/'.$consulta->paciente->id) }}" class="btn azul">Paciente</a>
+			                <a onclick="alterarValor('{{ $consulta->valor }}', {{ $consulta->id }})" class="btn amarelo">Trocar valor</a>
 			            </div>
 		        	</li>
 		        @endforeach
@@ -86,23 +87,25 @@
 		@endif
 	</section>
 
+	{{ Form::open(['url' => 'medicos/financas', 'method' => 'get', 'id' => 'formval']) }}
+		<section>
+			<div>
+				{{ Form::label('valor', 'Novo valor da consulta') }}
+				{{ Form::number('valor', null,['required' => '', 'step' => 0.1]) }}
+				{{ Form::hidden('id', null, ['required' => '', 'id' => 'id']) }}
+				{{ Form::hidden('data', date('Y-m-d', strtotime($_GET['data'])), ['required' => '']) }}
+
+				{{ Form::submit('Alterar o valor', ['class' => 'btn verde', 'style' => 'flex-grow: 1; margin-left: 3px']) }}
+			</div>
+		</section>
+    {{ Form::close() }}
+    <br>
+
 
 	<button onclick="printDiv('imprimir')" class="btn verde oculta-tel">Imprimir</button>
 
 	<script>
-		var ocultos = document.querySelectorAll('.oculto');
-		for (var i = 0; i < ocultos.length; i++) {
-			ocultos[i].style.display = 'none';
-		}
-
-		function mostrarPrecos() {
-			var ocultos = document.querySelectorAll('.oculto');
-			for (var i = 0; i < ocultos.length; i++) {
-				if(ocultos[i].style.display == 'none')
-					ocultos[i].style.display = '';
-				else
-					ocultos[i].style.display = 'none';
-			}
-		}
+		var oculto = document.getElementById('formval');
+		oculto.style.display = 'none';
 	</script>
 @endsection

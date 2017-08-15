@@ -43,6 +43,7 @@
             <td>Ações</td>
             <td>Nome</td>
             <td>Local</td>
+            <td>Status</td>
         </tr>
 
         @foreach($postos as $posto)
@@ -52,6 +53,13 @@
                 </td>
                 <td>{{ $posto->nome }}</td>
                 <td>{{ $posto->local }}</td>
+                <td>
+                    @if($posto->atendida)
+                        <button class="btn verde">Ativado</button>
+                    @else
+                        <button class="btn vermelho">Destivado</button>
+                    @endif
+                </td>
             </tr>
         @endforeach
     </table>

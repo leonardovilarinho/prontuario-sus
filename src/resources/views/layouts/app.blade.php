@@ -63,6 +63,7 @@
 
                             @elseif(auth()->user()->medico)
                                 <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
+                                <li><a href="{{ url('medicos/financas') }}">Finanças</a></li>
                                 <li><a href="{{ url('medicos/config') }}">Configurações</a></li>
 
                             @elseif(auth()->user()->secretario)
