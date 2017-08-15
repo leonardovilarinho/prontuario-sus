@@ -1,0 +1,1 @@
+ALTER TABLE `cabecalhos` ADD COLUMN `atendida` TINYINT NULL DEFAULT '1' AFTER `updated_at`;
