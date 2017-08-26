@@ -26,7 +26,7 @@
 		<section>
 			<div>
 				<span style="font-size: 18pt; margin-right: 5px">Hoje você está no: </span>
-				{{ Form::select('posto', $postos + ['' => 'Nenhum'], (auth()->user()->medico->cabecalho) ? auth()->user()->medico->cabecalho_id : '', ['required' => '']) }}
+				{{ Form::select('posto', $postos + ['' => 'Nenhum'], ($medico->cabecalho) ? $medico->cabecalho_id : '', ['required' => '']) }}
 
 				{{ Form::submit('Alterar', ['class' => 'btn verde', 'style' => 'flex-grow: 1; margin-left: 3px']) }}
 			</div>
@@ -93,16 +93,6 @@
 		var ocultos = document.querySelectorAll('.oculto');
 		for (var i = 0; i < ocultos.length; i++) {
 			ocultos[i].style.display = 'none';
-		}
-
-		function mostrarPrecos() {
-			var ocultos = document.querySelectorAll('.oculto');
-			for (var i = 0; i < ocultos.length; i++) {
-				if(ocultos[i].style.display == 'none')
-					ocultos[i].style.display = '';
-				else
-					ocultos[i].style.display = 'none';
-			}
 		}
 	</script>
 @endsection

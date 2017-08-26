@@ -10,15 +10,15 @@ class Consulta extends Model
         'horario',
         'obs',
         'status',
-        'medico_id',
+        'usuario_id',
         'paciente_id',
         'atendida',
         'valor'
     ];
 
-    public function medico()
+    public function usuario()
     {
-    	return $this->belongsTo(Usuario::class, 'medico_id', 'id');
+    	return $this->belongsTo(Usuario::class, 'usuario_id', 'id');
     }
 
     public function paciente()

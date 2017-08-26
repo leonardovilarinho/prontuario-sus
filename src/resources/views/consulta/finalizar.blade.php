@@ -34,7 +34,7 @@
 
         {{ Form::hidden('paciente_id', $_GET['paciente']) }}
         {{ Form::hidden('horario', $_GET['horario']) }}
-        {{ Form::hidden('medico_id', $medico->usuario_id) }}
+        {{ Form::hidden('usuario_id', $medico->usuario_id) }}
 
         <header>
             Por favor, preencha os campos:

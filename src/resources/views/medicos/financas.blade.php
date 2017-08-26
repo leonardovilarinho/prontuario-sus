@@ -12,7 +12,6 @@
 			el.value = preco.replace(',', '.');
 
 			el = document.getElementById('id');
-			console.log(el);
 			el.value = id;
 
 			var oculto = document.getElementById('formval');
@@ -45,6 +44,7 @@
     {{ Form::close() }}
     <section id="imprimir">
 	    <br>
+	    <h3>Total: {{ number_format($preco, 2, ',', '.') }}</h3>
 
 		@if(count($n_atendidas) > 0)
 			<ul class="lista-vermelha">

@@ -26,7 +26,7 @@ class ConsultaRequest extends FormRequest
         return [
             'horario' => 'required|date_format:Y-m-d H:i',
             'paciente_id' => 'required|numeric',
-            'medico_id' => 'required|numeric',
+            'usuario_id' => 'required|numeric',
             'status' => 'required',
             'obs' => 'nullable',
             'valor' => 'nullable|min:0',

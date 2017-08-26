@@ -1,8 +1,8 @@
 <?php
 
 return [
-	'nome' => 'Prontuário',
-    'paginacao' => '5',
+	'nome' => 'Prontuário SUS',
+    'paginacao' => '1',
     'hospital' => [
     	'nome' => 'São José',
     	'local' => 'Ituiutaba-MG'

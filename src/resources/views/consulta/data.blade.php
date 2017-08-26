@@ -23,10 +23,10 @@
     </p>
 
     <p>
-        Por favor, para iniciar o processo de nova consulta para a(o) médica(o) <span class="texto-verde">{{  $medico->usuario->nome }}</span>, selecione uma data para a consulta a seguir:
+        Por favor, para iniciar o processo de nova consulta para a(o) médica(o) <span class="texto-verde">{{  $medico->nome }}</span>, selecione uma data para a consulta a seguir:
     </p>
 
-    {{ Form::open(['url' => 'medicos/'.$medico->usuario_id.'/consulta/horarios', 'method' => 'get']) }}
+    {{ Form::open(['url' => 'medicos/'.$medico->id.'/consulta/horarios', 'method' => 'get']) }}
         <section>
             <div>
                 {{ Form::date('data', date('Y-m-d'),['required' => '']) }}

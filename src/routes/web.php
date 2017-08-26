@@ -45,7 +45,7 @@ Route::group(['prefix' => 'medicos'], function() {
         Route::get('{id}/consultas', 'ConsultaController@lista')->where('id', '[0-9]+');
     });
 
-    Route::group(['middleware' => 'autenticacao:med'], function() {
+    Route::group(['middleware' => 'autenticacao:med|nme'], function() {
         Route::get('config', 'MedicoController@config');
         Route::post('config/ferias', 'MedicoController@salvarFerias');
 
@@ -83,7 +83,7 @@ Route::group(['prefix' => 'administradores', 'middleware' => 'autenticacao:adm']
     Route::put('editar/{id}', 'AdministradorController@editar')->where('id', '[0-9]+');
 });
 
-Route::group(['prefix' => 'nao-medicos', 'middleware' => 'autenticacao:adm|nme'], function() {
+Route::group(['prefix' => 'nao-medicos', 'middleware' => 'autenticacao:adm|nme|sec'], function() {
     Route::get('', 'NaoMedicoController@lista');
     Route::get('gerenciar/{id}', 'NaoMedicoController@gerenciar');
 
@@ -200,12 +200,12 @@ Route::group(['prefix' => 'postos', 'middleware' => 'autenticacao:adm'], functio
     Route::get('novo', 'CabecalhoController@criar');
     Route::post('novo', 'CabecalhoController@salvar');
 
-    Route::group(['middleware' => 'autenticacao:adm'], function() {
+    Route::get('usuarios/{id}', 'CabecalhoController@usuarios');
+    Route::post('usuarios/{id}', 'CabecalhoController@trocarUsuarios');
 
-        Route::get('ativar/{id}', 'CabecalhoController@ativar')->where('id', '[0-9]+');
-        Route::get('desativar/{id}', 'CabecalhoController@desativar')->where('id', '[0-9]+');
+    Route::get('ativar/{id}', 'CabecalhoController@ativar')->where('id', '[0-9]+');
+    Route::get('desativar/{id}', 'CabecalhoController@desativar')->where('id', '[0-9]+');
 
-        Route::get('editar/{id}', 'CabecalhoController@edicao')->where('id', '[0-9]+');
-        Route::put('editar/{id}', 'CabecalhoController@editar')->where('id', '[0-9]+');
-    });
+    Route::get('editar/{id}', 'CabecalhoController@edicao')->where('id', '[0-9]+');
+    Route::put('editar/{id}', 'CabecalhoController@editar')->where('id', '[0-9]+');
 });

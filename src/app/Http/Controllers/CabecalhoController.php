@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Usuario;
 use App\Model\Cabecalho;
+use App\Model\PermissaoPosto;
 use App\Http\Requests\CabecalhoRequest;
 use Illuminate\Support\Facades\Storage;
 
@@ -85,5 +87,42 @@ class CabecalhoController extends Controller
         $posto->save();
 
         return redirect('postos/gerenciar/'.$id)->withMsg($posto->nome . ' foi editado!');
+    }
+
+    public function usuarios($id)
+    {
+        $posto = Cabecalho::find($id);
+        $usuarios = Usuario::all();
+        foreach ($usuarios as $ch => $usuario) {
+            if(!$usuario->medico and !$usuario->nao_medico)
+                unset($usuarios[$ch]);
+        }
+
+        $uposto = [];
+        foreach ($posto->usuarios as $usuario) {
+            $uposto[] = $usuario->usuario_id;
+        }
+
+        return view('postos.usuarios', compact('posto', 'usuarios', 'uposto'));
+    }
+
+    public function trocarUsuarios(Request $request, $id)
+    {
+        $usuarios = PermissaoPosto::where('cabecalho_id', $id)->get();
+        foreach ($usuarios as $user) {
+            $user->delete();
+        }
+
+        if($request->has('usuarios')) {
+            foreach ($request->usuarios as $user) {
+                PermissaoPosto::create([
+                    'cabecalho_id' => $id,
+                    'usuario_id' => $user
+                ]);
+            }
+        }
+
+
+        return redirect('postos/usuarios/'.$id)->withMsg('Usuários salvos!');
     }
 }

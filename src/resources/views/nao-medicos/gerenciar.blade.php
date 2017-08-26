@@ -85,25 +85,31 @@
         </article>
         <footer style="text-align: right">
 
-        	<a href="{{ url('usuarios/apagar/' . $medico->usuario->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
-            <a href="{{ url('nao-medicos/editar/' . $medico->id) }}" class="btn amarelo">Editar</a>
+        	@if(auth()->user()->administrador)
+                <a href="{{ url('usuarios/apagar/' . $medico->usuario->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
+                <a href="{{ url('nao-medicos/editar/' . $medico->id) }}" class="btn amarelo">Editar</a>
 
-            @if($medico->usuario->valido)
-                <a href="{{ url('usuarios/bloquear/' . $medico->usuario->id) }}" class="btn azul">Bloquear</a>
-            @else
-                <a href="{{ url('usuarios/desbloquear/' . $medico->usuario->id) }}" class="btn verde">Desbloquear</a>
+                @if($medico->usuario->valido)
+                    <a href="{{ url('usuarios/bloquear/' . $medico->usuario->id) }}" class="btn azul">Bloquear</a>
+                @else
+                    <a href="{{ url('usuarios/desbloquear/' . $medico->usuario->id) }}" class="btn verde">Desbloquear</a>
+                @endif
+
+
+                <a href="{{ url('usuarios/redefinir/' . $medico->usuario->id) }}" class="btn verde">Redefinir senha</a>
+
+                @if($medico->historico)
+                    <a href="{{ url('nao-medicos/historico/' . $medico->id) }}" class="btn vermelho">B. histórico</a>
+                @else
+                    <a href="{{ url('nao-medicos/historico/' . $medico->id) }}" class="btn vermelho">D. histórico</a>
+                @endif
             @endif
 
+            <a href="{{ url('medicos/'.$medico->usuario_id.'/consulta/data') }}" class="btn azul">Marcar consulta</a>
 
-			<a href="{{ url('usuarios/redefinir/' . $medico->usuario->id) }}" class="btn verde">Redefinir senha</a>
+            <a href="{{ url('medicos/'.$medico->usuario_id.'/consultas') }}" class="btn verde">Consultas</a>
 
-            @if($medico->historico)
-                <a href="{{ url('nao-medicos/historico/' . $medico->id) }}" class="btn vermelho">B. histórico</a>
-            @else
-                <a href="{{ url('nao-medicos/historico/' . $medico->id) }}" class="btn vermelho">D. histórico</a>
-            @endif
-
-            <button onclick="printDiv('imprimir')" class="btn verde oculta-tel" >Imprimir</button>
+            <button onclick="printDiv('imprimir')" class="btn amarelo oculta-tel" >Imprimir</button>
 
         </footer>
     </section>

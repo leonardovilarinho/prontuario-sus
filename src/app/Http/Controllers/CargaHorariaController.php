@@ -10,12 +10,16 @@ class CargaHorariaController extends Controller
 {
     public function salvar(CargaHorariaRequest $requisicao)
     {
-    	if(!auth()->user()->medico->carga_horaria)
-    		auth()->user()->medico->carga_horaria = new CargaHoraria;
+    	$usuario = auth()->user()->nao_medico;
+    	if(auth()->user()->medico)
+    		$usuario = auth()->user()->medico;
 
-        auth()->user()->medico->carga_horaria->fill( $requisicao->all() );
-    	auth()->user()->medico->carga_horaria->save();
-    	
+    	if(!$usuario->carga_horaria)
+    		$usuario->carga_horaria = new CargaHoraria;
+
+        $usuario->carga_horaria->fill( $requisicao->all() );
+    	$usuario->carga_horaria->save();
+
     	return redirect('medicos/config')->withMsg('Carga horária foi salva!');
     }
 }

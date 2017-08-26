@@ -66,10 +66,10 @@
             <div>
                 <label>Estou de férias?</label>
                 <div class="selecao">
-                    <input type="radio" id="sim" name="ferias" value="1" {{ auth()->user()->medico->ferias ? 'checked' : '' }}/>
+                    <input type="radio" id="sim" name="ferias" value="1" {{ $usuario->ferias ? 'checked' : '' }}/>
                     <label for="sim">Sim</label>
 
-                    <input type="radio" id="nao" name="ferias" value="0" {{ !auth()->user()->medico->ferias ? 'checked' : '' }}/>
+                    <input type="radio" id="nao" name="ferias" value="0" {{ !$usuario->ferias ? 'checked' : '' }}/>
                     <label for="nao">Não</label>
                 </div>
             </div>

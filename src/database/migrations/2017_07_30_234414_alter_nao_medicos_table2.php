@@ -15,6 +15,13 @@ class AlterNaoMedicosTable2 extends Migration
     {
         Schema::table('nao_medicos', function (Blueprint $table) {
             $table->tinyInteger('ferias')->default('0');
+
+            $table->integer('cabecalho_id')->unsigned()->nullable();
+
+            $table->foreign('cabecalho_id')
+              ->references('id')
+              ->on('cabecalhos')
+            ->onDelete('set null');
         });
     }
 

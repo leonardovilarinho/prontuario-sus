@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\MedicoRequest;
-use App\Model\{Medico, Usuario, Consulta, CargaHoraria, Cabecalho};
+use App\Model\{Medico, Usuario, Consulta, CargaHoraria, Cabecalho, PermissaoPosto};
 
 class MedicoController extends Controller
 {
@@ -75,28 +75,44 @@ class MedicoController extends Controller
     public function config()
     {
         $carga = new CargaHoraria;
+        $usuario = auth()->user()->nao_medico;
+        if(auth()->user()->medico)
+            $usuario = auth()->user()->medico;
 
-        if(auth()->user()->medico->carga_horaria)
-            $carga = auth()->user()->medico->carga_horaria;
+        if($usuario->carga_horaria)
+            $carga = $usuario->carga_horaria;
 
-        return view('medicos.config', compact('carga'));
+        return view('medicos.config', compact('carga', 'usuario'));
     }
 
     public function salvarFerias(Request $requisicao)
     {
-        auth()->user()->medico->ferias = $requisicao->ferias;
-        auth()->user()->medico->save();
+        $usuario = auth()->user()->nao_medico;
+        if(auth()->user()->medico)
+            $usuario = auth()->user()->medico;
+
+        $usuario->ferias = $requisicao->ferias;
+        $usuario->save();
 
         return redirect('medicos/config')->withMsg('Férias foram salvas!');
     }
 
     public function doDia()
     {
-        if(!auth()->user()->medico->carga_horaria)
+        $medico = (auth()->user()->medico) ? auth()->user()->medico : auth()->user()->nao_medico;
+        if(!$medico->carga_horaria)
             return redirect('medicos/config')->withMsg('Por favor, configure seus horários');
 
         $postos_ = Cabecalho::where('atendida', 1)->get();
         $postos = [];
+
+        foreach ($postos_ as $k => $value) {
+            $verificar = PermissaoPosto::where('cabecalho_id', $value->id)
+                ->where('usuario_id', $medico->usuario_id)
+            ->first();
+            if(!$verificar)
+                unset($postos_[$k]);
+        }
 
         foreach ($postos_ as $value)
             $postos[$value->id] = $value->nome .' | ' . $value->local;
@@ -106,18 +122,18 @@ class MedicoController extends Controller
 
         $_GET['data'] = $_GET['data'];
 
-        $n_atendidas = Consulta::where('medico_id', auth()->user()->id)
+        $n_atendidas = Consulta::where('usuario_id', auth()->user()->id)
             ->where('atendida', 0)
             ->where('horario', 'like', $_GET['data'].'%')
             ->orderBy('horario', 'asc')
         ->get();
 
-        $atendidas = Consulta::where('medico_id', auth()->user()->id)
+        $atendidas = Consulta::where('usuario_id', auth()->user()->id)
             ->where('atendida', 1)
             ->where('horario', 'like', $_GET['data'].'%')
         ->get();
 
-        return view('medicos.dia', compact('atendidas', 'n_atendidas', 'postos'));
+        return view('medicos.dia', compact('atendidas', 'n_atendidas', 'postos', 'medico'));
     }
 
     public function financas()
@@ -134,18 +150,24 @@ class MedicoController extends Controller
             return redirect('medicos/financas?data='.$_GET['data']);
         }
 
-        $n_atendidas = Consulta::where('medico_id', auth()->user()->id)
+        $n_atendidas = Consulta::where('usuario_id', auth()->user()->id)
             ->where('atendida', 0)
             ->where('horario', 'like', $_GET['data'].'%')
             ->orderBy('horario', 'asc')
         ->get();
 
-        $atendidas = Consulta::where('medico_id', auth()->user()->id)
+        $atendidas = Consulta::where('usuario_id', auth()->user()->id)
             ->where('atendida', 1)
             ->where('horario', 'like', $_GET['data'].'%')
         ->get();
 
-        return view('medicos.financas', compact('atendidas', 'n_atendidas', 'postos'));
+        $preco = 0;
+        foreach ($n_atendidas as $value)
+            $preco += $value->valor;
+        foreach ($atendidas as $value)
+            $preco += $value->valor;
+
+        return view('medicos.financas', compact('atendidas', 'n_atendidas', 'postos', 'preco'));
     }
 
     public function lugar(Request $requisicao)
@@ -155,9 +177,9 @@ class MedicoController extends Controller
         if(!$posto)
             return redirect('medicos/dia')->withErro('Posto inválido!');
 
-
-        auth()->user()->medico->cabecalho_id = $posto->id;
-        auth()->user()->medico->save();
+        $medico = (auth()->user()->medico) ? auth()->user()->medico : auth()->user()->nao_medico;
+        $medico->cabecalho_id = $posto->id;
+        $medico->save();
 
         return redirect('medicos/dia')->withMsg('Posto alterado!');
     }

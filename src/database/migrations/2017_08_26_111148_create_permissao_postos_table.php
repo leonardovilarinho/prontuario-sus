@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateConsultasTable extends Migration
+class CreatePermissaoPostosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,30 +13,22 @@ class CreateConsultasTable extends Migration
      */
     public function up()
     {
-        Schema::create('consultas', function (Blueprint $table) {
+        Schema::create('permissao_postos', function (Blueprint $table) {
             $table->increments('id');
-
-            $table->datetime('horario');
-
-            $table->text('obs')->nullable();
-
-            $table->enum('status', ['Primeira', 'Retorno', 'Nova']);
-
             $table->integer('usuario_id')->unsigned();
-            $table->decimal('valor')->nullable();
 
             $table->foreign('usuario_id')
               ->references('id')
               ->on('usuarios')
             ->onDelete('cascade');
 
-            $table->integer('paciente_id')->unsigned();
+            $table->integer('cabecalho_id')->unsigned();
 
-            $table->foreign('paciente_id')
+            $table->foreign('cabecalho_id')
               ->references('id')
-              ->on('pacientes')
+              ->on('cabecalhos')
             ->onDelete('cascade');
-            $table->timestamps();
+
         });
     }
 
@@ -47,6 +39,6 @@ class CreateConsultasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('consultas');
+        Schema::dropIfExists('permissao_postos');
     }
 }

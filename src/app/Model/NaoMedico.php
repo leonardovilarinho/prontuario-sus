@@ -21,7 +21,17 @@ class NaoMedico extends Model
 
     public function usuario()
     {
-    	return $this->belongsTo(Usuario::class, 'usuario_id', 'id');
+        return $this->belongsTo(Usuario::class, 'usuario_id', 'id');
+    }
+
+    public function carga_horaria()
+    {
+        return $this->hasOne(CargaHoraria::class, 'medico_id', 'usuario_id');
+    }
+
+    public function consultas()
+    {
+        return $this->hasMany(Consulta::class, 'usuario_id', 'usuario_id');
     }
 
     public function cabecalho()

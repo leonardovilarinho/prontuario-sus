@@ -15,7 +15,7 @@ class LoginController extends Controller
 
         if(!auth()->guest())
             return redirect('painel');
-        
+
         return view('login');
     }
 

@@ -77,7 +77,7 @@
             <tr>
                 <td>
                     <a onclick="return confirm('Deseja cancelar essa consulta?')"
-                    href="{{ url('medicos/'.$consulta->medico_id.'/consulta/'.$consulta->id.'/cancelar') }}"
+                    href="{{ url('medicos/'.$consulta->usuario_id.'/consulta/'.$consulta->id.'/cancelar') }}"
                     class="btn vermelho">
                         Cancelar
                     </a>

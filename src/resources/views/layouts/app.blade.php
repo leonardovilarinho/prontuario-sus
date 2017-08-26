@@ -69,10 +69,13 @@
                             @elseif(auth()->user()->secretario)
                                 <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
                                 <li><a href="{{ url('medicos') }}">Médicos</a></li>
+                                <li><a href="{{ url('nao-medicos') }}">Profissionais</a></li>
                                 <li><a href="{{ url('secretarios') }}">Secretários</a></li>
 
                             @elseif(auth()->user()->nao_medico)
                                 <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
+                                <li><a href="{{ url('medicos/financas') }}">Finanças</a></li>
+                                <li><a href="{{ url('medicos/config') }}">Configurações</a></li>
                             @endif
                         @endif
                         <li><a href="{{ url('sobre') }}">Sobre</a></li>

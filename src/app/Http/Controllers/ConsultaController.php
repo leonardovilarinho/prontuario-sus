@@ -3,27 +3,28 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\{Medico, Paciente, Consulta};
+use App\Model\{Medico, Paciente, Consulta, Usuario};
 use App\Http\Requests\ConsultaRequest;
 
 class ConsultaController extends Controller
 {
     public function data($id)
     {
-    	$medico = Medico::where('usuario_id', $id)->first();
+    	$medico = Usuario::find($id);
 
     	if($medico->ferias)
-    		return redirect('medicos')->withErro($medico->usuario->nome . ' está de férias!');
+    		return redirect('medicos')->withErro($medico->nome . ' está de férias!');
 
     	return view('consulta.data', compact('medico'));
     }
 
     public function horarios($id)
     {
-    	$medico = Medico::where('usuario_id', $id)->first();
+        $usuario = Usuario::find($id);
+        $medico = ($usuario->medico) ? $usuario->medico : $usuario->nao_medico;
 
     	if($medico->ferias)
-    		return redirect('medicos')->withErro($medico->usuario->nome . ' está de férias!');
+    		return redirect('medicos')->withErro($usuario->nome . ' está de férias!');
 
     	if(!isset($_GET['data']))
     		return redirect('medicos/'.$id.'/consulta/data')->withErro('Por favor, selecione uma data.');
@@ -32,7 +33,7 @@ class ConsultaController extends Controller
     		return redirect('medicos/'.$id.'/consulta/data')->withErro('Por favor, selecione uma data posterior ou igual a hoje.');
 
         if(!$medico->carga_horaria)
-            return redirect('medicos')->withErro($medico->usuario->nome . ' não tem uma carga horária!');
+            return redirect('medicos')->withErro($usuario->nome . ' não tem uma carga horária!');
 
     	$inicio = new \DateTime($_GET['data'] . ' ' . $medico->carga_horaria->inicio);
         $fim = new \DateTime($_GET['data'] . ' ' . $medico->carga_horaria->fim);
@@ -55,10 +56,11 @@ class ConsultaController extends Controller
 
     public function marcar($id)
     {
-        $medico = Medico::where('usuario_id', $id)->first();
+        $usuario = Usuario::find($id);
+        $medico = ($usuario->medico) ? $usuario->medico : $usuario->nao_medico;
 
-        if($medico->ferias)
-            return redirect('medicos')->withErro($medico->usuario->nome . ' está de férias!');
+        if($usuario->ferias)
+            return redirect('medicos')->withErro($usuario->nome . ' está de férias!');
 
         if(!isset($_GET['horario']))
             return redirect('medicos')->withErro('Sua consulta não tinha um horário válido, recomeçe.');
@@ -80,10 +82,11 @@ class ConsultaController extends Controller
 
     public function finalizar($id)
     {
-        $medico = Medico::where('usuario_id', $id)->first();
+        $usuario = Usuario::find($id);
+        $medico = ($usuario->medico) ? $usuario->medico : $usuario->nao_medico;
 
         if($medico->ferias)
-            return redirect('medicos')->withErro($medico->usuario->nome . ' está de férias!');
+            return redirect('medicos')->withErro($usuario->nome . ' está de férias!');
 
         if(!isset($_GET['horario']))
             return redirect('medicos')->withErro('Sua consulta não tinha um horário válido, recomeçe.');
@@ -101,7 +104,8 @@ class ConsultaController extends Controller
 
     public function salvar(ConsultaRequest $requisicao, $id)
     {
-        $medico = Medico::where('usuario_id', $id)->first();
+        $usuario = Usuario::find($id);
+        $medico = ($usuario->medico) ? $usuario->medico : $usuario->nao_medico;
         $paciente = Paciente::find($requisicao->paciente_id);
 
         if(!$medico)
@@ -109,7 +113,7 @@ class ConsultaController extends Controller
 
         foreach ($medico->consultas as $consulta)
             if($consulta->horarios == $requisicao->horario)
-                return redirect('medicos')->withErro($medico->usuario->nome . ' já tem consulta para esse horário!');
+                return redirect('medicos')->withErro($usuario->nome . ' já tem consulta para esse horário!');
 
         if(!$paciente)
             return redirect('medicos')->withErro('Sua consulta não tinha um paciente válido, recomeçe.');
@@ -125,24 +129,25 @@ class ConsultaController extends Controller
             return redirect('medicos')->withErro('Horário da consulta já passou');
 
         if($medico->ferias)
-            return redirect('medicos')->withErro($medico->usuario->nome . ' está de férias!');
+            return redirect('medicos')->withErro($usuario->nome . ' está de férias!');
 
         Consulta::create($requisicao->all());
 
-        return redirect('medicos/'.$id.'/consultas')->withMsg('Consulta marcada em '.$horario->format('d/m/Y á\s H:i') . ' para '.$medico->usuario->nome);
+        return redirect('medicos/'.$id.'/consultas')->withMsg('Consulta marcada em '.$horario->format('d/m/Y á\s H:i') . ' para '.$usuario->nome);
     }
 
     public function lista($id)
     {
-        $medico = Medico::where('usuario_id', $id)->first();
+        $usuario = Usuario::find($id);
+        $medico = ($usuario->medico) ? $usuario->medico : $usuario->nao_medico;
 
         if(!isset($_GET['q'])) {
-            $consultas = Consulta::where('medico_id', $id)
+            $consultas = Consulta::where('usuario_id', $id)
                 ->orderBy('horario', 'desc')
             ->paginate( config('prontuario.paginacao') );
         }
         else {
-            $consultas = Consulta::where('medico_id', $id)
+            $consultas = Consulta::where('usuario_id', $id)
                 ->where('horario', 'like', '%'.$_GET['q'].'%')
                 ->orWhere('status', 'like', '%'.$_GET['q'].'%')
                 ->orWhereHas('paciente', function($query) {
@@ -161,7 +166,7 @@ class ConsultaController extends Controller
 
     public function apagar($id, $consulta)
     {
-        $consulta = Consulta::where('id', $consulta)->where('medico_id', $id)->first();
+        $consulta = Consulta::where('id', $consulta)->where('usuario_id', $id)->first();
 
         if($consulta)
             $consulta->delete();

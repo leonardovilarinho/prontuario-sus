@@ -13,4 +13,9 @@ class Cabecalho extends Model
     	'local',
     	'atendida'
     ];
+
+    public function usuarios()
+    {
+        return $this->hasMany(PermissaoPosto::class, 'cabecalho_id', 'id');
+    }
 }

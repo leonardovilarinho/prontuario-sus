@@ -50,6 +50,7 @@
                 @endif
 
                 <a href="{{ url('postos/editar/' . $posto->id) }}" class="btn amarelo">Editar</a>
+                <a href="{{ url('postos/usuarios/' . $posto->id) }}" class="btn azul">Funcionários</a>
             @endif
 
 
