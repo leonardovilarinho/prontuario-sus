@@ -21,12 +21,11 @@
             </span>
         @endif
     </p>
-
     <p>
-        Por favor, para iniciar o processo de nova consulta para a(o) médica(o) <span class="texto-verde">{{  $medico->nome }}</span>, selecione uma data para a consulta a seguir:
+        Por favor, para iniciar o processo de nova consulta para a(o) médica(o) <span class="texto-verde">{{  $usuario->nome }}</span>, selecione uma data para a consulta a seguir:
     </p>
 
-    {{ Form::open(['url' => 'medicos/'.$medico->id.'/consulta/horarios', 'method' => 'get']) }}
+    {{ Form::open(['url' => 'medicos/'.$usuario->id.'/consulta/horarios', 'method' => 'get']) }}
         <section>
             <div>
                 {{ Form::date('data', date('Y-m-d'),['required' => '']) }}
@@ -34,5 +33,31 @@
             </div>
         </section>
     {{ Form::close() }}
+
+    <hr><hr>
+    <h3>
+        <span class="texto-verde">{{  $usuario->nome }}</span> trabalha
+        @if($medico->dia->segunda)
+           <span class="texto-vermelho"> segundas</span>,
+        @endif
+        @if($medico->dia->terca)
+            <span class="texto-vermelho"> terças</span>,
+        @endif
+        @if($medico->dia->quarta)
+            <span class="texto-vermelho"> quartas</span>,
+        @endif
+        @if($medico->dia->quinta)
+            <span class="texto-vermelho"> quintas</span>,
+        @endif
+        @if($medico->dia->sexta)
+            <span class="texto-vermelho"> sextas</span>,
+        @endif
+        @if($medico->dia->sabado)
+            <span class="texto-vermelho"> sábados</span>,
+        @endif
+        @if($medico->dia->domingo)
+            e <span class="texto-vermelho"> domingos</span>.
+        @endif
+    </h3>
 
 @endsection

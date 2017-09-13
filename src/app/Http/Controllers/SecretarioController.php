@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\SecretarioRequest;
-use App\Model\{Secretario, Usuario};
+use App\Model\Secretario;
+use App\Model\Usuario;
 
 
 class SecretarioController extends Controller

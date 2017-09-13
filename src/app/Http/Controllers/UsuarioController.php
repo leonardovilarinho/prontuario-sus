@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Model\Usuario;
-use App\Http\Requests\{UsuarioRequest, SenhaRequest};
+use App\Http\Requests\UsuarioRequest;
+use App\Http\Requests\SenhaRequest;
 
 class UsuarioController extends Controller
 {

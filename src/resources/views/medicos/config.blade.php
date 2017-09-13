@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Gerenciamento de férias')
+@section('titulo', 'Gerenciamento de horários')
 
 @section('conteudo')
 	<p style="text-align:center">
@@ -38,6 +38,64 @@
                 {!! Form::label('intervalo', 'Duração média de consulta (em minutos)') !!}
                 {!! Form::number('intervalo', $carga->intervalo , ['required' => '', 'placeholder' => 'Tempo médio de consulta em minutos']) !!}
             </div>
+
+            <hr>
+
+            <p>Selecione os dias a trabalhar:</p>
+            <div>
+                <label>Segunda&nbsp;</label>
+                <div class="marcador">
+                    <input type="checkbox" id="segunda" name="segunda" value="1"
+                        <?php echo $usuario->dia->segunda ? 'checked' : '' ?> />
+                    <label for="segunda">Segunda</label>
+                </div>
+
+                <label>Terça</label>
+                <div class="marcador">
+                    <input type="checkbox" id="terca" name="terca" value="1"
+                        <?php echo $usuario->dia->terca ? 'checked' : '' ?>/>
+                    <label for="terca">Terça</label>
+                </div>
+
+                <label>Quarta&nbsp;</label>
+                <div class="marcador">
+                    <input type="checkbox" id="quarta" name="quarta" value="1"
+                        <?php echo $usuario->dia->quarta ? 'checked' : '' ?> />
+                    <label for="quarta">Quarta</label>
+                </div>
+            </div>
+
+            <div>
+                <label>Quinta&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                <div class="marcador">
+                    <input type="checkbox" id="quinta" name="quinta" value="1"
+                        <?php echo $usuario->dia->quinta ? 'checked' : '' ?> />
+                    <label for="quinta">Quinta</label>
+                </div>
+
+                <label>Sexta</label>
+                <div class="marcador">
+                    <input type="checkbox" id="sexta" name="sexta" value="1"
+                        <?php echo $usuario->dia->sexta ? 'checked' : '' ?> />
+                    <label for="sexta">Sexta</label>
+                </div>
+
+                <label>Sábado</label>
+                <div class="marcador">
+                    <input type="checkbox" id="sabado" name="sabado" value="1"
+                        <?php echo $usuario->dia->sabado ? 'checked' : '' ?> />
+                    <label for="sabado">Sábado</label>
+                </div>
+            </div>
+
+            <div>
+                <label>Domingo</label>
+                <div class="marcador">
+                    <input type="checkbox" id="domingo" name="domingo" value="1"
+                        <?php echo $usuario->dia->domingo ? 'checked' : '' ?> />
+                    <label for="domingo">Domingo</label>
+                </div>
+            </div>
         </section>
 
         <footer>
@@ -50,38 +108,4 @@
             @endif
         </footer>
     {!! Form::close() !!}
-
-    <br><br>
-
-    <p>
-       Abaixo você pode informar se você está ou não no seu período de férias, em caso de férias, não teremos consultas marcadas para você.
-    </p>
-
-    {!! Form::open(['url' => 'medicos/config/ferias', 'method' => 'post']) !!}
-        <header>
-            Por favor, preencha os campos:
-        </header>
-
-        <section>
-            <div>
-                <label>Estou de férias?</label>
-                <div class="selecao">
-                    <input type="radio" id="sim" name="ferias" value="1" {{ $usuario->ferias ? 'checked' : '' }}/>
-                    <label for="sim">Sim</label>
-
-                    <input type="radio" id="nao" name="ferias" value="0" {{ !$usuario->ferias ? 'checked' : '' }}/>
-                    <label for="nao">Não</label>
-                </div>
-            </div>
-        </section>
-
-        <footer>
-            <section>
-                <input type="submit" value="Salvar informações" class="btn verde">
-            </section>
-
-            <span class="texto-vermelho">{{ $errors->first() }}</span>
-        </footer>
-    {!! Form::close() !!}
-
 @endsection

@@ -27,6 +27,13 @@ class CargaHorariaRequest extends FormRequest
             'intervalo' => 'required|numeric|min:1|max:59',
             'inicio' => 'required|date_format:H:i',
             'fim' => 'required|date_format:H:i',
+            'segunda' => 'nullable',
+            'terca' => 'nullable',
+            'quarta' => 'nullable',
+            'quinta' => 'nullable',
+            'sexta' => 'nullable',
+            'sabado' => 'nullable',
+            'domingo' => 'nullable',
         ];
     }
 }

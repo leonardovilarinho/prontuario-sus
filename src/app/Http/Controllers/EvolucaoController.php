@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\EvolucaoRequest;
-use App\Model\{Evolucao, Paciente};
+use App\Model\Evolucao;
+use App\Model\Paciente;
 
 class EvolucaoController extends Controller
 {

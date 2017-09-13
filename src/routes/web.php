@@ -57,6 +57,10 @@ Route::group(['prefix' => 'medicos'], function() {
         Route::get('financas', 'MedicoController@financas');
 
         Route::get('consulta/{id}/atender', 'ConsultaController@atender');
+
+        Route::get('folga', 'FeriaController@lista');
+        Route::post('folga', 'FeriaController@salvar');
+        Route::get('folga/{id}/apagar', 'FeriaController@apagar')->where('id', '[0-9]+');
     });
 
      Route::group(['middleware' => 'autenticacao:sec|adm'], function() {

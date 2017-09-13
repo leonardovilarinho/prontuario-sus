@@ -3,8 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\{Paciente, Prescricao, Medicamento, Equipamento, PescricaoMedicacao, PescricaoEquipamento};
-use App\Http\Requests\{PrescricaoRequest, PescricaoMedicacaoRequest, PescricaoEquipamentoRequest};
+use App\Model\Paciente;
+use App\Model\Prescricao;
+use App\Model\Medicamento;
+use App\Model\Equipamento;
+use App\Model\PescricaoMedicacao;
+use App\Model\PescricaoEquipamento;
+
+use App\Http\Requests\PrescricaoRequest;
+use App\Http\Requests\PescricaoMedicacaoRequest;
+use App\Http\Requests\PescricaoEquipamentoRequest;
 
 class PrescricaoController extends Controller
 {
@@ -25,7 +33,6 @@ class PrescricaoController extends Controller
                     ->orderBy('created_at', 'desc')
                 ->paginate(config('prontuario.paginacao'));
             }
-                
             else {
                 $paciente->prescricoes = Prescricao::where('paciente_id', $id)
                     ->orderBy('created_at', 'desc')

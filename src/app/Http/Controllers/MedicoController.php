@@ -4,7 +4,13 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\MedicoRequest;
-use App\Model\{Medico, Usuario, Consulta, CargaHoraria, Cabecalho, PermissaoPosto};
+use App\Model\Medico;
+use App\Model\Usuario;
+use App\Model\Consulta;
+use App\Model\CargaHoraria;
+use App\Model\Cabecalho;
+use App\Model\PermissaoPosto;
+use App\Model\Dia;
 
 class MedicoController extends Controller
 {
@@ -81,6 +87,10 @@ class MedicoController extends Controller
 
         if($usuario->carga_horaria)
             $carga = $usuario->carga_horaria;
+
+        if(!$usuario->dia)
+            $usuario->dia = new Dia;
+
 
         return view('medicos.config', compact('carga', 'usuario'));
     }

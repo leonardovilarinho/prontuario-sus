@@ -14,7 +14,6 @@ class Medico extends Model
         'cargo',
         'telefone',
         'usuario_id',
-        'ferias',
         'cabecalho_id'
     ];
 
@@ -26,6 +25,16 @@ class Medico extends Model
     public function carga_horaria()
     {
         return $this->hasOne(CargaHoraria::class, 'medico_id', 'usuario_id');
+    }
+
+    public function dia()
+    {
+        return $this->hasOne(Dia::class, 'medico_id', 'usuario_id');
+    }
+
+    public function ferias_()
+    {
+        return $this->hasMany(Feria::class, 'medico_id', 'usuario_id');
     }
 
     public function consultas()

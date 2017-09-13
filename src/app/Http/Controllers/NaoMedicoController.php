@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\NaoMedicoRequest;
-use App\Model\{NaoMedico, Usuario, Cabecalho};
+use App\Model\NaoMedico;
+use App\Model\Usuario;
+use App\Model\Cabecalho;
 
 class NaoMedicoController extends Controller
 {

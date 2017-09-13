@@ -30,15 +30,12 @@
 	<hr>
 
 	<p>
-		Ajude a manter o sistema ativo, doe algum capital ao clicar no botão abaixo, só assim poderemos trabalhar no projeto, lançando atualizações e corrigindo problemas.
+		Ajude a manter o sistema ativo, doe para a conta corrente abaixo, só assim poderemos trabalhar no projeto, lançando atualizações e corrigindo problemas.
 	</p>
-    <section class="container">
-    	<form action="https://pagseguro.uol.com.br/checkout/v2/donation.html" target="_blank" method="post" style="width: 200px; ">
-			<!-- NÃO EDITE OS COMANDOS DAS LINHAS ABAIXO -->
-			<input type="hidden" name="currency" value="BRL" />
-			<input type="hidden" name="receiverEmail" value="leonardo-i@outlook.com" />
-			<input type="hidden" name="iot" value="button" />
-			<input type="image" src="https://stc.pagseguro.uol.com.br/public/img/botoes/doacoes/209x48-doar-roxo-assina.gif" name="submit" alt="Pague com PagSeguro - é rápido, grátis e seguro!" />
-		</form>
-    </section>
+	<ul>
+	    <li><strong>Banco:</strong> Itaú</li>
+	    <li><strong>Agência:</strong> 0106</li>
+	    <li><strong>Conta:</strong> 07249-9</li>
+	    <li><strong>CPF:</strong> 134.716.616-54</li>
+	</ul>
 @endsection

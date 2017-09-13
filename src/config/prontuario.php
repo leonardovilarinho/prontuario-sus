@@ -2,7 +2,7 @@
 
 return [
 	'nome' => 'Prontuário SUS',
-    'paginacao' => '1',
+    'paginacao' => '10',
     'hospital' => [
     	'nome' => 'São José',
     	'local' => 'Ituiutaba-MG'

@@ -46,11 +46,15 @@
                 </section>
 
                 <nav class="menu">
+                    <span style="text-align: center">
+                        <button class="btn azul" style="margin: 0; padding: 3px; width: 40px; background: rgba(0,0,0, .3)" onclick="leitura('+')">L +</button>
+                        <button class="btn azul" style="margin: 0; padding: 3px; width: 40px; background: rgba(0,0,0, .3)" onclick="leitura('-')">L -</button>
+                    </span>
                     <ul>
                         <li class="fixo"><span>Ações a fazer:</span></li>
                         @if(!auth()->guest())
-                            <li><a href="{{ url('painel') }}">Inicial</a></li>
                             @if(auth()->user()->administrador)
+                                <li><a href="{{ url('painel') }}">Inicial</a></li>
                                 <li><a href="{{ url('postos') }}">Postos</a></li>
                                 <li><a href="{{ url('administradores') }}">Administradores</a></li>
                                 <li><a href="{{ url('medicos') }}">Médicos</a></li>
@@ -62,9 +66,11 @@
                                 <li><a href="{{ url('hospital/config') }}">Configurações</a></li>
 
                             @elseif(auth()->user()->medico)
+                                <li><a href="{{ url('painel') }}">Inicial</a></li>
                                 <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
                                 <li><a href="{{ url('medicos/financas') }}">Finanças</a></li>
-                                <li><a href="{{ url('medicos/config') }}">Configurações</a></li>
+                                <li><a href="{{ url('medicos/config') }}">Horários</a></li>
+                                <li><a href="{{ url('medicos/folga') }}">Férias / Folgas</a></li>
 
                             @elseif(auth()->user()->secretario)
                                 <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
@@ -73,9 +79,12 @@
                                 <li><a href="{{ url('secretarios') }}">Secretários</a></li>
 
                             @elseif(auth()->user()->nao_medico)
+                                <li><a href="{{ url('painel') }}">Inicial</a></li>
                                 <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
                                 <li><a href="{{ url('medicos/financas') }}">Finanças</a></li>
-                                <li><a href="{{ url('medicos/config') }}">Configurações</a></li>
+                                <li><a href="{{ url('medicos/config') }}">Horários</a></li>
+                                <li><a href="{{ url('medicos/folga') }}">Férias / Folgas</a></li>
+
                             @endif
                         @endif
                         <li><a href="{{ url('sobre') }}">Sobre</a></li>
@@ -85,7 +94,7 @@
                 </nav>
             </aside>
 
-            <article class="conteudo">
+            <article class="conteudo" id="conteudo_div">
                 <span class="caminho">
                     @if(count(Request::segments()) > 0)
                         @for($i = 0; $i <= count(Request::segments()); $i++)
@@ -115,12 +124,26 @@
             function printDiv(divName) {
                  var printContents = document.getElementById(divName).innerHTML;
                  var originalContents = document.body.innerHTML;
-
+                 document.body.style.fontSize   = '13pt';
                  document.body.innerHTML = printContents;
 
-                 window.print();
 
+                 window.print();
+                 document.body.style.fontSize  = '';
                  document.body.innerHTML = originalContents;
+            }
+
+            function leitura(tipo) {
+                 var el = document.getElementById('conteudo_div');
+                 var pt = el.style.fontSize;
+                 if(!pt)
+                    pt = 12;
+                else
+                    pt = pt.replace('pt', '');
+                 if(tipo == '+')
+                    el.style.fontSize = (+pt + 1) + 'pt';
+                 if(tipo == '-')
+                    el.style.fontSize = (+pt - 1) + 'pt';
             }
         </script>
     </body>

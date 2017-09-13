@@ -3,28 +3,52 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\{Medico, Paciente, Consulta, Usuario};
+use App\Model\Medico;
+use App\Model\Paciente;
+use App\Model\Consulta;
+use App\Model\Usuario;
 use App\Http\Requests\ConsultaRequest;
 
 class ConsultaController extends Controller
 {
     public function data($id)
     {
-    	$medico = Usuario::find($id);
+    	$usuario = Usuario::find($id);
+        $medico = ($usuario->medico) ? $usuario->medico : $usuario->nao_medico;
 
-    	if($medico->ferias)
-    		return redirect('medicos')->withErro($medico->nome . ' está de férias!');
-
-    	return view('consulta.data', compact('medico'));
+    	return view('consulta.data', compact('medico', 'usuario'));
     }
 
     public function horarios($id)
     {
         $usuario = Usuario::find($id);
         $medico = ($usuario->medico) ? $usuario->medico : $usuario->nao_medico;
+        $dia = date('w', strtotime($_GET['data'] . ' 23:59:59'));
+        $legenda = [
+            'domingo',
+            'segunda',
+            'terca',
+            'quarta',
+            'quinta',
+            'sexta',
+            'sabado',
+        ];
+        $dia = $legenda[$dia];
 
-    	if($medico->ferias)
-    		return redirect('medicos')->withErro($usuario->nome . ' está de férias!');
+        if(!$medico->dia->$dia)
+            return redirect('medicos')->withErro($usuario->nome . ' não trabalha nessa data!');
+
+        $ferias = false;
+        $time = strtotime($_GET['data'] . ' 23:59:59');
+        foreach ($medico->ferias_ as $f) {
+            $inicio = strtotime($f->data);
+            $fim = strtotime($f->data . ' + ' . $f->dias. 'days');
+
+            if($time >= $inicio and $time <= $fim)
+                $ferias = true;
+        }
+        if($ferias)
+            return redirect('medicos')->withErro($usuario->nome . ' estrá em férias nessa data!');
 
     	if(!isset($_GET['data']))
     		return redirect('medicos/'.$id.'/consulta/data')->withErro('Por favor, selecione uma data.');
@@ -147,6 +171,16 @@ class ConsultaController extends Controller
             ->paginate( config('prontuario.paginacao') );
         }
         else {
+            if (\DateTime::createFromFormat('d/m/Y', $_GET['q']) !== false) {
+                $d = explode('/', $_GET['q']);
+                $tmp = '';
+                foreach ($d as $valor) {
+                    $tmp = $valor . '-' . $tmp;
+                }
+                $tmp = substr($tmp, 0, -1);
+                $_GET['q'] = $tmp;
+            }
+
             $consultas = Consulta::where('usuario_id', $id)
                 ->where('horario', 'like', '%'.$_GET['q'].'%')
                 ->orWhere('status', 'like', '%'.$_GET['q'].'%')

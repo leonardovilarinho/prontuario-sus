@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\{HospitalRequest, ConfiguracoesRequest};
+use App\Http\Requests\HospitalRequest;
+use App\Http\Requests\ConfiguracoesRequest;
 use Axdlee\Config\Rewrite;
 
 class HospitalController extends Controller

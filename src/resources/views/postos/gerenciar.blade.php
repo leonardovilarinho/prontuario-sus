@@ -31,7 +31,7 @@
         <article>
 
             <figure style="text-align:center; height: 200px">
-                <img src="{{ Storage::url('postos/'.$posto->id.'.jpg') }}" alt="Logo de {{ $posto->local }}">
+                <img style="text-align:center; height: 200px;" src="{{ Storage::url('postos/'.$posto->id.'.jpg') }}" alt="Logo de {{ $posto->local }}">
             </figure>
 
             <p>

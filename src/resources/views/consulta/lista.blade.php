@@ -76,11 +76,13 @@
         @foreach($consultas as $consulta)
             <tr>
                 <td>
-                    <a onclick="return confirm('Deseja cancelar essa consulta?')"
-                    href="{{ url('medicos/'.$consulta->usuario_id.'/consulta/'.$consulta->id.'/cancelar') }}"
-                    class="btn vermelho">
-                        Cancelar
-                    </a>
+                    @if(!$consulta->atendida)
+                        <a onclick="return confirm('Deseja cancelar essa consulta?')"
+                        href="{{ url('medicos/'.$consulta->usuario_id.'/consulta/'.$consulta->id.'/cancelar') }}"
+                        class="btn vermelho">
+                            Cancelar
+                        </a>
+                    @endif
                 </td>
 
                 @if($tipo == 'med')

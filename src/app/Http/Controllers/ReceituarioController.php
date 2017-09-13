@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ReceituarioRequest;
-use App\Model\{Receituario, Paciente};
+use App\Model\Receituario;
+use App\Model\Paciente;
 
 class ReceituarioController extends Controller
 {
