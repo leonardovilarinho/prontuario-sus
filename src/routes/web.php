@@ -146,10 +146,13 @@ Route::group(['prefix' => 'pacientes'], function() {
         Route::get('editar/{id}', 'PacienteController@edicao')->where('id', '[0-9]+');
         Route::put('editar/{id}', 'PacienteController@editar')->where('id', '[0-9]+');
 
-        Route::get('apagar/{id}', 'PacienteController@apagar')->where('id', '[0-9]+');
         Route::get('apagarfoto/{id}', 'PacienteController@apagarfoto')->where('id', '[0-9]+');
 
         Route::get('{id}/consultas', 'ConsultaController@listaPaciente')->where('id', '[0-9]+');
+    });
+
+    Route::group(['middleware' => 'autenticacao:adm'], function() {
+        Route::get('apagar/{id}', 'PacienteController@apagar')->where('id', '[0-9]+');
     });
 
     Route::group(['middleware' => 'autenticacao:med|nme'], function() {

@@ -16,6 +16,9 @@ class ConsultaController extends Controller
     	$usuario = Usuario::find($id);
         $medico = ($usuario->medico) ? $usuario->medico : $usuario->nao_medico;
 
+        if(!$medico->dia)
+            return redirect('medicos')->withErro($usuario->nome . ' não definiu os dias que trabalha!');
+
     	return view('consulta.data', compact('medico', 'usuario'));
     }
 
