@@ -220,3 +220,11 @@ Route::group(['prefix' => 'postos', 'middleware' => 'autenticacao:adm'], functio
     Route::get('editar/{id}', 'CabecalhoController@edicao')->where('id', '[0-9]+');
     Route::put('editar/{id}', 'CabecalhoController@editar')->where('id', '[0-9]+');
 });
+
+
+Route::group(['middleware' => 'autenticacao:med|nme'], function() {
+    Route::get('modelos', 'ModeloController@lista');
+    Route::post('modelos', 'ModeloController@novo');
+    Route::post('modelos/manipular', 'ModeloController@manipular');
+    //->where('id', '[0-9]+')
+});

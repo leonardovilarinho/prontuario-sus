@@ -37,6 +37,19 @@ class Medico extends Model
         return $this->hasMany(Feria::class, 'medico_id', 'usuario_id');
     }
 
+    public function modelos()
+    {
+        return $this->hasMany(Modelo::class, 'medico_id', 'usuario_id');
+    }
+
+    public function selectModelos() {
+        $retorno = [];
+        foreach ($this->modelos as $mo) {
+            $retorno[$mo->id] = $mo->titulo;
+        }
+        return $retorno;
+    }
+
     public function consultas()
     {
         return $this->hasMany(Consulta::class, 'usuario_id', 'usuario_id');

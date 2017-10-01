@@ -29,6 +29,19 @@ class NaoMedico extends Model
         return $this->hasOne(CargaHoraria::class, 'medico_id', 'usuario_id');
     }
 
+    public function modelos()
+    {
+        return $this->hasMany(Modelo::class, 'medico_id', 'usuario_id');
+    }
+
+    public function selectModelos() {
+        $retorno = [];
+        foreach ($this->modelos as $mo) {
+            $retorno[$mo->id] = $mo->titulo;
+        }
+        return $retorno;
+    }
+
     public function dia()
     {
         return $this->hasOne(Dia::class, 'medico_id', 'usuario_id');

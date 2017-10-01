@@ -71,6 +71,7 @@
                                 <li><a href="{{ url('medicos/financas') }}">Finanças</a></li>
                                 <li><a href="{{ url('medicos/config') }}">Horários</a></li>
                                 <li><a href="{{ url('medicos/folga') }}">Férias / Folgas</a></li>
+                                <li><a href="{{ url('modelos') }}">Modelos</a></li>
 
                             @elseif(auth()->user()->secretario)
                                 <li><a href="{{ url('pacientes') }}">Pacientes</a></li>
@@ -84,6 +85,7 @@
                                 <li><a href="{{ url('medicos/financas') }}">Finanças</a></li>
                                 <li><a href="{{ url('medicos/config') }}">Horários</a></li>
                                 <li><a href="{{ url('medicos/folga') }}">Férias / Folgas</a></li>
+                                <li><a href="{{ url('modelos') }}">Modelos</a></li>
 
                             @endif
                         @endif

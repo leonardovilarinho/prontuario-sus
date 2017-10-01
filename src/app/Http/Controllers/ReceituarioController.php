@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests\ReceituarioRequest;
 use App\Model\Receituario;
 use App\Model\Paciente;
+use App\Model\Modelo;
+use App\Model\Usuario;
 
 class ReceituarioController extends Controller
 {
@@ -85,11 +87,18 @@ class ReceituarioController extends Controller
     public function novo($id)
     {
     	$paciente = Paciente::find($id);
+        $usuario = Usuario::find(auth()->user()->id);
+        $medico = ($usuario->medico) ? $usuario->medico : $usuario->nao_medico;
+        $modelos = $medico->selectModelos();
+
+        $valor = '';
+        if(isset($_GET['modelo']))
+            $valor = Modelo::find($_GET['modelo'])->conteudo;
 
     	if(!$paciente)
     		return redirect('pacientes')->withErro('Paciente não encontrado');
 
-    	return view('pacientes.receituario.criar', compact('paciente'));
+    	return view('pacientes.receituario.criar', compact('paciente', 'modelos', 'valor'));
     }
 
     public function salvar(ReceituarioRequest $requisicao, $id)

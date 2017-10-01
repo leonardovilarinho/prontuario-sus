@@ -1,4 +1,13 @@
 ALTER TABLE `consultas`
 	CHANGE COLUMN `status` `status` VARCHAR(250) NOT NULL COLLATE 'utf8mb4_unicode_ci' AFTER `obs`;
 
-	
+
+CREATE TABLE IF NOT EXISTS `modelos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `conteudo` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `medico_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `modelos_medico_id_foreign` (`medico_id`),
+  CONSTRAINT `modelos_medico_id_foreign` FOREIGN KEY (`medico_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

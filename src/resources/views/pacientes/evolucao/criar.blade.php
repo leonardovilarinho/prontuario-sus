@@ -12,7 +12,22 @@
         <li><strong>Idade:</strong>{{ Saudacoes::idade($paciente->nascimento) }}</li>
         <li><strong>Convênio:</strong>{{ $paciente->convenio }}</li>
     </ul>
-                    
+
+    {{ Form::open(['url' => '#', 'method' => 'get']) }}
+        <section>
+            <div>
+                {{ Form::label('modelo', 'Modelo') }}
+                {{ Form::select('modelo', $modelos, '',
+                    ['required' => '']
+                ) }}
+                <button class="btn verde" style='flex-grow: 1; margin-left: 3px'>
+                    Selecionar
+                </button>
+
+            </div>
+        </section>
+    {{ Form::close() }}
+
     {!! Form::open(['url' => 'pacientes/'.$paciente->id.'/evolucoes/nova', 'method' => 'post']) !!}
     	{{ Form::hidden('paciente_id', $paciente->id) }}
     	{{ Form::hidden('autor_id', auth()->user()->id) }}
@@ -21,10 +36,10 @@
         </header>
 
         <section>
-  
+
             <div>
                 {!! Form::label('evolucao', 'Evolução') !!}
-                {!! Form::textarea('evolucao', '', ['required' => '', 'placeholder' => 'Detalhes da evolução']  ) !!}
+                {!! Form::textarea('evolucao', $valor, ['required' => '', 'placeholder' => 'Detalhes da evolução']  ) !!}
             </div>
 
             <div>

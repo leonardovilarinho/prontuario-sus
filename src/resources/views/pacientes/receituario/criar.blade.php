@@ -13,6 +13,21 @@
         <li><strong>Convênio:</strong>{{ $paciente->convenio }}</li>
     </ul>
 
+    {{ Form::open(['url' => '#', 'method' => 'get']) }}
+        <section>
+            <div>
+                {{ Form::label('modelo', 'Modelo') }}
+                {{ Form::select('modelo', $modelos, '',
+                    ['required' => '']
+                ) }}
+                <button class="btn verde" style='flex-grow: 1; margin-left: 3px'>
+                    Selecionar
+                </button>
+
+            </div>
+        </section>
+    {{ Form::close() }}
+
     {!! Form::open(['url' => 'pacientes/'.$paciente->id.'/receituarios/novo', 'method' => 'post']) !!}
     	{{ Form::hidden('paciente_id', $paciente->id) }}
     	{{ Form::hidden('autor_id', auth()->user()->id) }}
@@ -23,7 +38,7 @@
         <section>
             <div>
                 {!! Form::label('conteudo', 'Conteúdo') !!}
-                {!! Form::textarea('conteudo', '', ['required' => '', 'placeholder' => 'Conteúdo do receituário']) !!}
+                {!! Form::textarea('conteudo', $valor, ['required' => '', 'placeholder' => 'Conteúdo do receituário']) !!}
             </div>
         </section>
 
