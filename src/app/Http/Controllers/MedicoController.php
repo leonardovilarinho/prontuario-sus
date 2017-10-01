@@ -151,6 +151,18 @@ class MedicoController extends Controller
         if(!isset($_GET['data']))
             $_GET['data'] = date('Y-m-d');
 
+        $busca = true;
+
+        if(!isset($_GET['mes'])) {
+            $busca = false;
+            $_GET['mes'] = date('m');
+        }
+
+        if(!isset($_GET['ano'])) {
+            $busca = false;
+            $_GET['ano'] = date('Y');
+        }
+
         $_GET['data'] = $_GET['data'];
 
         if(isset($_GET['valor'])) {
@@ -160,16 +172,31 @@ class MedicoController extends Controller
             return redirect('medicos/financas?data='.$_GET['data']);
         }
 
-        $n_atendidas = Consulta::where('usuario_id', auth()->user()->id)
-            ->where('atendida', 0)
-            ->where('horario', 'like', $_GET['data'].'%')
-            ->orderBy('horario', 'asc')
-        ->get();
+        if($busca) {
+            $h = $_GET['ano'].'-'.str_pad($_GET['mes'], 2, '0', STR_PAD_LEFT);
+            $n_atendidas = Consulta::where('usuario_id', auth()->user()->id)
+                ->where('atendida', 0)
+                ->where('horario', 'like', $h.'%')
+                ->orderBy('horario', 'asc')
+            ->get();
 
-        $atendidas = Consulta::where('usuario_id', auth()->user()->id)
-            ->where('atendida', 1)
-            ->where('horario', 'like', $_GET['data'].'%')
-        ->get();
+            $atendidas = Consulta::where('usuario_id', auth()->user()->id)
+                ->where('atendida', 1)
+                ->where('horario', 'like', $h.'%')
+            ->get();
+        }
+        else {
+            $n_atendidas = Consulta::where('usuario_id', auth()->user()->id)
+                ->where('atendida', 0)
+                ->where('horario', 'like', $_GET['data'].'%')
+                ->orderBy('horario', 'asc')
+            ->get();
+
+            $atendidas = Consulta::where('usuario_id', auth()->user()->id)
+                ->where('atendida', 1)
+                ->where('horario', 'like', $_GET['data'].'%')
+            ->get();
+        }
 
         $preco = 0;
         foreach ($n_atendidas as $value)

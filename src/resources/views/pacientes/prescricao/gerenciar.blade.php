@@ -44,6 +44,11 @@
                 <strong>Paciente: </strong>
                 {{ $paciente->nome }}
             </p>
+            <ul>
+                <li><strong>Nascimento:</strong>{{ date('d/m/Y', strtotime($paciente->nascimento)) }}</li>
+                <li><strong>Idade:</strong>{{ Saudacoes::idade($paciente->nascimento) }}</li>
+                <li><strong>Convênio:</strong>{{ $paciente->convenio }}</li>
+            </ul>
 
             <label><strong>Medicamentos:</strong></label>
             <ul class="lista-comum">

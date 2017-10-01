@@ -72,6 +72,10 @@ Route::group(['prefix' => 'medicos'], function() {
         Route::post('{id}/consulta/finalizar', 'ConsultaController@salvar')->where('id', '[0-9]+');
 
         Route::get('{id}/consulta/{consulta}/cancelar', 'ConsultaController@apagar')->where('id', '[0-9]+');
+
+        Route::get('{id}/consulta/{consulta}/editar', 'ConsultaController@editar')->where('id', '[0-9]+');
+
+         Route::post('{id}/consulta/{consulta}/editar', 'ConsultaController@salvarEdicao')->where('id', '[0-9]+');
     });
 });
 

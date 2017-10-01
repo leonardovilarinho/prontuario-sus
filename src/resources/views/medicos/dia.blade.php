@@ -54,7 +54,8 @@
 		        		<span>
 		        			{{ date('d/m/Y á\s H:i', strtotime($consulta->horario)) }} -
 		        			{{ $consulta->paciente->nome }} |
-		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s)
+		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s) |
+		        			{{ $consulta->status }}
 		        		</span>
 
 		        		<div class="direita">
@@ -74,7 +75,8 @@
 		        		<span>
 		        			{{ date('d/m/Y á\s H:i', strtotime($consulta->horario)) }} -
 		        			{{ $consulta->paciente->nome }} |
-		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s)
+		        			{{ Saudacoes::idade($consulta->paciente->nascimento) }} ano(s) |
+		        			{{ $consulta->status }}
 		        		</span>
 
 		        		<div class="direita">

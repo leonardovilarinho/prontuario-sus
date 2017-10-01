@@ -1,0 +1,4 @@
+ALTER TABLE `consultas`
+	CHANGE COLUMN `status` `status` VARCHAR(250) NOT NULL COLLATE 'utf8mb4_unicode_ci' AFTER `obs`;
+
+	

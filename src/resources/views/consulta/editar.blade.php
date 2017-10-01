@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Editar a consulta')
+@section('titulo', 'Finalizar a consulta')
 
 @section('lateral')
 @endsection
@@ -21,26 +21,24 @@
         @endif
     </p>
 
-    <p>
-        Edite esse consulta:
-    </p>
     <br>
 
     <p><strong>Médica(o):</strong> {{ $consulta->usuario->nome }}</p>
     <p><strong>Horário definido:</strong> {{ date('d/m/Y á\s H:i', strtotime($consulta->horario)) }}</p>
-    <p><strong>Paciente:</strong> {{ $consulta->paciente->usuario->nome }}</p>
+    <p><strong>Paciente:</strong> {{ $consulta->paciente->nome }}</p>
 
-    {{ Form::open(['url' => 'consultas/'.'/consulta/finalizar', 'method' => 'post']) }}
+{{ Form::open(['url' => 'medicos/'.$consulta->medico->id.'/consulta/'.$consulta->id.'/editar', 'method' => 'post']) }}
+
 
         <header>
-            Por favor, veja os campos:
+            Por favor, beja os campos:
         </header>
 
         <section>
             <div>
                 {{ Form::label('data', 'Data') }}
                 {{ Form::date('data',
-                    date('Y-m-d', strtotime($_GET['horario'])),
+                    date('Y-m-d', strtotime($consulta->horario)),
                     ['required' => '', 'readonly' => '']
                 ) }}
 
@@ -52,7 +50,7 @@
             <div>
                 {{ Form::label('valor', 'Preço') }}
                 {{ Form::number('valor',
-                    $consulta->valor,
+                    str_replace(',', '.', $consulta->valor),
                     ['step' => '0.10']
                 ) }}
 

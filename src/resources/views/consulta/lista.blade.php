@@ -70,6 +70,7 @@
             @endif
             <td>Estado</td>
             <td>Preço</td>
+            <td>Telefone</td>
             <td>Observação</td>
         </tr>
 
@@ -82,7 +83,13 @@
                         class="btn vermelho">
                             Cancelar
                         </a>
+                        <a
+                        href="{{ url('medicos/'.$consulta->usuario_id.'/consulta/'.$consulta->id.'/editar') }}"
+                        class="btn amarelo">
+                            Editar
+                        </a>
                     @endif
+
                 </td>
 
                 @if($tipo == 'med')
@@ -104,6 +111,7 @@
                 @endif
                 <td>{{ $consulta->status }}</td>
                 <td>R$ {{ number_format($consulta->valor, 2, ',', '.') }}</td>
+                <td>{{ $consulta->paciente->telefone }}</td>
                 <td>{{ $consulta->obs }}</td>
             </tr>
         @endforeach

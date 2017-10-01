@@ -211,6 +211,28 @@ class ConsultaController extends Controller
         return redirect($_SERVER['HTTP_REFERER'])->withMsg('Consulta foi apagada!');
     }
 
+    public function editar($id, $consulta)
+    {
+        $consulta = Consulta::where('id', $consulta)->where('usuario_id', $id)->first();
+
+        if(!$consulta)
+            return redirect('medicos')->withErro('Consulta não encontrada!');
+
+        return view('consulta.editar', compact('consulta'));
+    }
+
+    public function salvarEdicao(Request $req, $id, $consulta)
+    {
+        $consulta = Consulta::where('id', $consulta)->where('usuario_id', $id)->first();
+
+        if(!$consulta)
+            return redirect('medicos')->withErro('Consulta não encontrada!');
+        $consulta->fill($req->all());
+        $consulta->save();
+
+        return redirect('medicos/'.$id.'/consultas')->withErro('Consulta editada!');
+    }
+
     public function atender($id)
     {
         $consulta = Consulta::find($id);

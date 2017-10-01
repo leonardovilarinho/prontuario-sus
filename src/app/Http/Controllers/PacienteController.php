@@ -63,6 +63,13 @@ class PacienteController extends Controller
         if($requisicao->naturalidade == null)
             $requisicao->merge(['naturalidade' => ' ']);
 
+        $p = Paciente::where('nome', 'like', $requisicao->nome)
+            ->where('nascimento', $requisicao->nascimento)
+        ->first();
+
+        if($p)
+            return redirect('pacientes')->withErro('Paciente já existe!');
+
         $paciente = Paciente::create($requisicao->all());
 
         if($requisicao->foto != null)

@@ -7,6 +7,11 @@
     <p>
        Aqui você pode cadastrar um novo receituário para <span class="texto-verde">{{ $paciente->nome }}</span>, preencha os campos vermelhos.
     </p>
+    <ul>
+        <li><strong>Nascimento:</strong>{{ date('d/m/Y', strtotime($paciente->nascimento)) }}</li>
+        <li><strong>Idade:</strong>{{ Saudacoes::idade($paciente->nascimento) }}</li>
+        <li><strong>Convênio:</strong>{{ $paciente->convenio }}</li>
+    </ul>
 
     {!! Form::open(['url' => 'pacientes/'.$paciente->id.'/receituarios/novo', 'method' => 'post']) !!}
     	{{ Form::hidden('paciente_id', $paciente->id) }}

@@ -42,6 +42,20 @@
 			</div>
 		</section>
     {{ Form::close() }}
+
+    {{ Form::open(['url' => 'medicos/financas', 'method' => 'get']) }}
+		<section>
+			<div>
+				{{ Form::label('mes', 'Mês (número)') }}
+				{{ Form::number('mes',  $_GET['mes'], ['required' => '', 'max' => 12, 'min' => 1]) }}
+
+				{{ Form::label('ano', 'Ano') }}
+				{{ Form::number('ano',  $_GET['ano'], ['required' => '', 'min' => 2000]) }}
+
+				{{ Form::submit('Buscar', ['class' => 'btn verde', 'style' => 'flex-grow: 1; margin-left: 3px']) }}
+			</div>
+		</section>
+    {{ Form::close() }}
     <section id="imprimir">
 	    <br>
 	    <h3>Total: {{ number_format($preco, 2, ',', '.') }}</h3>

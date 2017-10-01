@@ -20,7 +20,7 @@ class CreateConsultasTable extends Migration
 
             $table->text('obs')->nullable();
 
-            $table->enum('status', ['Primeira', 'Retorno', 'Nova']);
+            $table->string('status', 250);
 
             $table->integer('usuario_id')->unsigned();
             $table->decimal('valor')->nullable();
