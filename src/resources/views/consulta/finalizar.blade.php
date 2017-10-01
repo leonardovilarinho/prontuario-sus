@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('titulo', 'Editar a consulta')
+@section('titulo', 'Finalizar a consulta')
 
 @section('lateral')
 @endsection
@@ -22,18 +22,22 @@
     </p>
 
     <p>
-        Edite esse consulta:
+        Chegou a hora de finalizar o processo de nova consulta para a(o) médica(o) <span class="texto-verde">{{  $medico->usuario->nome }}</span>.
     </p>
     <br>
 
-    <p><strong>Médica(o):</strong> {{ $consulta->usuario->nome }}</p>
-    <p><strong>Horário definido:</strong> {{ date('d/m/Y á\s H:i', strtotime($consulta->horario)) }}</p>
-    <p><strong>Paciente:</strong> {{ $consulta->paciente->usuario->nome }}</p>
+    <p><strong>Médica(o):</strong> {{ $medico->usuario->nome }}</p>
+    <p><strong>Horário definido:</strong> {{ date('d/m/Y á\s H:i', strtotime($_GET['horario'])) }}</p>
+    <p><strong>Paciente:</strong> {{ $paciente->nome }}</p>
 
-    {{ Form::open(['url' => 'consultas/'.'/consulta/finalizar', 'method' => 'post']) }}
+    {{ Form::open(['url' => 'medicos/'.$medico->usuario_id.'/consulta/finalizar', 'method' => 'post']) }}
+
+        {{ Form::hidden('paciente_id', $_GET['paciente']) }}
+        {{ Form::hidden('horario', $_GET['horario']) }}
+        {{ Form::hidden('usuario_id', $medico->usuario_id) }}
 
         <header>
-            Por favor, veja os campos:
+            Por favor, preencha os campos:
         </header>
 
         <section>
@@ -45,15 +49,15 @@
                 ) }}
 
                 {{ Form::label('hor', 'Horário') }}
-                <input type="time" name="hor" readonly required value="{{ date('H:i', strtotime($consulta->horario)) }}">
+                <input type="time" name="hor" readonly required value="{{ date('H:i', strtotime($_GET['horario'])) }}">
 
             </div>
 
             <div>
                 {{ Form::label('valor', 'Preço') }}
                 {{ Form::number('valor',
-                    $consulta->valor,
-                    ['step' => '0.10']
+                    0,
+                    ['step' => '0.1']
                 ) }}
 
                 {{ Form::label('status', 'Estado') }}
@@ -64,14 +68,14 @@
                         'RETORNO - Agendado' => 'RETORNO - Agendado',
                         'RETORNO - Confirmado' => 'RETORNO - Confirmado',
                         'RETORNO - Aguardando' => 'RETORNO - Aguardando'
-                    ], $consulta->status,
+                    ], '',
                     ['required' => '']
                 ) }}
             </div>
 
             <div>
                 {{ Form::label('obs', 'Observação') }}
-                {{ Form::textarea('obs', $consulta->obs,
+                {{ Form::textarea('obs', '',
                     ['placeholder' => 'Observação sobre a consulta']
                 ) }}
             </div>
