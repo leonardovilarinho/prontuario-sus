@@ -190,6 +190,8 @@ Route::group(['prefix' => 'pacientes'], function() {
 
         Route::get('{id}/receituarios/{rec}/detalhes', 'ReceituarioController@detalhes')->where('id', '[0-9]+');
 
+        Route::get('{id}/receituarios/{rec}/detalhes2', 'ReceituarioController@detalhes2')->where('id', '[0-9]+');
+
         Route::get('{id}/prescricoes', 'PrescricaoController@lista')->where('id', '[0-9]+');
        
         Route::get('{id}/prescricoes/{prescricao}/gerenciar', 'PrescricaoController@gerenciar')->where('id', '[0-9]+');

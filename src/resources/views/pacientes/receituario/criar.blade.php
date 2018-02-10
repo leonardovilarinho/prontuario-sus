@@ -36,6 +36,15 @@
         </header>
 
         <section>
+            <div style="margin-left:100px">
+                <div class="marcador">
+                    <input type="checkbox" id="controle" name="controle"
+                    value="1"/>
+                    <label for="controle">Toggle</label>
+                </div>
+                <label>Receituário controlado?</label>
+            </div>
+
             <div>
                 {!! Form::label('conteudo', 'Conteúdo') !!}
                 {!! Form::textarea('conteudo', $valor, ['required' => '', 'placeholder' => 'Conteúdo do receituário']) !!}

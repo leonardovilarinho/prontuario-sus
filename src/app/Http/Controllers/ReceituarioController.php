@@ -84,6 +84,21 @@ class ReceituarioController extends Controller
         return view('pacientes.receituario.detalhes', compact('paciente', 'receita'));
     }
 
+    public function detalhes2($id, $rec)
+    {
+        $paciente = Paciente::find($id);
+
+        if(!$paciente)
+            return redirect('pacientes')->withErro('Paciente não encontrado');
+
+        $receita = Receituario::find($rec);
+
+        if(!$receita)
+            return redirect('pacientes/'.$id.'/receituarios')->withErro('Receituário não encontrado');
+
+        return view('pacientes.receituario.detalhes2', compact('paciente', 'receita'));
+    }
+
     public function novo($id)
     {
     	$paciente = Paciente::find($id);

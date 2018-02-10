@@ -48,6 +48,7 @@
         <tr>
             <td>Ações</td>
             <td>Autor</td>
+            <td>Controlado?</td>
             <td>Horário</td>
         </tr>
 
@@ -57,14 +58,22 @@
                     @if(auth()->user()->administrador)
                         <a href="{{ url('pacientes/receituarios/' . $receituario->id . '/apagar') }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
                     @endif
-                    <a href="{{ url('pacientes/' . $paciente->id .'/receituarios/'.$receituario->id.'/detalhes') }}"
-                    	class="btn verde"
-                    >
-                        Detalhes
-                    </a>
-                    
+                        @if($receituario->controle)
+                            <a href="{{ url('pacientes/' . $paciente->id .'/receituarios/'.$receituario->id.'/detalhes2') }}"
+                                class="btn verde"
+                            >
+                                Detalhes
+                            </a>
+                        @else
+                            <a href="{{ url('pacientes/' . $paciente->id .'/receituarios/'.$receituario->id.'/detalhes') }}"
+                                class="btn verde"
+                            >
+                                Detalhes
+                            </a>
+                        @endif
                 </td>
                 <td>{{ $receituario->autor->nome }}</td>
+                <td>{{ $receituario->controle ? 'Sim' : 'Não' }}</td>
                 <td>{{ date('d/m/Y H:i', strtotime($receituario->created_at)) }}</td>
             </tr>
         @endforeach

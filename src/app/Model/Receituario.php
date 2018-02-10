@@ -12,7 +12,8 @@ class Receituario extends Model
         'paciente_id',
         'autor_id',
         'created_at',
-        'cabecalho_id'
+        'cabecalho_id',
+        'controle'
     ];
 
     public function cabecalho()
@@ -23,6 +24,11 @@ class Receituario extends Model
     public function autor()
     {
     	return $this->belongsTo(Usuario::class, 'autor_id', 'id');
+    }
+
+    public function medico()
+    {
+        return Medico::where('usuario_id', $this->autor_id)->first();
     }
 
     public function paciente()
