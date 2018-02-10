@@ -86,6 +86,7 @@
         <footer style="text-align: right">
 
         	@if(auth()->user()->administrador)
+                <a href="{{ url('usuarios/secretarios/' . $medico->usuario->id) }}" class="btn amarelo">Secretários</a>
                 <a href="{{ url('usuarios/apagar/' . $medico->usuario->id) }}" onclick="return confirm('Deseja apagar?')" class="btn vermelho">Apagar</a>
                 <a href="{{ url('nao-medicos/editar/' . $medico->id) }}" class="btn amarelo">Editar</a>
 

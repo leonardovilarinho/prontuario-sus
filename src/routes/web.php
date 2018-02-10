@@ -25,6 +25,8 @@ Route::group(['prefix' => 'usuarios', 'middleware' => 'autenticacao:adm'], funct
     Route::get('desbloquear/{id}', 'UsuarioController@desbloquear')->where('id', '[0-9]+');
 
     Route::get('apagar/{id}', 'UsuarioController@apagar');
+    Route::get('secretarios/{id}', 'UsuarioController@secretarios');
+    Route::post('secretarios/{id}', 'UsuarioController@trocarSecretarios');
     Route::get('redefinir/{id}', 'UsuarioController@redefinir');
 });
 

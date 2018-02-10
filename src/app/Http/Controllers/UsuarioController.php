@@ -3,11 +3,47 @@
 namespace App\Http\Controllers;
 
 use App\Model\Usuario;
+use App\Model\Permissao;
+use \App\Model\Secretario;
 use App\Http\Requests\UsuarioRequest;
+use Illuminate\Http\Request;
 use App\Http\Requests\SenhaRequest;
 
 class UsuarioController extends Controller
 {
+    public function secretarios($id) {
+        $usuario = Usuario::find($id);
+        $inclusos = Permissao::where('medico_id', $id)->get();
+        $secretarios = Secretario::all();
+        $inc = [];
+
+        foreach($inclusos as $i)
+            $inc[] = $i->sec_id;
+
+
+        return view('secretarios', compact('usuario', 'secretarios', 'inc'));
+    }
+
+    public function trocarSecretarios(Request $request, $id)
+    {
+        $usuarios = Permissao::where('medico_id', $id)->get();
+        foreach ($usuarios as $user) {
+            $user->delete();
+        }
+
+        if($request->has('sec')) {
+            foreach ($request->sec as $user) {
+                Permissao::create([
+                    'medico_id' => $id,
+                    'sec_id' => $user
+                ]);
+            }
+        }
+
+
+        return redirect('usuarios/secretarios/'.$id)->withMsg('Secretários salvos!');
+    }
+
     public function bloquear($id)
     {
     	$usuario = Usuario::find($id);
