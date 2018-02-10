@@ -35,8 +35,16 @@
             </figure>
 
             <p>
-            	<strong>Local: </strong>
+            	<strong>Cidade: </strong>
             	{{ $posto->local }}
+            </p>
+            <p>
+            	<strong>Endereço: </strong>
+            	{{ $posto->endereco }}
+            </p>
+            <p>
+            	<strong>Telefone: </strong>
+            	{{ $posto->telefone }}
             </p>
 
         </article>

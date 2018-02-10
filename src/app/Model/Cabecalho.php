@@ -11,7 +11,9 @@ class Cabecalho extends Model
     protected $fillable = [
     	'nome',
     	'local',
-    	'atendida'
+        'atendida',
+        'endereco',
+        'telefone'
     ];
 
     public function usuarios()

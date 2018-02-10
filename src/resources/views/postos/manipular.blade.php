@@ -38,12 +38,20 @@
             <div>
                 {!! Form::label('nome', 'Nome') !!}
                 {!! Form::text('nome', $posto->nome, ['required' => '', 'placeholder' => 'Nome completo posto']) !!}
+
+                {!! Form::label('telefone', 'Telefone') !!}
+                {!! Form::text('telefone', $posto->telefone, ['required' => '', 'placeholder' => 'Telefone do posto']) !!}
             </div>
 
             <div>
-                {!! Form::label('local', 'Local') !!}
-                {!! Form::text('local', $posto->local, ['required' => '', 'placeholder' => 'Endereço completo do posto']) !!}
+                {!! Form::label('endereco', 'Endereço') !!}
+                {!! Form::text('endereco', $posto->endereco, ['required' => '', 'placeholder' => 'Endereço completo do posto']) !!}
+
+                {!! Form::label('local', 'Cidade') !!}
+                {!! Form::text('local', $posto->local, ['required' => '', 'placeholder' => 'Cidade do posto']) !!}
             </div>
+
+            
 
             <div>   
                 {!! Form::label('logo', 'Logomarca') !!}

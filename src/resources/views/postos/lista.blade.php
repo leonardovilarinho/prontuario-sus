@@ -42,7 +42,9 @@
         <tr>
             <td>Ações</td>
             <td>Nome</td>
-            <td>Local</td>
+            <td>Cidade</td>
+            <td>Endereço</td>
+            <td>Telefone</td>
             <td>Status</td>
         </tr>
 
@@ -53,6 +55,8 @@
                 </td>
                 <td>{{ $posto->nome }}</td>
                 <td>{{ $posto->local }}</td>
+                <td>{{ $posto->endereco }}</td>
+                <td>{{ $posto->telefone }}</td>
                 <td>
                     @if($posto->atendida)
                         <button class="btn verde">Ativado</button>
