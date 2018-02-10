@@ -71,13 +71,13 @@ Aqui estão tarefas planejadas para serem executadas posteriormente, são tarefa
 
 ### Médicos
 
-- [ ] [Calendário de consultas](./planejamento/calendario-consultas.md)
-- [ ] [Impressão de evolução](./planejamento/impressao-evolucao.md)
-- [ ] [Impressão de prescrição](./planejamento/impressao-prescricao.md)
-- [ ] [Ver suas consultas do pronto socorro](./planejamento/consultas-pronto-socorro.md)
-- [ ] [Modelo simples de evolução](./planejamento/modelo-evolucao.md)
-- [ ] [Modelo simples de receituário](./planejamento/modelo-receituario.md)
-- [ ] [Modelo simples de prescrição](./planejamento/modelo-prescricao.md)
+- [x] [Calendário de consultas](./planejamento/calendario-consultas.md)
+- [x] [Impressão de evolução](./planejamento/impressao-evolucao.md)
+- [x] [Impressão de prescrição](./planejamento/impressao-prescricao.md)
+- [x] [Ver suas consultas do pronto socorro](./planejamento/consultas-pronto-socorro.md)
+- [x] [Modelo simples de evolução](./planejamento/modelo-evolucao.md)
+- [x] [Modelo simples de receituário](./planejamento/modelo-receituario.md)
+- [x] [Modelo simples de prescrição](./planejamento/modelo-prescricao.md)
 
 ### Secretários
 
@@ -87,8 +87,8 @@ Aqui estão tarefas planejadas para serem executadas posteriormente, são tarefa
 
 ### Não médicos
 
-- [ ] [Impressão de evolução](./planejamento/impressao-evolucao.md)
-- [ ] [Impressão de prescrição](./planejamento/impressao-prescricao.md)
+- [x] [Impressão de evolução](./planejamento/impressao-evolucao.md)
+- [x] [Impressão de prescrição](./planejamento/impressao-prescricao.md)
 
 **Obs:** Para ver detalhes da tarefa, clique em seu nome.
 
