@@ -183,10 +183,13 @@ Route::group(['prefix' => 'pacientes'], function() {
 
     Route::group(['middleware' => 'autenticacao:med|nme|adm'], function() {
         Route::get('{id}/evolucoes', 'EvolucaoController@lista')->where('id', '[0-9]+');
+        Route::get('{id}/hevo', 'EvolucaoController@historico')->where('id', '[0-9]+');
     
         Route::get('{id}/evolucoes/{ev}/detalhes', 'EvolucaoController@detalhes')->where('id', '[0-9]+');
 
         Route::get('{id}/receituarios', 'ReceituarioController@lista')->where('id', '[0-9]+');
+
+        Route::get('{id}/hrec', 'ReceituarioController@historico')->where('id', '[0-9]+');
 
         Route::get('{id}/receituarios/{rec}/detalhes', 'ReceituarioController@detalhes')->where('id', '[0-9]+');
 

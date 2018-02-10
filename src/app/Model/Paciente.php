@@ -33,5 +33,15 @@ class Paciente extends Model
     public function consultas()
     {
         return $this->hasMany(Consulta::class, 'paciente_id', 'id');
+	}
+	
+	public function evolucoes()
+    {
+        return $this->hasMany(Evolucao::class, 'paciente_id', 'id');
+	}
+	
+	public function receitas()
+    {
+        return $this->hasMany(Receituario::class, 'paciente_id', 'id');
     }
 }

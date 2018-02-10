@@ -54,7 +54,7 @@
             
         </tr>
 
-        @foreach($paciente->evolucoes as $evolucao)
+        @foreach($paciente->evolucoess as $evolucao)
             <tr>
                 <td>
                     @if(auth()->user()->administrador)
@@ -72,9 +72,17 @@
                 <td>{{ $evolucao->cabecalho->nome . ' - ' . $evolucao->cabecalho->local }}</td>
             </tr>
         @endforeach
+
+        <tfoot>
+            <tr>
+                <td>
+                    <a href="{{ url('pacientes/'.$paciente->id.'/hevo') }}" class="btn verde">Histórico de evolução</a>
+                </td>
+            </tr>
+        </tfoot>
     </table>
 
     <section style="text-align:center">
-        {{ $paciente->evolucoes->links() }}
+        {{ $paciente->evolucoess->links() }}
     </section>
 @endsection

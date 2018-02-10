@@ -77,6 +77,14 @@
                 <td>{{ date('d/m/Y H:i', strtotime($receituario->created_at)) }}</td>
             </tr>
         @endforeach
+
+        <tfoot>
+            <tr>
+                <td>
+                    <a href="{{ url('pacientes/'.$paciente->id.'/hrec') }}" class="btn verde">Histórico de receituários</a>
+                </td>
+            </tr>
+        </tfoot>
     </table>
 
     <section style="text-align:center">
