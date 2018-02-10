@@ -57,7 +57,7 @@
 	                {!! Form::label('conselho', 'Conselho regional') !!}
 	                {!! Form::text('conselho', auth()->user()->medico->conselho) !!}
 
-	                {!! Form::label('telefone', 'Telefone') !!}
+	                {!! Form::label('telefone', 'Telefone(s)') !!}
 	                {!! Form::text('telefone', auth()->user()->medico->telefone) !!}
 	            </div>
 	        @elseif(auth()->user()->secretario)
@@ -65,7 +65,7 @@
 	                {!! Form::label('cargo', 'Cargo') !!}
 	                {!! Form::text('cargo', auth()->user()->secretario->cargo) !!}
 
-					{!! Form::label('telefone', 'Telefone') !!}
+					{!! Form::label('telefone', 'Telefone(s)') !!}
 	                {!! Form::text('telefone', auth()->user()->secretario->telefone) !!}
 	            </div>
 	        @endif

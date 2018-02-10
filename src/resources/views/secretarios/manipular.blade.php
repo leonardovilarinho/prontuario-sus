@@ -52,7 +52,7 @@
                 {!! Form::label('cargo', 'Cargo') !!}
                 {!! Form::text('cargo', $secretario->cargo) !!}
 
-				{!! Form::label('telefone', 'Telefone') !!}
+				{!! Form::label('telefone', 'Telefone(s)') !!}
                 {!! Form::text('telefone', $secretario->telefone) !!}
             </div>
 

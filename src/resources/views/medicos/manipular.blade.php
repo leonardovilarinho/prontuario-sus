@@ -60,7 +60,7 @@
                 {!! Form::label('conselho', 'Conselho regional') !!}
                 {!! Form::text('conselho', $medico->conselho) !!}
 
-                {!! Form::label('telefone', 'Telefone') !!}
+                {!! Form::label('telefone', 'Telefone(s)') !!}
                 {!! Form::text('telefone', $medico->telefone) !!}
             </div>
         </section>

@@ -90,7 +90,7 @@
             <h4>Contato:</h4>
 
             <div>
-                {!! Form::label('telefone', 'Telefone') !!}
+                {!! Form::label('telefone', 'Telefone(s)') !!}
                 {!! Form::text('telefone', $paciente->telefone, ['placeholder' => 'Número do telefone']) !!}
 
                 {!! Form::label('email', 'Email') !!}

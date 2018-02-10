@@ -39,7 +39,7 @@ class PacienteRequest extends FormRequest
             'cpf' => 'nullable|min:11|max:11',
             'profissao' => 'nullable|max:50',
             'email' => 'nullable|email|max:150',
-            'telefone' => 'nullable|max:15|min:8',
+            'telefone' => 'nullable|min:3|max:255',
             'endereco' => 'nullable|max:150',
             'bairro' => 'nullable|max:50',
             'cidade' => 'nullable|max:50',
