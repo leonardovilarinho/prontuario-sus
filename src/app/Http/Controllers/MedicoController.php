@@ -11,6 +11,7 @@ use App\Model\CargaHoraria;
 use App\Model\Cabecalho;
 use App\Model\PermissaoPosto;
 use App\Model\Dia;
+use App\Model\Permissao;
 
 class MedicoController extends Controller
 {
@@ -24,6 +25,22 @@ class MedicoController extends Controller
                     ->orWhere('email', 'like', '%'.$_GET['q'].'%')
                     ->orWhere('cpf', 'like', '%'.$_GET['q'].'%');
             })->paginate( config('prontuario.paginacao') );
+        }
+
+        if(auth()->user()->secretario) {
+
+            $permissoes = Permissao::where('sec_id', auth()->user()->id)->get();
+
+            foreach($medicos as $k => $medico) {
+                $invalid = true;
+                foreach($permissoes as $perm) {
+                    if($medico->usuario->id == $perm->medico_id)
+                        $invalid = false;
+                }
+
+                if($invalid)
+                    unset($medicos[$k]);
+            }
         }
 
         return view('medicos.lista', compact('medicos'));

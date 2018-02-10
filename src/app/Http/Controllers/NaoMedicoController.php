@@ -7,6 +7,7 @@ use App\Http\Requests\NaoMedicoRequest;
 use App\Model\NaoMedico;
 use App\Model\Usuario;
 use App\Model\Cabecalho;
+use App\Model\Permissao;
 
 class NaoMedicoController extends Controller
 {
@@ -20,6 +21,22 @@ class NaoMedicoController extends Controller
                     ->orWhere('email', 'like', '%'.$_GET['q'].'%')
                     ->orWhere('cpf', 'like', '%'.$_GET['q'].'%');
             })->paginate( config('prontuario.paginacao') );
+        }
+
+        if(auth()->user()->secretario) {
+
+            $permissoes = Permissao::where('sec_id', auth()->user()->id)->get();
+
+            foreach($nmedicos as $k => $medico) {
+                $invalid = true;
+                foreach($permissoes as $perm) {
+                    if($medico->usuario->id == $perm->medico_id)
+                        $invalid = false;
+                }
+
+                if($invalid)
+                    unset($nmedicos[$k]);
+            }
         }
         
         return view('nao-medicos.lista', compact('nmedicos'));
