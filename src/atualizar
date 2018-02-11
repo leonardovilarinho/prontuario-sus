@@ -1,16 +1,31 @@
-ALTER TABLE `cabecalhos` ADD `endereco` VARCHAR NOT NULL DEFAULT 'n/d' AFTER `id`;
-ALTER TABLE `cabecalhos` ADD `telefone` VARCHAR NOT NULL DEFAULT 'n/d' AFTER `id`;
+ALTER TABLE `consultas`
+	CHANGE COLUMN `status` `status` VARCHAR(250) NOT NULL COLLATE 'utf8mb4_unicode_ci' AFTER `obs`;
+
+
+CREATE TABLE IF NOT EXISTS `modelos` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `conteudo` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `medico_id` int(10) unsigned NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `modelos_medico_id_foreign` (`medico_id`),
+  CONSTRAINT `modelos_medico_id_foreign` FOREIGN KEY (`medico_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+
+ALTER TABLE `cabecalhos` ADD `endereco` VARCHAR(255) NOT NULL DEFAULT 'n/d' AFTER `id`;
+ALTER TABLE `cabecalhos` ADD `telefone` VARCHAR(255) NOT NULL DEFAULT 'n/d' AFTER `id`;
 ALTER TABLE `receituarios` ADD `controle` TINYINT(1) NOT NULL DEFAULT '0' AFTER `id`;
 
 CREATE TABLE `permissoes` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT,
   `medico_id` int(10) UNSIGNED NOT NULL,
-  `sec_id` int(10) UNSIGNED NOT NULL
+  `sec_id` int(10) UNSIGNED NOT NULL,
+  PRIMARY KEY (`id`),
+  KEY `permissoes_id_foreign` (`medico_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-ALTER TABLE `permissoes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 
 ALTER TABLE `permissoes`
   ADD CONSTRAINT `permissoes_medico_id_foreign` FOREIGN KEY (`medico_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `permissoes_sec_id_foreign` FOREIGN KEY (`sec_id`) REFERENCES `usuarios` (`id`) ON DELETE CASCADE;
-
