@@ -43,7 +43,6 @@
                 <p>CRM: {{ $receita->medico()                                                                       ->conselho }}</p>
                 <p>ENDEREÇO: {{ $receita->cabecalho->endereco }}</p>
                 <p>TELEFONE: {{ $receita->cabecalho->telefone }}</p>
-                <p>CIDADE: {{ $receita->cabecalho->local }}</p>
             </section>
 
 <br>

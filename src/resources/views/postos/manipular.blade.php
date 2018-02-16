@@ -47,8 +47,8 @@
                 {!! Form::label('endereco', 'Endereço') !!}
                 {!! Form::text('endereco', $posto->endereco, ['required' => '', 'placeholder' => 'Endereço completo do posto']) !!}
 
-                {!! Form::label('local', 'Cidade') !!}
-                {!! Form::text('local', $posto->local, ['required' => '', 'placeholder' => 'Cidade do posto']) !!}
+                {!! Form::label('local', 'Slogan') !!}
+                {!! Form::text('local', $posto->local, ['required' => '', 'placeholder' => 'Slogan do posto']) !!}
             </div>
 
             

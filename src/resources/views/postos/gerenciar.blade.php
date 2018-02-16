@@ -35,7 +35,7 @@
             </figure>
 
             <p>
-            	<strong>Cidade: </strong>
+            	<strong>Slogan: </strong>
             	{{ $posto->local }}
             </p>
             <p>

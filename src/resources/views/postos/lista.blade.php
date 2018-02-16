@@ -42,7 +42,7 @@
         <tr>
             <td>Ações</td>
             <td>Nome</td>
-            <td>Cidade</td>
+            <td>Slogan</td>
             <td>Endereço</td>
             <td>Telefone</td>
             <td>Status</td>
