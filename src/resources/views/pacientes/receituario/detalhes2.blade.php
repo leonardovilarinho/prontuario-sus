@@ -72,11 +72,13 @@
             <section style="display: flex; font-size:10pt">
                 <article style="width: 49%; border: 1px solid #999999; margin: 2px 5px;">
                     <h4 style="margin-top:-5px">IDENTIFICAÇÃO DO COMPRADOR</h4>
-                    <p>NOME: {{ $receita->paciente->nome }}</p>
-                    <p>IDENTIDADE: {{ $receita->paciente->cpf }}</p>
-                    <p>ENDEREÇO: {{ $receita->paciente->endereco }}</p>
-                    <p>CIDADE: {{ $receita->paciente->cidade }}/{{ $receita->paciente->uf }}</p>
-                    <p>TELEFONE: {{ $receita->paciente->telefone }}</p>
+                    <p>NOME:</p>
+                    <br>
+                    <p>IDENTIDADE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EMISSOR: </p>
+                    <p>ENDEREÇO: </p>
+                    <br>
+                    <p>CIDADE:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UF: </p>
+                    <p>TELEFONE: </p>
                 </article>
 
                 <article style="width: 49%; border: 1px solid #999999; margin: 2px 5px;">
@@ -84,13 +86,7 @@
                     <br>
                     <div style="text-align:center">
                         <p>_________________________________________________________</p>
-                        @if($receita->autor->medico)
-                           <p>{{ $receita->autor->nome }} | {{ $receita->autor->medico->conselho }}        </p>
-                           <p><strong>{{ $receita->autor->medico->especialidade }}</strong></p>
-                        @elseif($receita->autor->nao_medico)
-                            <p>{{ $receita->autor->nome }} | {{ $receita->autor->nao_medico->conselho }}</p>
-                            <p><strong>{{ $receita->autor->nao_medico->especialidade }}</strong></p>
-                        @endif
+                        <p>Assinatura do farmacêutico</p>
                     </div>
                     <br>
                     <p style="text-align:center">DATA: {{ date('d/m/Y') }}</p>
