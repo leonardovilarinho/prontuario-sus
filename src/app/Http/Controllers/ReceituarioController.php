@@ -140,6 +140,9 @@ class ReceituarioController extends Controller
 
     	$rec = Receituario::create($requisicao->all() + ['cabecalho_id' => $user->cabecalho_id]);
 
+        if($requisicao->has('controle'))
+            return redirect('pacientes/'.$id.'/receituarios/'.$rec->id.'/detalhes2')->withMsg('Receituário foi cadastrada!');
+
     	return redirect('pacientes/'.$id.'/receituarios/'.$rec->id.'/detalhes')->withMsg('Receituário foi cadastrada!');
     }
 
